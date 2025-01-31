@@ -1,4 +1,6 @@
-﻿# Encyclopedia / Lexicon / Glossary / Wiki
+﻿# Lexicon WordPress Plugin
+
+[![WordPress Plugin Version](https://img.shields.io/wordpress/plugin/v/lexicon-svko.svg)](https://wordpress.org/plugins/lexicon-svko/) [![WordPress Plugin Downloads](https://img.shields.io/wordpress/plugin/dt/lexicon-svko.svg)](https://wordpress.org/plugins/lexicon-svko/) [![WordPress Plugin Rating](https://img.shields.io/wordpress/plugin/r/lexicon-svko.svg)](https://wordpress.org/plugins/lexicon-svko/) [![WordPress Plugin Active Installs](https://img.shields.io/wordpress/plugin/installs/lexicon-svko.svg)](https://wordpress.org/plugins/lexicon-svko/) [![WordPress Plugin Tested](https://img.shields.io/wordpress/plugin/tested/lexicon-svko.svg)](https://wordpress.org/plugins/lexicon-svko/) [![WordPress Plugin Requires PHP](https://img.shields.io/wordpress/plugin/requirements/lexicon-svko.svg)](https://wordpress.org/plugins/lexicon-svko/) [![WordPress Plugin Requires WP](https://img.shields.io/wordpress/plugin/wp-version/lexicon-svko.svg)](https://wordpress.org/plugins/lexicon-svko/) [![WordPress Plugin Downloads](https://img.shields.io/wordpress/plugin/installs/lexicon-svko.svg)](https://wordpress.org/plugins/lexicon-svko/) [![WordPress Plugin Downloads](https://img.shields.io/wordpress/plugin/installs/lexicon-svko.svg)](https://wordpress.org/plugins/lexicon-svko/)
 
 A supercharged tool to build your own awesome Encyclopedia, Lexicon, Glossary, Wiki, Dictionary, Knowledge base, Directory, or Vocabulary in WordPress.
 

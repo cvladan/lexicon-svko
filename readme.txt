@@ -72,8 +72,8 @@ Enjoy the easy way to manage your contents with WordPress in combination with a 
 
 
 = Getting started / First aid =
-1. View [Installation guide on WordPress.org](https://wordpress.org/plugins/encyclopedia-lexicon-glossary-wiki-dictionary/installation/)
-1. View [Frequently Asked Questions on WordPress.org](https://wordpress.org/plugins/encyclopedia-lexicon-glossary-wiki-dictionary/faq/)
+1. View [Installation guide on WordPress.org](https://wordpress.org/plugins/lexicon-svko/installation/)
+1. View [Frequently Asked Questions on WordPress.org](https://wordpress.org/plugins/lexicon-svko/faq/)
 1. View the [Encyclopedia Pro documentation](https://dennishoppe.de/en/wordpress-plugins/encyclopedia)
 1. Get exclusive [personal one-on-one support](https://dennishoppe.de/en/support)
 
@@ -96,9 +96,9 @@ Please use the support forum on WordPress.org only for this free lite version of
 * 这个插件可用于简体中文。([Robin Pang](https://www.hunterpedia.cn/))
 
 = Translate this plugin =
-This plugin is community translated. You can help translate it or improve existing translations [on the official translation platform](https://translate.wordpress.org/projects/wp-plugins/encyclopedia-lexicon-glossary-wiki-dictionary/).
+This plugin is community translated. You can help translate it or improve existing translations [on the official translation platform](https://translate.wordpress.org/projects/wp-plugins/lexicon-svko/).
 
-You can find the *Translation.pot* file in the *languages/* folder in the plugin directory. The textdomain of this plugin is "encyclopedia-lexicon-glossary-wiki-dictionary".
+You can find the *Translation.pot* file in the *languages/* folder in the plugin directory. The textdomain of this plugin is "lexicon-svko".
 
 
 = Real life examples =
