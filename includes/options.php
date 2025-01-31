@@ -39,17 +39,17 @@ abstract class Options
         add_action('load-' . $handle, [static::class, 'loadOptionsPage']);
 
         # Add option boxes
-        static::addOptionBox(I18n::__('Labels'), Core::$plugin_folder . '/options-page/post-type-labels.php');
-        static::addOptionBox(I18n::__('Appearance'), Core::$plugin_folder . '/options-page/appearance.php');
-        static::addOptionBox(I18n::__('Features'), Core::$plugin_folder . '/options-page/features.php');
-        static::addOptionBox(I18n::__('Taxonomies'), Core::$plugin_folder . '/options-page/taxonomies.php');
-        static::addOptionBox(I18n::__('Archives'), Core::$plugin_folder . '/options-page/archive-page.php');
-        static::addOptionBox(I18n::__('Search'), Core::$plugin_folder . '/options-page/search.php');
-        static::addOptionBox(I18n::__('Single View'), Core::$plugin_folder . '/options-page/single-page.php');
-        static::addOptionBox(I18n::__('Related Items'), Core::$plugin_folder . '/options-page/related-items.php');
-        static::addOptionBox(I18n::__('Cross Linking'), Core::$plugin_folder . '/options-page/cross-linking.php');
-        static::addOptionBox(I18n::__('Tooltips'), Core::$plugin_folder . '/options-page/tooltips.php');
-        static::addOptionBox(I18n::__('Archive URLs'), Core::$plugin_folder . '/options-page/archive-link.php', 'side');
+        static::addOptionBox(I18n::__('Labels'), Core::$plugin_folder . '/options/post-type-labels.php');
+        static::addOptionBox(I18n::__('Appearance'), Core::$plugin_folder . '/options/appearance.php');
+        static::addOptionBox(I18n::__('Features'), Core::$plugin_folder . '/options/features.php');
+        static::addOptionBox(I18n::__('Taxonomies'), Core::$plugin_folder . '/options/taxonomies.php');
+        static::addOptionBox(I18n::__('Archives'), Core::$plugin_folder . '/options/archive-page.php');
+        static::addOptionBox(I18n::__('Search'), Core::$plugin_folder . '/options/search.php');
+        static::addOptionBox(I18n::__('Single View'), Core::$plugin_folder . '/options/single-page.php');
+        static::addOptionBox(I18n::__('Related Items'), Core::$plugin_folder . '/options/related-items.php');
+        static::addOptionBox(I18n::__('Cross Linking'), Core::$plugin_folder . '/options/cross-linking.php');
+        static::addOptionBox(I18n::__('Tooltips'), Core::$plugin_folder . '/options/tooltips.php');
+        static::addOptionBox(I18n::__('Archive URLs'), Core::$plugin_folder . '/options/archive-link.php', 'side');
     }
 
     public static function getOptionsPageUrl(array $args = []): string
@@ -91,7 +91,7 @@ abstract class Options
 
         WP_Enqueue_Style('dashboard');
 
-        WP_Enqueue_Style(static::page_slug, Core::$base_url . '/options-page/options-page.css');
+        WP_Enqueue_Style(static::page_slug, Core::$base_url . '/options/options.css');
 
         # Remove incompatible JS Libs
         WP_Dequeue_Script('post');
@@ -99,7 +99,7 @@ abstract class Options
 
     public static function printOptionsPage(): void
     {
-        include Core::$plugin_folder . '/options-page/options-page.php';
+        include Core::$plugin_folder . '/options/options.php';
     }
 
     public static function saveOptions(): bool
