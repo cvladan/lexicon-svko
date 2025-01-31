@@ -1,10 +1,6 @@
 <?php
 
-use WordPress\Plugin\Encyclopedia\{
-    I18n,
-    MockingBird,
-    Options
-};
+use SVKO\Lexicon\{I18n, MockingBird, Options};
 
 ?>
 <table class="form-table">
