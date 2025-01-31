@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bundle name="Lexicon | SVKO">
+  <domain name="*">
+    <project name="Lexicon | SVKO" slug="">
+      <source>
+        <directory>.</directory>
+      </source>
+      <target>
+        <directory>languages</directory>
+      </target>
+      <template>
+        <file>languages/translation.pot</file>
+      </template>
+    </project>
+  </domain>
+</bundle>
