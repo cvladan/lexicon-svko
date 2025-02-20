@@ -56,7 +56,7 @@ abstract class PrefixFilter
         } while ($active_prefix);
 
         # Run a filter
-        $arr_filter = apply_filters('encyclopedia_prefix_filter_links', $arr_filter, $depth);
+        $arr_filter = apply_filters('lexicon_prefix_filter_links', $arr_filter, $depth);
 
         return $arr_filter;
     }
@@ -103,7 +103,7 @@ abstract class PrefixFilter
 
         $arr_filter = array_filter($arr_filter);
         $arr_filter = array_values($arr_filter);
-        $arr_filter = apply_filters('encyclopedia_available_prefix_filters', $arr_filter, $prefix, $taxonomy_term);
+        $arr_filter = apply_filters('lexicon_available_prefix_filters', $arr_filter, $prefix, $taxonomy_term);
 
         return $arr_filter;
     }

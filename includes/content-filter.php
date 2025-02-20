@@ -83,7 +83,7 @@ abstract class ContentFilter
             return $content;
 
         # Check if Cross-Linking is activated for this post
-        if (apply_filters('encyclopedia_link_items_in_post', true, $post)) {
+        if (apply_filters('lexicon_link_items_in_post', true, $post)) {
             $content = Core::addCrossLinks($content, $post);
             $content_hash = md5($content);
             $processed_contents[$content_hash] = true;

@@ -29,7 +29,7 @@ abstract class I18n
 
     public static function translate(string $text, string $context = ''): string
     {
-        if (apply_filters('encyclopedia_translate', true, $text, $context)) {
+        if (apply_filters('lexicon_translate', true, $text, $context)) {
             # Load text domain
             if (!static::$loaded) static::loadTextDomain();
 

@@ -21,7 +21,7 @@ abstract class PostRelations
         ], $arguments);
 
         # apply filter
-        $arguments = apply_filters('encyclopedia_term_related_items_arguments', $arguments);
+        $arguments = apply_filters('lexicon_term_related_items_arguments', $arguments);
 
         # if there is no term set we leave
         if (empty($arguments->post_id))

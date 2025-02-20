@@ -2,11 +2,7 @@
 
 global $post;
 
-use SVKO\Lexicon\{
-    Core,
-    I18n,
-    PostTypeLabels
-};
+use SVKO\Lexicon\{ Core, I18n, PostTypeLabels };
 
 if ($related_items) : ?>
     <h3><?php printf(I18n::__('Related %s'), PostTypeLabels::getItemPluralName()) ?></h3>

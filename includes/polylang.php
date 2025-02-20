@@ -8,8 +8,8 @@ abstract class Polylang
 {
     public static function init(): void
     {
-        add_filter('encyclopedia_translate', [static::class, 'filterTranslation'], 10, 3);
-        add_filter('encyclopedia_available_prefix_filters', [static::class, 'filterAvailablePrefixFilters']);
+        add_filter('lexicon_translate', [static::class, 'filterTranslation'], 10, 3);
+        add_filter('lexicon_available_prefix_filters', [static::class, 'filterAvailablePrefixFilters']);
     }
 
     public static function isActive(): bool

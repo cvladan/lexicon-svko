@@ -137,7 +137,7 @@ abstract class PostType
 
     public static function getArchiveLink(string $filter = '', $taxonomy_term = null)
     {
-        if (apply_filters('encyclopedia_use_plain_prefix_url_structure', false))
+        if (apply_filters('lexicon_use_plain_prefix_url_structure', false))
             $permalink_structure = '';
         else
             $permalink_structure = get_Option('permalink_structure');

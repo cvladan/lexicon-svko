@@ -27,7 +27,7 @@ function filter_field_value(?string $content, $post_id, array $field): string
   if (!$post) {return $content; }
 
   # Check if Cross-Linking is activated for this post type
-  return apply_filters("encyclopedia_link_items_in_post", true, $post) ? Core::addCrossLinks($content, $post) : $content;
+  return apply_filters("lexicon_link_items_in_post", true, $post) ? Core::addCrossLinks($content, $post) : $content;
 }
 
 # Filter text field value with formatting consideration
