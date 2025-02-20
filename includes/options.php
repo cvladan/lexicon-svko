@@ -89,9 +89,9 @@ abstract class Options
             WP_Redirect(static::getOptionsPageUrl(['options_saved' => 'true']));
         }
 
-        WP_Enqueue_Style('dashboard');
+        wp_enqueue_style('dashboard');
 
-        WP_Enqueue_Style(static::page_slug, Core::$base_url . '/options/options.css');
+        wp_enqueue_style(static::page_slug, Core::$base_url . '/options/options.css');
 
         # Remove incompatible JS Libs
         WP_Dequeue_Script('post');

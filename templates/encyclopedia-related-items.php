@@ -14,6 +14,6 @@ if ($related_items) : ?>
         <?php while ($related_items->have_Posts()) : $related_items->the_Post() ?>
             <li class="item"><a href="<?php the_Permalink() ?>" title="<?php echo esc_Attr(Core::getCrossLinkItemTitle($post)) ?>" class="encyclopedia"><?php the_Title() ?></a></li>
         <?php endwhile;
-        WP_Reset_Postdata() ?>
+        wp_reset_postdata() ?>
     </ul>
 <?php endif;

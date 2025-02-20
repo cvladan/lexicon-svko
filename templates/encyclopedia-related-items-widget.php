@@ -10,5 +10,5 @@ use SVKO\Lexicon\{
     <?php while ($widget->items->have_Posts()) : $widget->items->the_Post() ?>
         <li class="item"><a href="<?php the_Permalink() ?>" title="<?php echo esc_Attr(Core::getCrossLinkItemTitle($post)) ?>" class="encyclopedia"><?php the_Title() ?></a></li>
     <?php endwhile;
-    WP_Reset_Postdata() ?>
+    wp_reset_postdata() ?>
 </ul>

@@ -12,20 +12,20 @@ abstract class Tooltips
 
     public static function registerScripts(): void
     {
-        WP_Register_Script('tooltipster', Core::$base_url . '/assets/js/tooltipster.bundle.min.js', ['jquery'], '4.2.6', true);
-        WP_Register_Script('encyclopedia-tooltips', Core::$base_url . '/assets/js/tooltips.js', ['tooltipster'], null, true);
+        wp_register_script('tooltipster', Core::$base_url . '/assets/js/tooltipster.bundle.min.js', ['jquery'], '4.2.6', true);
+        wp_register_script('encyclopedia-tooltips', Core::$base_url . '/assets/js/tooltips.js', ['tooltipster'], null, true);
 
         $js_parameters = [];
         $js_parameters = apply_Filters('encyclopedia_tooltip_js_parameters', $js_parameters);
 
-        WP_Localize_Script('encyclopedia-tooltips', 'Encyclopedia_Tooltips', $js_parameters);
+        wp_localize_script('encyclopedia-tooltips', 'Encyclopedia_Tooltips', $js_parameters);
     }
 
     public static function enqueueScripts(): void
     {
         if (Options::get('activate_tooltips')) {
-            WP_Enqueue_Style('encyclopedia-tooltips', Core::$base_url . '/assets/css/tooltips.css');
-            WP_Enqueue_Script('encyclopedia-tooltips');
+            wp_enqueue_style('encyclopedia-tooltips', Core::$base_url . '/assets/css/tooltips.css');
+            wp_enqueue_script('encyclopedia-tooltips');
         }
     }
 }
