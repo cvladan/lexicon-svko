@@ -124,7 +124,7 @@ class CrossLinker
                     $item = call_user_func_array($callback , $callback_args);
                     $xml_title = HTML_Entity_Decode($item->title, ENT_QUOTES, 'UTF-8');
                     $link = sprintf($link_regex, $item->url, $this->link_target, esc_Attr($xml_title));
-                    $link = apply_Filters('encyclopedia_cross_link_element', $link, $item->url, $this->link_target, $item->title, $this);
+                    $link = apply_filters('encyclopedia_cross_link_element', $link, $item->url, $this->link_target, $item->title, $this);
                 }
 
                 # This could break if your terms contains very special characters which break the search regex

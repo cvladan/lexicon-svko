@@ -12,7 +12,7 @@ abstract class I18n
 
     public static function loadTextDomain()
     {
-        $locale = apply_Filters('plugin_locale', get_Locale(), static::textdomain);
+        $locale = apply_filters('plugin_locale', get_Locale(), static::textdomain);
         $language_folder = Core::$plugin_folder . '/languages';
 
         load_Plugin_TextDomain(static::textdomain);

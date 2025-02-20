@@ -43,7 +43,7 @@ abstract class WPML
     public static function translateRegisteredString(string $text, string $string_id): string
     {
         $plugin = UCWords(Str_Replace(['-', '_'], ' ', I18n::textdomain));
-        return apply_Filters('wpml_translate_single_string', $text, $plugin, $string_id);
+        return apply_filters('wpml_translate_single_string', $text, $plugin, $string_id);
     }
 
     public static function t(string $text, string $string_id): string

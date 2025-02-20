@@ -16,7 +16,7 @@ abstract class Tooltips
         wp_register_script('encyclopedia-tooltips', Core::$base_url . '/assets/js/tooltips.js', ['tooltipster'], null, true);
 
         $js_parameters = [];
-        $js_parameters = apply_Filters('encyclopedia_tooltip_js_parameters', $js_parameters);
+        $js_parameters = apply_filters('encyclopedia_tooltip_js_parameters', $js_parameters);
 
         wp_localize_script('encyclopedia-tooltips', 'Encyclopedia_Tooltips', $js_parameters);
     }

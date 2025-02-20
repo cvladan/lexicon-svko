@@ -22,7 +22,7 @@ abstract class TaxonomyFallbacks
         $post = get_Post($post_id);
 
         if (
-            !is_Admin() &&
+            !is_admin() &&
             $post && $post->post_type === PostType::getPostTypeName() &&
             !is_Object_in_Taxonomy($post->post_type, $taxonomy_name) &&
             $map_to_taxonomy && taxonomy_exists($map_to_taxonomy) && is_Object_in_Taxonomy($post->post_type, $map_to_taxonomy)
@@ -40,7 +40,7 @@ abstract class TaxonomyFallbacks
 
         if (
             empty($category_list) &&
-            !is_Admin() &&
+            !is_admin() &&
             $post && $post->post_type === PostType::getPostTypeName() &&
             !is_Object_in_Taxonomy($post->post_type, 'category') &&
             taxonomy_exists($encyclopedia_taxonomy) && is_Object_in_Taxonomy($post->post_type, $encyclopedia_taxonomy)

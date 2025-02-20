@@ -142,7 +142,7 @@ abstract class Options
             'prefix_filter_singular_depth' => 3,
             'relation_taxonomy' => 'encyclopedia-tag',
             'min_relation_threshold' => 1,
-            'cross_link_title_length' => apply_Filters('excerpt_length', 55),
+            'cross_link_title_length' => apply_filters('excerpt_length', 55),
             'cross_linker_priority' => 'after_shortcodes',
             'activate_tooltips' => true,
         ];

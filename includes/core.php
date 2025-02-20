@@ -57,7 +57,7 @@ abstract class Core
 
         # Start Cross Linker
         $cross_linker = new CrossLinker();
-        $cross_linker->setSkipElements(apply_Filters('encyclopedia_cross_linking_skip_elements', ['a', 'script', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'button', 'textarea', 'select', 'style', 'pre', 'code', 'kbd', 'tt']));
+        $cross_linker->setSkipElements(apply_filters('encyclopedia_cross_linking_skip_elements', ['a', 'script', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'button', 'textarea', 'select', 'style', 'pre', 'code', 'kbd', 'tt']));
         if (!$cross_linker->loadContent($content))
             return $content;
 
@@ -79,7 +79,7 @@ abstract class Core
 
         # Create the links
         foreach ($query->posts as $item) {
-            if (apply_Filters('encyclopedia_link_item_in_content', true, $item, $post, $cross_linker)) {
+            if (apply_filters('encyclopedia_link_item_in_content', true, $item, $post, $cross_linker)) {
                 $cross_linker->linkPhrase($item->post_title, [static::class, 'getCrossLinkItemDetails'], [$item]);
             }
         }
@@ -104,9 +104,9 @@ abstract class Core
         $title = $more = $length = false;
 
         if (empty($post->post_excerpt)) {
-            $more = apply_Filters('encyclopedia_link_title_more', '&hellip;');
+            $more = apply_filters('encyclopedia_link_title_more', '&hellip;');
             #$more = HTML_Entity_Decode($more, ENT_QUOTES, 'UTF-8');
-            $length = apply_Filters('encyclopedia_link_title_length', Options::get('cross_link_title_length'));
+            $length = apply_filters('encyclopedia_link_title_length', Options::get('cross_link_title_length'));
             $title = strip_Shortcodes($post->post_content);
             $title = WP_Strip_All_Tags($title);
             #$title = HTML_Entity_Decode($title, ENT_QUOTES, 'UTF-8');
@@ -116,7 +116,7 @@ abstract class Core
             #$title = HTML_Entity_Decode($title, ENT_QUOTES, 'UTF-8');
         }
 
-        $title = apply_Filters('encyclopedia_item_link_title', $title, $post, $more, $length);
+        $title = apply_filters('encyclopedia_item_link_title', $title, $post, $more, $length);
 
         return $title;
     }
@@ -146,7 +146,7 @@ abstract class Core
             return false;
 
         # Run filter
-        if (!apply_Filters('encyclopedia_is_prefix_filter_enabled', true, $query))
+        if (!apply_filters('encyclopedia_is_prefix_filter_enabled', true, $query))
             return false;
 
         # Conditions
@@ -168,7 +168,7 @@ abstract class Core
         if (
             !$prefix_filter_already_rendered &&
             is_a($wp_query, WP_Query::class) &&
-            apply_Filters('encyclopedia_is_prefix_filter_enabled', true, $wp_query) &&
+            apply_filters('encyclopedia_is_prefix_filter_enabled', true, $wp_query) &&
             $wp_query->is_Main_Query() &&
             !$wp_query->get('suppress_filters') &&
             (

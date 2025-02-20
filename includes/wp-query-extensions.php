@@ -33,7 +33,7 @@ abstract class WPQueryExtensions
                 $order_by_post_title = true;
             }
 
-            if (!is_Admin() && $query->is_Main_Query()) {
+            if (!is_admin() && $query->is_Main_Query()) {
                 # Take a look at the prefix filter - this works for all post types
                 if (!$query->get('post_title_like') && $query->get('prefix'))
                     $query->set('post_title_like', RawUrlDecode($query->get('prefix')) . '%');

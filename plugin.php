@@ -12,16 +12,21 @@
  * Text Domain:     lexicon
  * Domain Path:     /languages
  * Update URI:      false
- * Requires PHP:      8.0
+ * Requires PHP:    8.0
  */
 
-if (version_compare(PHP_VERSION, '7.4', '<')) {
-    die(sprintf('Your PHP version (%s) is far too old. <a href="https://secure.php.net/supported-versions.php" target="_blank">Please upgrade immediately.</a> Then activate the plugin again.', PHP_VERSION));
+namespace SVKO\Lexicon;
+defined('ABSPATH') || exit;
+
+if (!defined($_ = __NAMESPACE__)) : define($_, 1); # prevent redeclaration; singleton; don't forget endif
+
+if (version_compare(PHP_VERSION, '8.0', '<')) {
+  die(sprintf('Your PHP version (%s) is far too old. <a href="https://secure.php.net/supported-versions.php" target="_blank">Please upgrade immediately.</a> Then activate the plugin again.', PHP_VERSION));
 }
 
 $includeFiles = function ($pattern) {
     $arr_files = glob($pattern);
-    if (is_Array($arr_files)) {
+    if (is_array($arr_files)) {
         foreach ($arr_files as $include_file) {
             include_once $include_file;
         }
@@ -30,4 +35,6 @@ $includeFiles = function ($pattern) {
 
 $includeFiles(__DIR__ . '/includes/*.php');
 
-SVKO\Lexicon\Core::init(__FILE__);
+Core::init(__FILE__);
+
+endif;
