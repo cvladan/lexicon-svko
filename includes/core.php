@@ -19,7 +19,7 @@ abstract class Core
     add_action("plugins_loaded", [static::class, "loadBaseUrl"]);
     # add_action('loop_start', [static::class, 'printPrefixFilter']);
     # add_filter('render_block', [static::class, 'addPrefixFilterBlock'], 10, 2);
-    add_action("encyclopedia_print_prefix_filter", [static::class, "printPrefixFilter"], 10, 0);
+    add_action("lexicon_print_prefix_filter", [static::class, "printPrefixFilter"], 10, 0);
     add_filter("wp_robots", [static::class, "setNoindexTag"]);
     add_filter("get_the_archive_title", [static::class, "filterArchiveTitle"]);
   }
@@ -201,7 +201,7 @@ abstract class Core
 
   public static function setNoindexTag(array $robots): array
   {
-    if (is_archive() && StrLen(get_query_var("prefix"))) {
+    if (is_archive() && strlen(get_query_var("prefix"))) {
       $robots["noindex"] = true;
     }
 
@@ -210,8 +210,8 @@ abstract class Core
 
   public static function filterArchiveTitle(string $title): string
   {
-    if (is_Post_Type_Archive(PostType::getPostTypeName())) {
-      return Post_Type_Archive_Title("", false);
+    if (is_post_type_archive(PostType::getPostTypeName())) {
+      return post_type_archive_title("", false);
     } else {
       return $title;
     }

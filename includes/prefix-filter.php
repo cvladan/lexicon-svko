@@ -148,7 +148,7 @@ abstract class PrefixFilter
         if ($is_archive_filter || $is_taxonomy_filter || $is_singular_filter) {
             $prefix_filter = static::getFilters($current_filter, $filter_depth, $taxonomy_term);
             $template_vars['filter'] = $prefix_filter;
-            return Template::load('encyclopedia-prefix-filter.php', $template_vars);
+            return Template::load('prefix-filter.php', $template_vars);
         }
 
         return '';
@@ -162,7 +162,7 @@ abstract class PrefixFilter
         $prefix_filter = static::getFilters($current_filter, $filter_depth, $taxonomy_term);
 
         if (!empty($prefix_filter)) {
-            echo Template::load('encyclopedia-prefix-filter.php', ['filter' => $prefix_filter]);
+            echo Template::load('prefix-filter.php', ['filter' => $prefix_filter]);
         }
     }
     */

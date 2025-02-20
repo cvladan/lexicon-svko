@@ -20,7 +20,7 @@ abstract class Shortcodes
 
         $related_items = PostRelations::getTermRelatedItems($attributes);
 
-        return Template::load('encyclopedia-related-items.php', [
+        return Template::load('related-items.php', [
             'attributes' => $attributes,
             'related_items' => $related_items
         ]);

@@ -89,7 +89,7 @@ abstract class PostRelations
         $query = new WP_Query($query_args);
 
         # apply a filter to the query object
-        do_Action('encyclopedia_term_related_items_query_object', $query, $arguments);
+        do_Action('lexicon_term_related_items_query_object', $query, $arguments);
 
         # return
         return $query->have_Posts() ? $query : false;

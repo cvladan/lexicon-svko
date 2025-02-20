@@ -15,7 +15,7 @@ abstract class WPML
         add_filter('register_post_type_args', [static::class, 'filterPostTypeURLs'], 10, 2);
         add_filter('lexicon_translate', [static::class, 'filterTranslation'], 10, 3);
         add_filter('lexicon_available_prefix_filters', [static::class, 'filterAvailablePrefixFilters']);
-        #add_action('encyclopedia_term_related_items_query_object', [static::class, 'filterTagRelatedItems'], 10, 2);
+        #add_action('lexicon_term_related_items_query_object', [static::class, 'filterTagRelatedItems'], 10, 2);
     }
 
     public static function isActive(): bool
