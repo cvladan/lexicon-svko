@@ -17,24 +17,11 @@
 
 namespace SVKO\Lexicon;
 defined('ABSPATH') || exit;
+PHP_VERSION_ID < 80000 && die("PHP 8.0+ required. Your version: {$PHP_VERSION}");
 
 if (!defined($_ = __NAMESPACE__)) : define($_, 1); # prevent redeclaration; singleton; don't forget endif
 
-if (version_compare(PHP_VERSION, '8.0', '<')) {
-  die(sprintf('Your PHP version (%s) is far too old. <a href="https://secure.php.net/supported-versions.php" target="_blank">Please upgrade immediately.</a> Then activate the plugin again.', PHP_VERSION));
-}
-
-$includeFiles = function ($pattern) {
-    $arr_files = glob($pattern);
-    if (is_array($arr_files)) {
-        foreach ($arr_files as $include_file) {
-            include_once $include_file;
-        }
-    }
-};
-
-$includeFiles(__DIR__ . '/includes/*.php');
-
-Core::init(__FILE__);
+  foreach (glob(realpath(__DIR__ . '/includes') . '/*.php') as $inc) { include_once $inc; }
+  Core::init(__FILE__);
 
 endif;
