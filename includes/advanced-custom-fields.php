@@ -1,62 +1,45 @@
 <?php
 
 namespace SVKO\Lexicon;
+defined('ABSPATH') || exit;
 
-abstract class AdvancedCustomFields
+# Initialize the ACF integration
+add_action("plugins_loaded", function (): void {
+  if (!is_admin()) {
+    # Determine cross linker priority based on options
+    $cross_linker_priority = Options::get("cross_linker_priority") === "before_shortcodes" ? 10.5 : 15;
+
+    # Register filters for different ACF field types
+    $field_types = ["wysiwyg", "textarea", "text"];
+    foreach ($field_types as $type) {
+      add_filter("acf/format_value/type={$type}", fn(?string $content, $post_id, array $field) => filter_field_value($content, $post_id, $field), $cross_linker_priority, 3 );
+    }
+  }
+});
+
+# Filter ACF field value to add cross-links
+function filter_field_value(?string $content, $post_id, array $field): string
 {
-    public static function init(): void
-    {
-        add_action('plugins_loaded', [static::class, 'registerContentFilter']);
-    }
+  if (empty($content)) {
+      return "";
+  }
 
-    public static function registerContentFilter(): void
-    {
-        if (!is_Admin()) {
-            $cross_linker_priority = Options::get('cross_linker_priority') == 'before_shortcodes' ? 10.5 : 15;
+  $post = is_numeric($post_id) ? get_post($post_id) : null;
 
-            # For ACF < 5.0.0
-            add_filter('acf/format_value_for_api/type=wysiwyg', [static::class, 'filterFieldValue'], $cross_linker_priority, 3);
-            add_filter('acf/format_value_for_api/type=textarea', [static::class, 'filterTextValue'], $cross_linker_priority, 3);
-            add_filter('acf/format_value_for_api/type=text', [static::class, 'filterTextValue'], $cross_linker_priority, 3);
+  if (!$post) {return $content; }
 
-            # For ACF >= 5.0.0
-            add_filter('acf/format_value/type=wysiwyg', [static::class, 'filterFieldValue'], $cross_linker_priority, 3);
-            add_filter('acf/format_value/type=textarea', [static::class, 'filterFieldValue'], $cross_linker_priority, 3);
-            add_filter('acf/format_value/type=text', [static::class, 'filterFieldValue'], $cross_linker_priority, 3);
-        }
-    }
-
-    public static function filterFieldValue(?string $content, $post_id, array $field): string
-    {
-        if (empty($content))
-            return '';
-
-        $post = is_numeric($post_id) ? get_Post($post_id) : false;
-
-        if (empty($post))
-            return $content;
-
-        # Check if Cross-Linking is activated for this post type
-        if (apply_Filters('encyclopedia_link_items_in_post', true, $post)) {
-            $content = Core::addCrossLinks($content, $post);
-        }
-
-        return $content;
-    }
-
-    public static function filterTextValue(?string $content, $post_id, array $field): string
-    {
-        if (empty($content))
-            return '';
-
-        $compatible_formattings = ['html', 'br'];
-
-        if (in_Array($field['formatting'], $compatible_formattings)) {
-            $content = static::filterFieldValue($content, $post_id, $field);
-        }
-
-        return $content;
-    }
+  # Check if Cross-Linking is activated for this post type
+  return apply_filters("encyclopedia_link_items_in_post", true, $post) ? Core::addCrossLinks($content, $post) : $content;
 }
 
-AdvancedCustomFields::init();
+# Filter text field value with formatting consideration
+function filter_text_value(?string $content, $post_id, array $field): string
+{
+  if (empty($content)) {
+      return "";
+  }
+
+  $compatible_formattings = ["html", "br"];
+
+  return in_array($field["formatting"], $compatible_formattings, true) ? filter_field_value($content, $post_id, $field) : $content;
+}
