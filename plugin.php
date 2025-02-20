@@ -29,6 +29,5 @@ $includeFiles = function ($pattern) {
 };
 
 $includeFiles(__DIR__ . '/includes/*.php');
-$includeFiles(__DIR__ . '/widgets/*.php');
 
 SVKO\Lexicon\Core::init(__FILE__);
