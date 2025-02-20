@@ -20,9 +20,7 @@ add_action("plugins_loaded", function (): void {
 # Filter ACF field value to add cross-links
 function filter_field_value(?string $content, $post_id, array $field): string
 {
-  if (empty($content)) {
-      return "";
-  }
+  if (empty($content)) { return ""; }
 
   $post = is_numeric($post_id) ? get_post($post_id) : null;
 
@@ -35,9 +33,7 @@ function filter_field_value(?string $content, $post_id, array $field): string
 # Filter text field value with formatting consideration
 function filter_text_value(?string $content, $post_id, array $field): string
 {
-  if (empty($content)) {
-      return "";
-  }
+  if (empty($content)) { return ""; }
 
   $compatible_formattings = ["html", "br"];
 
