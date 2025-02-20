@@ -1,40 +1,40 @@
 <?php
 
-if (!Function_Exists('MB_Convert_Encoding')) {
-    function MB_Convert_Encoding($str, $to_encoding, $from_encoding = null)
+if (!function_exists('mb_convert_encoding')) {
+    function mb_convert_encoding($str, $to_encoding, $from_encoding = null)
     {
         if ($from_encoding == 'UTF-8' && $to_encoding == 'HTML-ENTITIES') {
-            return HTMLSpecialChars_Decode(UTF8_Decode(HTMLEntities($str, ENT_QUOTES, 'utf-8', false)));
+            return html_entity_decode( htmlentities($str, ENT_QUOTES | ENT_HTML5, 'UTF-8', false) );
         } else {
-            return @IConv($from_encoding, $to_encoding, $str);
+            return @iconv($from_encoding, $to_encoding, $str);
         }
     }
 }
 
-if (!Function_Exists('MB_StrPos')) {
-    function MB_StrPos($haystack, $needle, $offset = 0)
+if (!function_exists('mb_strpos')) {
+    function mb_strpos($haystack, $needle, $offset = 0)
     {
-        return StrPos($haystack, $needle, $offset);
+        return strpos($haystack, $needle, $offset);
     }
 }
 
-if (!Function_Exists('MB_SubStr')) {
-    function MB_SubStr($string, $start, $length = null)
+if (!function_exists('mb_substr')) {
+    function mb_substr($string, $start, $length = null)
     {
-        return SubStr($string, $start, $length);
+        return substr($string, $start, $length);
     }
 }
 
-if (!Function_Exists('MB_StrLen')) {
-    function MB_StrLen($string)
+if (!function_exists('mb_strlen')) {
+    function mb_strlen($string)
     {
-        return StrLen($string);
+        return strLen($string);
     }
 }
 
-if (!Function_Exists('MB_StrToUpper')) {
-    function MB_StrToUpper($string)
+if (!function_exists('mb_strtoupper')) {
+    function mb_strtoupper($string)
     {
-        return StrToUpper($string);
+        return strtoupper($string);
     }
 }
