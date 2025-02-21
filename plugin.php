@@ -3,9 +3,9 @@
 /**
  * Plugin Name:     Lexicon | SVKO
  * Plugin URI:      https://svko.com/
- * Description:     Lexicon enables you to create your own glossary, encyclopedia, lexicon, wiki, dictionary or knowledge base.
- * Version:         1.7.58
- * Author:          Dennis Hoppe
+ * Description:     Allows you to create your glossary, encyclopedia, lexicon, wiki, dictionary or knowledge base.
+ * Version:         1.0.0
+ * Author:          Vladan Colovic, Dennis Hoppe
  * Author URI:      https://svko.com/
  * License:         GPL-2.0-or-later
  * License URI:     http://www.gnu.org/licenses/gpl-2.0.txt
