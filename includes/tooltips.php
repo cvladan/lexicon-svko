@@ -12,8 +12,7 @@ abstract class Tooltips
 
     public static function registerScripts(): void
     {
-        wp_register_script('tooltipster', Core::$base_url . '/assets/js/tooltipster.bundle.min.js', ['jquery'], '4.2.6', true);
-        wp_register_script(PostType::getPostTypeName() . '-tooltips', Core::$base_url . '/assets/js/tooltips.js', ['tooltipster'], null, true);
+        wp_register_script(PostType::getPostTypeName() . '-tooltips', Core::$base_url . '/assets/js/tooltips.js', [], null, true);
 
         $js_parameters = [ 'post_type_name' => PostType::getPostTypeName() ];
         $js_parameters = apply_filters('lexicon_tooltip_js_parameters', $js_parameters);

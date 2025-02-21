@@ -98,7 +98,7 @@ class CrossLinker
         $phrase = PReg_Quote($phrase, '/');
 
         # Prepare search
-        $word_boundary = ($this->link_complete_words_only) ? '^|\W|$' : '';
+        $word_boundary = ($this->link_complete_words_only) ? '\b' : '';
         $pattern_modifiers = 'imsuU';
         $search_regex = sprintf('/(%1$s)%%s(%1$s)/%2$s', $word_boundary, $pattern_modifiers);
         $link_regex = '<a href="%1$s" target="%2$s" title="%3$s" class="' . PostType::getPostTypeName() . '">$0</a>';
