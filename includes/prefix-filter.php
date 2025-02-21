@@ -154,16 +154,4 @@ abstract class PrefixFilter
         return '';
     }
 
-    /*
-     * Deprecated: use echo PrefixFilter::renderFilters($wp_query);
-
-    public static function printFilter(string $current_filter = '', int $filter_depth = 0, ?WP_Term $taxonomy_term = null): void
-    {
-        $prefix_filter = static::getFilters($current_filter, $filter_depth, $taxonomy_term);
-
-        if (!empty($prefix_filter)) {
-            echo Template::load('prefix-filter.php', ['filter' => $prefix_filter]);
-        }
-    }
-    */
 }
