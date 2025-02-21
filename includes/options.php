@@ -4,13 +4,13 @@ namespace SVKO\Lexicon;
 
 abstract class Options
 {
-    private static
-        $arr_option_box = [],
-        $page_slug = PostType::getPostTypeName() . '-options',
-        $options_key = 'wp_plugin_' . PostType::getPostTypeName();
+    private static $arr_option_box = [], $page_slug, $options_key;
 
     public static function init(): void
     {
+        self::$page_slug = PostType::getPostTypeName() . '-options';
+        self::$options_key = 'wp_plugin_' . PostType::getPostTypeName();
+        
         # Option boxes
         static::$arr_option_box = [
             'main' => [],
@@ -166,4 +166,3 @@ abstract class Options
     }
 }
 
-Options::init();

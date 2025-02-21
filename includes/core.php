@@ -14,6 +14,8 @@ abstract class Core
     static::$plugin_file = $plugin_file;
     static::$plugin_folder = DirName(static::$plugin_file);
 
+    Options::init();
+
     register_activation_hook(static::$plugin_file, [static::class, "installPlugin"]);
     register_deactivation_hook(static::$plugin_file, [static::class, "uninstallPlugin"]);
     add_action("plugins_loaded", [static::class, "loadBaseUrl"]);

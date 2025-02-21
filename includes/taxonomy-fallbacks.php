@@ -12,10 +12,13 @@ abstract class TaxonomyFallbacks
 
     public static function Filter_Get_The_Terms($arr_terms, int $post_id, string $taxonomy_name)
     {
-        static $term_remap = [
-            'category' => PostType::getPostTypeName() . '-category',
-            'post_tag' => PostType::getPostTypeName() . '-tag'
-        ];
+        static $term_remap;
+        if ($term_remap === null) {
+            $term_remap = [
+                'category' => PostType::getPostTypeName() . '-category',
+                'post_tag' => PostType::getPostTypeName() . '-tag'
+            ];
+        }
 
         $map_to_taxonomy = $term_remap[$taxonomy_name] ?? false;
 
