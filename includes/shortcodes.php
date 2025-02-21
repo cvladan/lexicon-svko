@@ -1,13 +1,14 @@
 <?php
 
 namespace SVKO\Lexicon;
+defined('ABSPATH') || exit;
 
 abstract class Shortcodes
 {
-
     public static function init(): void
     {
-        add_Shortcode('encyclopedia_related_items', [static::class, 'Related_Items']);
+        # use getPostTypeName() method SVKO\Lexicon\PostType
+        add_shortcode(PostType::getPostTypeName() . '_related_items', [static::class, 'Related_Items']);
     }
 
     public static function Related_Items($attributes = [])
