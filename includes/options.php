@@ -4,12 +4,10 @@ namespace SVKO\Lexicon;
 
 abstract class Options
 {
-    const
-        page_slug = PostType::getPostTypeName() . '-options',
-        options_key = 'wp_plugin_' . PostType::getPostTypeName();
-
     private static
-        $arr_option_box = [];
+        $arr_option_box = [],
+        $page_slug = PostType::getPostTypeName() . '-options',
+        $options_key = 'wp_plugin_' . PostType::getPostTypeName();
 
     public static function init(): void
     {
@@ -24,16 +22,16 @@ abstract class Options
 
     public static function addOptionsPage(): void
     {
-        $handle = add_Options_Page(
+        $handle = add_options_page(
             sprintf(I18n::__('%s Settings'), PostTypeLabels::getItemDashboardName()),
             PostTypeLabels::getItemDashboardName(),
             'manage_options',
-            static::page_slug,
+            static::$page_slug,
             [static::class, 'printOptionsPage']
         );
 
         # Add options page link to post type sub menu
-        add_SubMenu_Page('edit.php?post_type=' . PostType::getPostTypeName(), null, I18n::__('Settings'), 'manage_options', 'options-general.php?page=' . static::page_slug);
+        add_submenu_page('edit.php?post_type=' . PostType::getPostTypeName(), null, I18n::__('Settings'), 'manage_options', 'options-general.php?page=' . static::$page_slug);
 
         # Add JavaScript to this handle
         add_action('load-' . $handle, [static::class, 'loadOptionsPage']);
@@ -54,10 +52,10 @@ abstract class Options
 
     public static function getOptionsPageUrl(array $args = []): string
     {
-        $url = add_Query_Arg(['page' => static::page_slug], Admin_Url('options-general.php'));
+        $url = add_query_arg(['page' => static::$page_slug], Admin_Url('options-general.php'));
 
         if (!empty($args))
-            $url = add_Query_Arg($args, $url);
+            $url = add_query_arg($args, $url);
 
         return $url;
     }
@@ -91,7 +89,7 @@ abstract class Options
 
         wp_enqueue_style('dashboard');
 
-        wp_enqueue_style(static::page_slug, Core::$base_url . '/options/options.css');
+        wp_enqueue_style(static::$page_slug, Core::$base_url . '/options/options.css');
 
         # Remove incompatible JS Libs
         wp_dequeue_script('post');
@@ -118,7 +116,7 @@ abstract class Options
         });
 
         # Save Options
-        return (bool) update_option(static::options_key, $options);
+        return (bool) update_option(static::$options_key, $options);
     }
 
     public static function getDefaultOptions(): array
@@ -153,7 +151,7 @@ abstract class Options
         static $arr_options;
 
         if (empty($arr_options)) {
-            $saved_options = (array) get_Option(static::options_key);
+            $saved_options = (array) get_Option(static::$options_key);
             $default_options = static::getDefaultOptions();
             $arr_options = Array_Merge($default_options, $saved_options);
         }
