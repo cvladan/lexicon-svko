@@ -5,7 +5,7 @@ use SVKO\Lexicon\{
     PostType
 };
 
-$archive_url = get_Post_Type_Archive_Link(PostType::getPostTypeName());
+$archive_url = get_post_type_archive_link(PostType::getPostTypeName());
 
 if (empty($archive_url)) : ?>
 
@@ -18,7 +18,7 @@ if (empty($archive_url)) : ?>
     </p>
 
     <p>
-        <?php printf(I18n::__('The RSS feed url is: <a href="%1$s" target="_blank">%1$s</a>'), get_Post_Type_Archive_Feed_Link(PostType::getPostTypeName())) ?>
+        <?php printf(I18n::__('The RSS feed url is: <a href="%1$s" target="_blank">%1$s</a>'), get_post_type_archive_feed_link(PostType::getPostTypeName())) ?>
     </p>
 
 <?php endif;

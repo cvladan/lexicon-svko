@@ -8,10 +8,13 @@ abstract class Taxonomies
 {
     public static function init(): void
     {
-        add_action('init', [static::class, 'registerTagTaxonomy'], 9);
-        add_action('init', [static::class, 'registerExistingTaxonomies'], 11);
-        add_filter('nav_menu_meta_box_object', [static::class, 'changeTaxonomyMenuLabel']);
+        // Register taxonomies after post type name is set (priority > 1)
+        add_action('init', [static::class, 'registerTagTaxonomy'], 3);
+        add_action('init', [static::class, 'registerExistingTaxonomies'], 7);
+        
+        // These can run later
         add_action('init', [static::class, 'addTaxonomyArchiveUrls'], 99);
+        add_filter('nav_menu_meta_box_object', [static::class, 'changeTaxonomyMenuLabel']);
     }
 
     public static function registerExistingTaxonomies(): void

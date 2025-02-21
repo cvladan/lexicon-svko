@@ -14,7 +14,7 @@ use SVKO\Lexicon\{
     <tr>
         <th><label for="item_dashboard_name"><?php I18n::_e('Dashboard Menu Name') ?></label></th>
         <td>
-            <input type="text" name="item_dashboard_name" id="item_dashboard_name" value="<?php echo esc_Attr(PostTypeLabels::getItemDashboardName()) ?>">
+            <input type="text" name="item_dashboard_name" id="item_dashboard_name" value="<?php echo esc_attr(PostTypeLabels::getItemDashboardName()) ?>">
             <p class="help">
                 <?php I18n::_e('This is how your post type is called in the dashboard. For example: Lexicon, Encyclopedia, Glossary, Knowledge Base, etc.') ?>
                 <?php #I18n::_e('You can change this at any time later without worries.') 
@@ -26,7 +26,7 @@ use SVKO\Lexicon\{
     <tr>
         <th><label for="item_singular_name"><?php I18n::_e('Item singular name') ?></label></th>
         <td>
-            <input type="text" name="item_singular_name" id="item_singular_name" value="<?php echo esc_Attr(PostTypeLabels::getItemSingularName()) ?>">
+            <input type="text" name="item_singular_name" id="item_singular_name" value="<?php echo esc_attr(PostTypeLabels::getItemSingularName()) ?>">
             <p class="help"><?php I18n::_e('The singular name for an item. For example: Entry, Term, Article, etc.') ?></p>
         </td>
     </tr>
@@ -34,20 +34,20 @@ use SVKO\Lexicon\{
     <tr>
         <th><label for="item_plural_name"><?php I18n::_e('Item plural name') ?></label></th>
         <td>
-            <input type="text" name="item_plural_name" id="item_plural_name" value="<?php echo esc_Attr(PostTypeLabels::getItemPluralName()) ?>">
+            <input type="text" name="item_plural_name" id="item_plural_name" value="<?php echo esc_attr(PostTypeLabels::getItemPluralName()) ?>">
             <p class="help"><?php I18n::_e('The plural name for multiple items. For example: Entries, Terms, Articles, etc.') ?></p>
         </td>
     </tr>
 
     
 
-    <?php if (get_Option('permalink_structure')) : ?>
+    <?php if (get_option('permalink_structure')) : ?>
         <tr>
             <th><label><?php I18n::_e('Archive URL slug') ?></label></th>
             <td>
                 <div class="input-row">
                     <div><?php echo trailingslashit(Home_Url('/')) ?></div>
-                    <div class="input-element"><input type="text" name="archive_slug" id="archive_slug" value="<?php echo esc_Attr(PostTypeLabels::getArchiveSlug()) ?>"></div>
+                    <div class="input-element"><input type="text" name="archive_slug" id="archive_slug" value="<?php echo esc_attr(PostTypeLabels::getArchiveSlug()) ?>"></div>
                 </div>
                 <p class="help"><?php I18n::_e('The url slug of your items archive. This slug must not used by another post type or page.') ?></p>
             </td>
@@ -58,7 +58,7 @@ use SVKO\Lexicon\{
             <td>
                 <div class="input-row">
                     <div><?php echo trailingslashit(Home_Url('/')) ?></div>
-                    <div class="input-element"><input type="text" name="item_slug" id="item_slug" value="<?php echo esc_Attr(PostTypeLabels::getItemSlug()) ?>"></div>
+                    <div class="input-element"><input type="text" name="item_slug" id="item_slug" value="<?php echo esc_attr(PostTypeLabels::getItemSlug()) ?>"></div>
                     <div><?php echo User_TrailingSlashIt(sprintf(I18n::__('/%%%s-name%%'), sanitize_Title(PostTypeLabels::getItemSingularName())), 'single') ?></div>
                 </div>
 

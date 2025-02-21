@@ -10,15 +10,24 @@ abstract class PostType
 
     public static function init()
     {
-        // self::$post_type_name = PostTypeLabels::getPostTypeSlug(); // Initialize post type name
-        self::$post_type_name = 'encyclopedia';
+        // Initialize post type name early but after options are loaded
+        add_action('init', function() {
+            self::$post_type_name = PostTypeLabels::getPostTypeSlug(); # Initialize post type name
+        }, 1);
 
-        add_action('init', [static::class, 'registerPostType']);
-        add_filter(self::$post_type_name . '_rewrite_rules', [static::class, 'addPrefixFilterRewriteRules']);
-        add_filter('post_updated_messages', [static::class, 'filterUpdatedMessages']);
-        add_filter('post_type_link', [static::class, 'filterPostTypeLink'], 1, 2);
-        add_filter('gutenberg_can_edit_post_type', [static::class, 'enableBlockEditor'], 10, 2); # WP 4.x
-        add_filter('use_block_editor_for_post_type', [static::class, 'enableBlockEditor'], 10, 2); # WP 5.x
+        // Register post type and add filters after name is set
+        add_action('init', function() {
+            if (!self::$post_type_name) {
+                return; // Ensure post type name is set
+            }
+            static::registerPostType();
+            
+            // Add filters after post type is registered
+            add_filter(self::$post_type_name . '_rewrite_rules', [static::class, 'addPrefixFilterRewriteRules']);
+            add_filter('post_updated_messages', [static::class, 'filterUpdatedMessages']);
+            add_filter('post_type_link', [static::class, 'filterPostTypeLink'], 1, 2);
+            add_filter('use_block_editor_for_post_type', [static::class, 'enableBlockEditor'], 10, 2);
+        }, 5);
     }
 
     public static function getPostTypeName()

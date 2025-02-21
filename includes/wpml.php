@@ -33,6 +33,7 @@ abstract class WPML
             'Item plural name' => Options::get('item_plural_name'),
             'Archive slug' => Options::get('archive_slug'),
             'Item slug' => Options::get('item_slug'),
+            'Post type slug' => Options::get('post_type_slug'),
         ];
 
         foreach ($post_type_labels as $string_id => $label) {

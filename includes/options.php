@@ -4,20 +4,23 @@ namespace SVKO\Lexicon;
 
 abstract class Options
 {
-    private static $arr_option_box = [], $page_slug, $options_key;
+    private static $arr_option_box = [], $page_slug = 'lexicon-options', $options_key = 'wp_plugin_lexicon';
 
     public static function init(): void
     {
-        self::$page_slug = PostType::getPostTypeName() . '-options';
-        self::$options_key = 'wp_plugin_' . PostType::getPostTypeName();
-        
         # Option boxes
         static::$arr_option_box = [
             'main' => [],
             'side' => []
         ];
 
-        add_action('admin_menu', [static::class, 'addOptionsPage']);
+        # Add admin menu after post type is initialized
+        add_action('init', function() {
+            if ($post_type = PostType::getPostTypeName()) {
+                self::$page_slug = $post_type . '-options';
+                add_action('admin_menu', [static::class, 'addOptionsPage']);
+            }
+        }, 2);
     }
 
     public static function addOptionsPage(): void
@@ -37,6 +40,7 @@ abstract class Options
         add_action('load-' . $handle, [static::class, 'loadOptionsPage']);
 
         # Add option boxes
+        static::addOptionBox(I18n::__('Custom Post Type'), Core::$plugin_folder . '/options/custom-post-type.php');
         static::addOptionBox(I18n::__('Labels'), Core::$plugin_folder . '/options/post-type-labels.php');
         static::addOptionBox(I18n::__('Appearance'), Core::$plugin_folder . '/options/appearance.php');
         static::addOptionBox(I18n::__('Features'), Core::$plugin_folder . '/options/features.php');
@@ -122,6 +126,7 @@ abstract class Options
     public static function getDefaultOptions(): array
     {
         return [
+            'post_type_slug' => I18n::__('lexicon'),
             'item_dashboard_name' => I18n::__('Lexicon'),
             'item_singular_name' => I18n::__('Entry'),
             'item_plural_name' => I18n::__('Entries'),
@@ -151,7 +156,7 @@ abstract class Options
         static $arr_options;
 
         if (empty($arr_options)) {
-            $saved_options = (array) get_Option(static::$options_key);
+            $saved_options = (array) get_option(static::$options_key);
             $default_options = static::getDefaultOptions();
             $arr_options = Array_Merge($default_options, $saved_options);
         }

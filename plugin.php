@@ -21,7 +21,13 @@ PHP_VERSION_ID < 80000 && die("PHP 8.0+ required. Your version: {$PHP_VERSION}")
 
 if (!defined($_ = __NAMESPACE__)) : define($_, 1); # prevent redeclaration; singleton; don't forget endif
 
-  foreach (glob(realpath(__DIR__ . '/includes') . '/*.php') as $inc) { include_once $inc; }
+  // Include WPML first since other classes depend on it
+  require_once realpath(__DIR__ . '/includes/wpml.php');
+  
+  // Include all other files
+  foreach (glob(realpath(__DIR__ . '/includes') . '/*.php') as $inc) {
+    require_once $inc;
+  }
   Core::init(__FILE__);
 
 endif;

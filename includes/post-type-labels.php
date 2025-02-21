@@ -6,16 +6,16 @@ abstract class PostTypeLabels
 {
     public static function getPostTypeSlug(): string
     {
-        $type = Options::get('post_type_slug');
-        // $type = WPML::t($type, 'Post type slug');
-        return $type;
+        $slug = Options::get('post_type_slug');
+        $slug = WPML::t($slug, 'Post type slug');
+        return $slug;
     }
 
     public static function getItemDashboardName(): string
     {
-        $type = Options::get('item_dashboard_name');
-        $type = WPML::t($type, 'Item dashboard name');
-        return $type;
+        $name = Options::get('item_dashboard_name');
+        $name = WPML::t($name, 'Item dashboard name');
+        return $name;
     }
 
     public static function getArchiveSlug(): string
