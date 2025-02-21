@@ -15,7 +15,7 @@ use SVKO\Lexicon\{
                 <option value="1" <?php selected(Options::get('embed_default_style')) ?>><?php I18n::_e('On') ?></option>
                 <option value="0" <?php selected(!Options::get('embed_default_style')) ?>><?php I18n::_e('Off') ?></option>
             </select>
-            <p class="help"><?php I18n::_e('Enables or disables the encyclopedia default CSS on the frontend.') ?></p>
+            <p class="help"><?php I18n::_e('Enables or disables the default CSS on the frontend.') ?></p>
         </td>
     </tr>
 

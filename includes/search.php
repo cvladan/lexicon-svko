@@ -12,15 +12,15 @@ abstract class Search
     }
     */
 
-    public static function isEncyclopediaSearch(WP_Query $query): bool
+    public static function isThisSearched(WP_Query $query): bool
     {
         if ($query->is_search) {
             # Check post type
             if ($query->get('post_type') == PostType::getPostTypeName()) return true;
 
             # Check taxonomies
-            $encyclopedia_taxonomies = get_Object_Taxonomies(PostType::getPostTypeName());
-            if (!empty($encyclopedia_taxonomies) && $query->is_Tax($encyclopedia_taxonomies)) return true;
+            $taxonomies = get_object_taxonomies(PostType::getPostTypeName());
+            if (!empty($taxonomies) && $query->is_tax($taxonomies)) return true;
         }
 
         return false;

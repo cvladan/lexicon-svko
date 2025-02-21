@@ -13,8 +13,8 @@ abstract class TaxonomyFallbacks
     public static function Filter_Get_The_Terms($arr_terms, int $post_id, string $taxonomy_name)
     {
         static $term_remap = [
-            'category' => 'encyclopedia-category',
-            'post_tag' => 'encyclopedia-tag'
+            'category' => PostType::getPostTypeName() . '-category',
+            'post_tag' => PostType::getPostTypeName() . '-tag'
         ];
 
         $map_to_taxonomy = $term_remap[$taxonomy_name] ?? false;
@@ -36,16 +36,16 @@ abstract class TaxonomyFallbacks
     public static function Filter_The_Category(string $category_list, string $separator = '' /* , string $parents */): string
     {
         global $post;
-        $encyclopedia_taxonomy = 'encyclopedia-category';
+        $taxonomy = PostType::getPostTypeName() . '-category';
 
         if (
             empty($category_list) &&
             !is_admin() &&
             $post && $post->post_type === PostType::getPostTypeName() &&
             !is_Object_in_Taxonomy($post->post_type, 'category') &&
-            taxonomy_exists($encyclopedia_taxonomy) && is_Object_in_Taxonomy($post->post_type, $encyclopedia_taxonomy)
+            taxonomy_exists($taxonomy) && is_Object_in_Taxonomy($post->post_type, $taxonomy)
         ) {
-            $category_list = get_The_Term_List($post->ID, $encyclopedia_taxonomy, null, $separator, null);
+            $category_list = get_The_Term_List($post->ID, $taxonomy, null, $separator, null);
             if (empty($category_list)) $category_list = I18n::__('Uncategorized');
         }
 

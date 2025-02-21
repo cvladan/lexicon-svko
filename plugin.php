@@ -3,7 +3,7 @@
 /**
  * Plugin Name:     Lexicon | SVKO
  * Plugin URI:      https://svko.com/
- * Description:     Patched slugs inside "post-type-labels.php" and "cross-linker.php" flags. Encyclopedia enables you to create your own encyclopedia, lexicon, glossary, wiki, dictionary or knowledge base.
+ * Description:     Lexicon enables you to create your own glossary, encyclopedia, lexicon, wiki, dictionary or knowledge base.
  * Version:         1.7.58
  * Author:          Dennis Hoppe
  * Author URI:      https://svko.com/

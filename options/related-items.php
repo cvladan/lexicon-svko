@@ -4,6 +4,7 @@ use SVKO\Lexicon\{
     I18n,
     MockingBird,
     Options,
+    PostType,
     PostTypeLabels,
     Taxonomies
 };
@@ -32,7 +33,7 @@ $arr_taxonomies = Taxonomies::getTaxonomies();
                     $arr_post_type_labels = [];
                     foreach ($taxonomy->post_types as $post_type) $arr_post_type_labels[] = $post_type->label; ?>
                     <option <?php selected($relation_taxonomy, $taxonomy->name);
-                            disabled($taxonomy->name != 'encyclopedia-tag') ?>>
+                            disabled($taxonomy->name != PostType::getPostTypeName() . '-tag') ?>>
                         <?php echo $taxonomy->label ?>
                         <?php if (!empty($arr_post_type_labels)) : ?>(<?php echo join(', ', $arr_post_type_labels) ?>)<?php endif ?>
                     </option>

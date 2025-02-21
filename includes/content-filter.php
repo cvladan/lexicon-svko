@@ -44,9 +44,9 @@ abstract class ContentFilter
 
         # If this is outside the loop we leave
         if (empty($post->ID) || empty($post->post_type)) return $content;
-
+        
         if ($post->post_type == PostType::getPostTypeName() && is_Single($post->ID)) {
-            if (!has_Shortcode($content, 'encyclopedia_related_items') && Options::get('related_items') != 'none' && !post_password_required()) {
+            if (!has_Shortcode($content, PostType::getPostTypeName() . '_related_items') && Options::get('related_items') != 'none' && !post_password_required()) {
                 $attributes = ['max_items' => Options::get('number_of_related_items')];
 
                 if (Options::get('related_items') == 'above')

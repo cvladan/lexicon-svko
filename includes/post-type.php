@@ -60,8 +60,8 @@ abstract class PostType
             'show_in_rest' => true,
 
             'show_in_graphql' => true,
-            'graphql_single_name' => 'encyclopediaEntry',
-            'graphql_plural_name' => 'encyclopediaEntries'
+            'graphql_single_name' => self::$post_type_name . 'Entry',
+            'graphql_plural_name' => self::$post_type_name . 'Entries'
         ];
 
         register_post_type(self::$post_type_name, $post_type_args);

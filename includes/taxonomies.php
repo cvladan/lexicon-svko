@@ -29,8 +29,8 @@ abstract class Taxonomies
 
     public static function registerTagTaxonomy(): void
     {
-        $taxonomy_name = 'encyclopedia-tag';
-        $slug = trim(I18n::_x('encyclopedia/tag', 'URL Slug'), '/');
+        $taxonomy_name = PostType::getPostTypeName() . '-tag';
+        $slug = trim(I18n::_x(PostType::getPostTypeName() . '/tag', 'URL Slug'), '/');
 
         $labels = [
             'name' => I18n::__('Tags'),
@@ -57,8 +57,8 @@ abstract class Taxonomies
             'show_in_rest' => true,
 
             'show_in_graphql' => true,
-            'graphql_single_name' => 'encyclopediaTag',
-            'graphql_plural_name' => 'encyclopediaTags'
+            'graphql_single_name' => PostType::getPostTypeName() . 'Tag',
+            'graphql_plural_name' => PostType::getPostTypeName() . 'Tags'
         ];
 
         register_taxonomy($taxonomy_name, null, $args);

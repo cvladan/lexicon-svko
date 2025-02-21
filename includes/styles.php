@@ -13,12 +13,12 @@ abstract class Styles
     public static function enqueueDefaultStyle(): void
     {
         if (Options::get('embed_default_style'))
-            wp_enqueue_style('encyclopedia', Core::$base_url . '/assets/css/encyclopedia.css');
+            wp_enqueue_style(PostType::getPostTypeName(), Core::$base_url . '/assets/css/styles.css');
     }
 
     public static function registerDashboardStyles()
     {
-        wp_enqueue_style('encyclopedia-dashboard-extension', Core::$base_url . '/assets/css/dashboard.css');
+        wp_enqueue_style(PostType::getPostTypeName() . '-dashboard-extension', Core::$base_url . '/assets/css/dashboard.css');
     }
 }
 

@@ -16,7 +16,7 @@ abstract class PostRelations
         $arguments = (object) Array_Merge([
             'post_id' => empty($post->ID) ? null : $post->ID,
             'number' => 10,
-            'taxonomy' => 'encyclopedia-tag',
+            'taxonomy' => PostType::getPostTypeName() . '-tag',
             'min_relation_threshold' => (int) Options::get('min_relation_threshold')
         ], $arguments);
 

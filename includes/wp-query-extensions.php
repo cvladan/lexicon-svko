@@ -28,7 +28,7 @@ abstract class WPQueryExtensions
             $include_entries = false;
             $set_archive_post_count = false;
 
-            # Change post order for all kind of Encyclopedia queries
+            # Change post order for all kind of post type queries
             if ($query->get('post_type') == PostType::getPostTypeName()) {
                 $order_by_post_title = true;
             }
@@ -46,15 +46,15 @@ abstract class WPQueryExtensions
                     $current_term = $query->get_Queried_Object();
                     $current_taxonomy = $current_term->taxonomy ?? false;
 
-                    # get all taxonomies associated with the Encyclopedia post type
-                    $arr_encyclopedia_taxonomies = (array) get_Object_Taxonomies(PostType::getPostTypeName());
+                    # get all taxonomies associated with the custom post type
+                    $arr_taxonomies = (array) get_Object_Taxonomies(PostType::getPostTypeName());
 
-                    if ($current_taxonomy && in_Array($current_taxonomy, $arr_encyclopedia_taxonomies)) {
+                    if ($current_taxonomy && in_Array($current_taxonomy, $arr_taxonomies)) {
                         $set_archive_post_count = true;
                         $order_by_post_title = true;
 
                         if ($query->is_category || $query->is_tag) {
-                            # custom taxonomies have "any" as default post type and we do not need to add encyclopedia entries manually
+                            # custom taxonomies have "any" as default post type and we do not need to add custom post type entries manually
                             $include_entries = true;
                         }
                     }
@@ -72,14 +72,14 @@ abstract class WPQueryExtensions
             }
 
             if ($include_entries) {
-                # Add encyclopedia entries to the query
+                # Add post type entries to the query
                 $post_types = (array) $query->get('post_type');
                 $post_types = array_filter($post_types);
 
                 if (empty($post_types))
                     $post_types = ['post'];
 
-                if (!in_Array(PostType::getPostTypeName(), $post_types))
+                if (!in_array(PostType::getPostTypeName(), $post_types))
                     $post_types[] = PostType::getPostTypeName();
 
                 $query->set('post_type', $post_types);

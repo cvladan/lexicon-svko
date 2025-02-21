@@ -5,8 +5,8 @@ namespace SVKO\Lexicon;
 abstract class Options
 {
     const
-        page_slug = 'encyclopedia-options',
-        options_key = 'wp_plugin_encyclopedia';
+        page_slug = PostType::getPostTypeName() . '-options',
+        options_key = 'wp_plugin_' . PostType::getPostTypeName();
 
     private static
         $arr_option_box = [];
@@ -82,11 +82,11 @@ abstract class Options
 
     public static function loadOptionsPage(): void
     {
-        flush_Rewrite_Rules();
+        flush_rewrite_rules();
 
         # If this is a Post request to save the options
         if (static::saveOptions()) {
-            WP_Redirect(static::getOptionsPageUrl(['options_saved' => 'true']));
+            wp_redirect(static::getOptionsPageUrl(['options_saved' => 'true']));
         }
 
         wp_enqueue_style('dashboard');
@@ -94,7 +94,7 @@ abstract class Options
         wp_enqueue_style(static::page_slug, Core::$base_url . '/options/options.css');
 
         # Remove incompatible JS Libs
-        WP_Dequeue_Script('post');
+        wp_dequeue_script('post');
     }
 
     public static function printOptionsPage(): void
@@ -108,7 +108,7 @@ abstract class Options
         if (empty($_POST)) return false;
 
         # Check the nonce
-        check_Admin_Referer('save_encyclopedia_options');
+        check_admin_referer('save_' . PostType::getPostTypeName() . '_options');
 
         # Clean the Post array
         $options = stripSlashes_Deep($_POST);
@@ -118,7 +118,7 @@ abstract class Options
         });
 
         # Save Options
-        return (bool) update_Option(static::options_key, $options);
+        return (bool) update_option(static::options_key, $options);
     }
 
     public static function getDefaultOptions(): array
@@ -133,14 +133,14 @@ abstract class Options
             'enable_editor' => true,
             'enable_block_editor' => false,
             'enable_excerpt' => true,
-            'taxonomies' => ['encyclopedia-tag'],
+            'taxonomies' => [PostType::getPostTypeName() . '-tag'],
             'enable_archive' => true,
             'items_per_page' => 100,
             'prefix_filter_for_archives' => true,
             'prefix_filter_archive_depth' => 3,
             'prefix_filter_for_singulars' => true,
             'prefix_filter_singular_depth' => 3,
-            'relation_taxonomy' => 'encyclopedia-tag',
+            'relation_taxonomy' => PostType::getPostTypeName() . '-tag',
             'min_relation_threshold' => 1,
             'cross_link_title_length' => apply_filters('excerpt_length', 55),
             'cross_linker_priority' => 'after_shortcodes',

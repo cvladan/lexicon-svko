@@ -122,11 +122,11 @@ abstract class PrefixFilter
             # save the current taxonomy term
             $taxonomy_term = $query->get_queried_object();
 
-            # get all taxonomies associated with the Encyclopedia post type
-            $arr_encyclopedia_taxonomies = (array) get_object_taxonomies(PostType::getPostTypeName());
+            # get all taxonomies associated with the custom post type
+            $arr_taxonomies = (array) get_object_taxonomies(PostType::getPostTypeName());
 
             # Check if the prefix filter is activated for this archive
-            if (!in_array($taxonomy_term->taxonomy, $arr_encyclopedia_taxonomies))
+            if (!in_array($taxonomy_term->taxonomy, $arr_taxonomies))
                 return '';
         }
 

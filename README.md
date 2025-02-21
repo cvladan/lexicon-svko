@@ -1,5 +1,6 @@
 ﻿TODO:
-- remove tooltipster.js library for tooltips as it requires jquery
+- remove tooltipster.js library for tooltips as it requires jquery, and replace it with 
+- allow editing of post-type-name, jer je sve već pripremljeno da bude flexible, samo UI
 
 # Lexicon WordPress Plugin
 

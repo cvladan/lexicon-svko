@@ -13,7 +13,7 @@ abstract class Template
     {
         global $wp_query;
 
-        if (Search::isEncyclopediaSearch($wp_query) && $search_template = locate_Template(sprintf('search-%s.php', PostType::getPostTypeName())))
+        if (Search::isThisSearched($wp_query) && $search_template = locate_template(sprintf('search-%s.php', PostType::getPostTypeName())))
             return $search_template;
         else
             return $template;
@@ -22,7 +22,7 @@ abstract class Template
     public static function load(string $template_name, array $vars = []): string
     {
         extract($vars);
-        $template_path = locate_Template($template_name);
+        $template_path = locate_template($template_name);
 
         OB_Start();
         if (!empty($template_path))

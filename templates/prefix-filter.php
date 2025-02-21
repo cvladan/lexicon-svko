@@ -3,8 +3,12 @@
 - Use the $filter var to access all available filters
 - User $wrapper_class to add additional wrapper classes
 */
+
+use SVKO\Lexicon\PostType;
+
 ?>
-<div class="encyclopedia-prefix-filters <?= $wrapper_class ?? '' ?>">
+
+<div class="<?= PostType::getPostTypeName() ?>-prefix-filters <?= $wrapper_class ?? '' ?>">
     <?php foreach ($filter as $level => $filter_line) : ?>
         <div class="filter-level level-<?php echo $level + 1 ?>">
             <?php foreach ($filter_line as $element) : $element->caption = HTMLEntities($element->prefix, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5, 'UTF-8') ?>

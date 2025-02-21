@@ -4,25 +4,24 @@ use SVKO\Lexicon\{
     I18n,
     MockingBird,
     Options,
+    PostType,
     PostTypeLabels,
     Taxonomies
 };
 
-# Move encyclopedia taxonomies to the top
-$arr_taxonomies = Array_Merge([
-    'encyclopedia-category' => (object) [
-        'label' => I18n::__('Encyclopedia Categories'),
-        'name' => 'encyclopedia-category'
-    ],
-    'encyclopedia-tag' => false
+# Move custom taxonomies to the top
+$arr_taxonomies = array_merge([
+    PostType::getPostTypeName() . '-category' => (object) [ 'label' => I18n::__(PostTypeLabels::getItemSingularName() . ' Categories'), 'name' => PostType::getPostTypeName() . '-category' ],
+    PostType::getPostTypeName() . '-tag' => false
 ], Taxonomies::getTaxonomies());
-$arr_taxonomies = Array_Filter($arr_taxonomies);
+
+$arr_taxonomies = array_filter($arr_taxonomies);
 
 # Change default labels
 $arr_taxonomies['category']->label = I18n::__('Post Categories');
 $arr_taxonomies['post_tag']->label = I18n::__('Post Tags');
-$arr_taxonomies['encyclopedia-category']->label = I18n::__('Encyclopedia Categories');
-$arr_taxonomies['encyclopedia-tag']->label = I18n::__('Encyclopedia Tags');
+$arr_taxonomies[PostType::getPostTypeName() . '-category']->label = I18n::__(PostTypeLabels::getItemSingularName() . ' Categories');
+$arr_taxonomies[PostType::getPostTypeName() . '-tag']->label = I18n::__(PostTypeLabels::getItemSingularName() . ' Tags');
 
 $tax_options = (array) Options::get('taxonomies');
 ?>
@@ -42,14 +41,14 @@ $tax_options = (array) Options::get('taxonomies');
                 <div class="taxonomy-name"><code>(<?php echo $taxonomy->name ?>)</code></div>
             </th>
             <td>
-                <label for="register_<?php echo $taxonomy->name ?>_taxonomy_for_encyclopedia">
-                    <?php if ($taxonomy->name == 'encyclopedia-tag') : ?>
-                        <input type="checkbox" name="taxonomies[]" value="<?php echo $taxonomy->name ?>" id="register_<?php echo $taxonomy->name ?>_taxonomy_for_encyclopedia" <?php checked(in_Array($taxonomy->name, $tax_options)) ?>>
+                <label for="register_<?= $taxonomy->name ?>_taxonomy_for_<?= PostType::getPostTypeName() ?>">
+                    <?php if ($taxonomy->name == PostType::getPostTypeName() . '-tag') : ?>
+                        <input type="checkbox" name="taxonomies[]" value="<?php echo $taxonomy->name ?>" id="register_<?php echo $taxonomy->name ?>_taxonomy_for_<?= PostType::getPostTypeName() ?>" <?php checked(in_array($taxonomy->name, $tax_options)) ?>>
                     <?php else : ?>
                         <input type="checkbox" <?php disabled(true) ?>>
                     <?php endif ?>
                     <?php printf(I18n::__('Use this taxonomy for %s.'), PostTypeLabels::getItemPluralName()) ?>
-                    <?php if ($taxonomy->name != 'encyclopedia-tag') MockingBird::printProNotice('unlock') ?>
+                    <?php if ($taxonomy->name != PostType::getPostTypeName() . '-tag') MockingBird::printProNotice('unlock') ?>
                 </label>
                 <p class="help">
                     <?php printf(I18n::__('Enables %1$s for %2$s.'), $taxonomy->label, PostTypeLabels::getItemPluralName()) ?>

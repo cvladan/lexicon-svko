@@ -1,6 +1,6 @@
 <?php
 
-use SVKO\Lexicon\{ I18n, Options, PostTypeLabels };
+use SVKO\Lexicon\{ I18n, Options, PostType, PostTypeLabels };
 
 $arr_columns = [
     'left' => (array) Options::$arr_option_box['main'],
@@ -40,7 +40,7 @@ $options_saved = isset($_GET['options_saved']);
             <input type="submit" class="button-primary" value="<?php I18n::_e('Save Changes') ?>">
         </p>
 
-        <?php WP_Nonce_Field('save_encyclopedia_options') ?>
+        <?php wp_nonce_field('save_' . PostType::getPostTypeName() . '_options') ?>
     </form>
 
     <h2><?php I18n::_e('Factory Reset') ?></h2>
@@ -54,7 +54,7 @@ $options_saved = isset($_GET['options_saved']);
             <input type="submit" class="button-secondary" value="<?php I18n::_e('Reset all options') ?>">
         </p>
 
-        <?php WP_Nonce_Field('save_encyclopedia_options') ?>
+        <?php wp_nonce_field('save_' . PostType::getPostTypeName() . '_options') ?>
     </form>
 
 </div>
