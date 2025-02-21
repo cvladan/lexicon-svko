@@ -61,12 +61,12 @@ use SVKO\Lexicon\{I18n, MockingBird, Options};
     </tr>
 
     <tr>
-        <th><label><?php I18n::_e('Featured Image') ?></label></th>
+        <th><label for="enable_featured_image"><?php I18n::_e('Featured Image') ?></label></th>
         <td>
-            <select>
-                <option <?php disabled(true) ?>><?php I18n::_e('On') ?></option>
-                <option <?php selected(true) ?>><?php I18n::_e('Off') ?></option>
-            </select><?php MockingBird::printProNotice('unlock') ?>
+            <select name="enable_featured_image" id="enable_featured_image">
+                <option value="1" <?php selected(Options::get('enable_featured_image')) ?>><?php I18n::_e('On') ?></option>
+                <option value="0" <?php selected(!Options::get('enable_featured_image')) ?>><?php I18n::_e('Off') ?></option>
+            </select>
             <p class="help"><?php I18n::_e('Enables or disables the featured image.') ?></p>
         </td>
     </tr>

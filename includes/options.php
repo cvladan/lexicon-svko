@@ -136,6 +136,7 @@ abstract class Options
             'enable_editor' => true,
             'enable_block_editor' => false,
             'enable_excerpt' => true,
+            'enable_featured_image' => true,
             'taxonomies' => [PostType::getPostTypeName() . '-tag'],
             'enable_archive' => true,
             'items_per_page' => 100,

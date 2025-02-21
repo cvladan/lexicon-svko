@@ -84,6 +84,9 @@ abstract class PostType
 
         if (Options::get('enable_custom_fields'))
             add_post_type_support(self::$post_type_name, 'custom-fields');
+
+        if (Options::get('enable_featured_image'))
+            add_post_type_support(self::$post_type_name, 'thumbnail');
     }
 
     public static function addPrefixFilterRewriteRules(array $rules): array
