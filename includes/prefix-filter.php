@@ -37,7 +37,7 @@ abstract class PrefixFilter
                     $active_prefix = $available_filter->prefix;
 
                 $filter = (object) [
-                    'prefix' => MB_Convert_Case($available_filter->prefix, MB_CASE_TITLE),  # UCFirst for multibyte chars
+                    'prefix' => mb_convert_case($available_filter->prefix, MB_CASE_TITLE),  # UCFirst for multibyte chars
                     'items' => $available_filter->items, # number of available items with this prefix
                     'link' => PostType::getArchiveLink($available_filter->prefix, $taxonomy_term),
                     'active' => $active_prefix == $available_filter->prefix,
@@ -134,8 +134,8 @@ abstract class PrefixFilter
         $current_filter = '';
         if ($query->get('prefix') !== '')
             $current_filter = RawUrlDecode($query->get('prefix'));
-        elseif (is_Singular())
-            $current_filter = MB_StrToLower(isset($post->post_title) ? $post->post_title : '');
+        elseif (is_singular())
+            $current_filter = mb_strtolower(isset($post->post_title) ? $post->post_title : '');
 
         # Get the Filter depth
         $filter_depth = 0;
