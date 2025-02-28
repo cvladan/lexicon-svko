@@ -277,10 +277,6 @@ msgstr ""
 msgid "Delay"
 msgstr ""
 
-#. Author of the plugin
-msgid "Dennis Hoppe"
-msgstr ""
-
 #: widgets/taxonomies.php:92 widgets/items.php:79 widgets/taxonomy-cloud.php:87
 msgid "Descending"
 msgstr ""

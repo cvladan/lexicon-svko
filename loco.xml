@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<bundle name="Lexicon | SVKO">
+<bundle name="Lexicon">
   <domain name="*">
-    <project name="Lexicon | SVKO" slug="">
+    <project name="Lexicon" slug="">
       <source>
         <directory>.</directory>
       </source>

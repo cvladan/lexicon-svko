@@ -2,14 +2,14 @@
 
 /**
  * Plugin Name:     Lexicon | SVKO
- * Plugin URI:      https://svko.com/
+ * Plugin URI:      https://github.com/cvladan/lexicon-svko
  * Description:     Allows you to create your glossary, encyclopedia, lexicon, wiki, dictionary or knowledge base.
  * Version:         1.0.0
- * Author:          Vladan Colovic, Dennis Hoppe
- * Author URI:      https://svko.com/
+ * Author:          Vladan Colovic
+ * Author URI:      https://github.com/cvladan/lexicon-svko
  * License:         GPL-2.0-or-later
  * License URI:     http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:     lexicon
+ * Text Domain:     lexicon-svko
  * Domain Path:     /languages
  * Update URI:      false
  * Requires PHP:    8.0
