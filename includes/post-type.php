@@ -40,15 +40,15 @@ abstract class PostType
         $labels = [
             'name' => PostTypeLabels::getItemDashboardName(),
             'singular_name' => PostTypeLabels::getItemSingularName(),
-            'add_new' => sprintf(I18n::__('Add %s'), PostTypeLabels::getItemSingularName()),
-            'add_new_item' => sprintf(I18n::__('New %s'), PostTypeLabels::getItemSingularName()),
-            'edit_item' => sprintf(I18n::__('Edit %s'), PostTypeLabels::getItemSingularName()),
-            'view_item' => sprintf(I18n::__('View %s'), PostTypeLabels::getItemSingularName()),
-            'search_items' => sprintf(I18n::__('Search %s'), PostTypeLabels::getItemPluralName()),
-            'not_found' =>  sprintf(I18n::__('No %s found'), PostTypeLabels::getItemPluralName()),
-            'not_found_in_trash' => sprintf(I18n::__('No %s found in Trash'), PostTypeLabels::getItemPluralName()),
-            'all_items' => sprintf(I18n::__('All %s'), PostTypeLabels::getItemPluralName()),
-            'archives' => sprintf(I18n::__('%s Index Page'), PostTypeLabels::getItemDashboardName())
+            'add_new' => sprintf(__('Add %s', 'lexicon-svko'), PostTypeLabels::getItemSingularName()),
+            'add_new_item' => sprintf(__('New %s', 'lexicon-svko'), PostTypeLabels::getItemSingularName()),
+            'edit_item' => sprintf(__('Edit %s', 'lexicon-svko'), PostTypeLabels::getItemSingularName()),
+            'view_item' => sprintf(__('View %s', 'lexicon-svko'), PostTypeLabels::getItemSingularName()),
+            'search_items' => sprintf(__('Search %s', 'lexicon-svko'), PostTypeLabels::getItemPluralName()),
+            'not_found' =>  sprintf(__('No %s found', 'lexicon-svko'), PostTypeLabels::getItemPluralName()),
+            'not_found_in_trash' => sprintf(__('No %s found in Trash', 'lexicon-svko'), PostTypeLabels::getItemPluralName()),
+            'all_items' => sprintf(__('All %s', 'lexicon-svko'), PostTypeLabels::getItemPluralName()),
+            'archives' => sprintf(__('%s Index Page', 'lexicon-svko'), PostTypeLabels::getItemDashboardName())
         ];
 
         $post_type_args = [
@@ -132,16 +132,16 @@ abstract class PostType
         $revision_id = empty($_GET['revision']) ? false : intval($_GET['revision']);
 
         $arr_messages[self::$post_type_name] = [
-            1 => sprintf(I18n::__('%1$s updated. (<a href="%2$s">View %1$s</a>)'), PostTypeLabels::getItemSingularName(), get_permalink()),
-            2 => I18n::__('Custom field updated.'),
-            3 => I18n::__('Custom field deleted.'),
-            4 => sprintf(I18n::__('%s updated.'), PostTypeLabels::getItemSingularName()),
-            5 => sprintf(I18n::__('%1$s restored to revision from %2$s'), PostTypeLabels::getItemSingularName(), wp_post_revision_title($revision_id, false)),
-            6 => sprintf(I18n::__('%1$s published. (<a href="%2$s">View %1$s</a>)'), PostTypeLabels::getItemSingularName(), get_permalink()),
-            7 => sprintf(I18n::__('%s saved.'), PostTypeLabels::getItemSingularName()),
-            8 => sprintf(I18n::__('%s submitted.'), PostTypeLabels::getItemSingularName()),
-            9 => sprintf(I18n::__('%1$s scheduled. (<a target="_blank" href="%2$s">View %1$s</a>)'), PostTypeLabels::getItemSingularName(), get_permalink()),
-            10 => sprintf(I18n::__('Draft updated. (<a target="_blank" href="%1$s">Preview %2$s</a>)'), add_query_arg(['preview' => 'true'], get_permalink()), PostTypeLabels::getItemSingularName())
+            1 => sprintf(__('%1$s updated. (<a href="%2$s">View %1$s</a>)', 'lexicon-svko'), PostTypeLabels::getItemSingularName(), get_permalink()),
+            2 => __('Custom field updated.', 'lexicon-svko'),
+            3 => __('Custom field deleted.', 'lexicon-svko'),
+            4 => sprintf(__('%s updated.', 'lexicon-svko'), PostTypeLabels::getItemSingularName()),
+            5 => sprintf(__('%1$s restored to revision from %2$s', 'lexicon-svko'), PostTypeLabels::getItemSingularName(), wp_post_revision_title($revision_id, false)),
+            6 => sprintf(__('%1$s published. (<a href="%2$s">View %1$s</a>)', 'lexicon-svko'), PostTypeLabels::getItemSingularName(), get_permalink()),
+            7 => sprintf(__('%s saved.', 'lexicon-svko'), PostTypeLabels::getItemSingularName()),
+            8 => sprintf(__('%s submitted.', 'lexicon-svko'), PostTypeLabels::getItemSingularName()),
+            9 => sprintf(__('%1$s scheduled. (<a target="_blank" href="%2$s">View %1$s</a>)', 'lexicon-svko'), PostTypeLabels::getItemSingularName(), get_permalink()),
+            10 => sprintf(__('Draft updated. (<a target="_blank" href="%1$s">Preview %2$s</a>)', 'lexicon-svko'), add_query_arg(['preview' => 'true'], get_permalink()), PostTypeLabels::getItemSingularName())
         ];
 
         return $arr_messages;
@@ -187,7 +187,7 @@ abstract class PostType
                             $first_term = reset($terms);
                             $term_slug = $first_term->slug;
                         } else {
-                            $term_slug = sanitize_title(I18n::__('Uncategorized'));
+                            $term_slug = sanitize_title(__('Uncategorized', 'lexicon-svko'));
                         }
 
                         $link = str_replace($virtual_slug, $term_slug, $link);

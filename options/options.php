@@ -2,9 +2,10 @@
 
 use SVKO\Lexicon\{ I18n, Options, PostType, PostTypeLabels };
 
+$option_boxes = Options::getOptionBoxes();
 $arr_columns = [
-    'left' => (array) Options::$arr_option_box['main'],
-    'right' => (array) Options::$arr_option_box['side']
+    'left' => (array) $option_boxes['main'],
+    'right' => (array) $option_boxes['side']
 ];
 
 $options_saved = isset($_GET['options_saved']);
@@ -12,11 +13,11 @@ $options_saved = isset($_GET['options_saved']);
 ?>
 <div class="wrap">
 
-    <h1><?php printf(I18n::__('%s Settings'), PostTypeLabels::getItemDashboardName()) ?></h1>
+    <h1><?php printf(__('%s Settings', 'lexicon-svko'), PostTypeLabels::getItemDashboardName()) ?></h1>
 
     <?php if ($options_saved) : ?>
         <div id="message" class="updated fade">
-            <p><strong><?php I18n::_e('Settings saved.') ?></strong></p>
+            <p><strong><?php _e('Settings saved.', 'lexicon-svko') ?></strong></p>
         </div>
     <?php endif ?>
 
@@ -35,22 +36,22 @@ $options_saved = isset($_GET['options_saved']);
                 </div>
             <?php endforeach ?>
         </div>
+<p class="submit">
+    <input type="submit" class="button-primary" value="<?php _e('Save Changes', 'lexicon-svko') ?>">
+</p>
 
-        <p class="submit">
-            <input type="submit" class="button-primary" value="<?php I18n::_e('Save Changes') ?>">
-        </p>
+<?php wp_nonce_field('save_' . PostType::getPostTypeName() . '_options') ?>
+</form>
 
-        <?php wp_nonce_field('save_' . PostType::getPostTypeName() . '_options') ?>
-    </form>
+<h2><?php _e('Factory Reset', 'lexicon-svko') ?></h2>
+<form method="post" action="<?php echo remove_Query_Arg('options_saved') ?>">
+<label for="reset-all-options">
+    <input type="checkbox" name="." id="reset-all-options" value="" required>
+    <?php _e('Reset all settings to factory default state and delete all existing settings above.', 'lexicon-svko') ?>
+</label>
 
-    <h2><?php I18n::_e('Factory Reset') ?></h2>
-    <form method="post" action="<?php echo remove_Query_Arg('options_saved') ?>">
-        <label for="reset-all-options">
-            <input type="checkbox" name="." id="reset-all-options" value="" required>
-            <?php I18n::_e('Reset all settings to factory default state and delete all existing settings above.') ?>
-        </label>
-
-        <p class="submit">
+<p class="submit">
+    <input type="submit" class="button-secondary" value="<?php _e('Reset all options', 'lexicon-svko') ?>">
             <input type="submit" class="button-secondary" value="<?php I18n::_e('Reset all options') ?>">
         </p>
 

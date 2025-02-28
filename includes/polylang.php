@@ -19,9 +19,9 @@ abstract class Polylang
 
     public static function filterTranslation(bool $state, string $text, string $context = ''): bool
     {
-        if (static::isActive() && $context == 'URL Slug') {
-            $state = false;
-        }
+        // if (static::isActive() && $context == 'URL Slug') {
+        //     $state = false;
+        // }
 
         return $state;
     }

@@ -5,6 +5,11 @@ namespace SVKO\Lexicon;
 abstract class Options
 {
     private static $arr_option_box = [], $page_slug = 'lexicon-options', $options_key = 'wp_plugin_lexicon';
+    
+    public static function getOptionBoxes(): array
+    {
+        return static::$arr_option_box;
+    }
 
     public static function init(): void
     {
@@ -26,7 +31,7 @@ abstract class Options
     public static function addOptionsPage(): void
     {
         $handle = add_options_page(
-            sprintf(I18n::__('%s Settings'), PostTypeLabels::getItemDashboardName()),
+            sprintf(__('%s Settings', 'lexicon-svko'), PostTypeLabels::getItemDashboardName()),
             PostTypeLabels::getItemDashboardName(),
             'manage_options',
             static::$page_slug,
@@ -34,24 +39,24 @@ abstract class Options
         );
 
         # Add options page link to post type sub menu
-        add_submenu_page('edit.php?post_type=' . PostType::getPostTypeName(), null, I18n::__('Settings'), 'manage_options', 'options-general.php?page=' . static::$page_slug);
+        add_submenu_page('edit.php?post_type=' . PostType::getPostTypeName(), null, __('Settings', 'lexicon-svko'), 'manage_options', 'options-general.php?page=' . static::$page_slug);
 
         # Add JavaScript to this handle
         add_action('load-' . $handle, [static::class, 'loadOptionsPage']);
 
         # Add option boxes
-        static::addOptionBox(I18n::__('Custom Post Type'), Core::$plugin_folder . '/options/custom-post-type.php');
-        static::addOptionBox(I18n::__('Labels'), Core::$plugin_folder . '/options/post-type-labels.php');
-        static::addOptionBox(I18n::__('Appearance'), Core::$plugin_folder . '/options/appearance.php');
-        static::addOptionBox(I18n::__('Features'), Core::$plugin_folder . '/options/features.php');
-        static::addOptionBox(I18n::__('Taxonomies'), Core::$plugin_folder . '/options/taxonomies.php');
-        static::addOptionBox(I18n::__('Archives'), Core::$plugin_folder . '/options/archive-page.php');
-        static::addOptionBox(I18n::__('Search'), Core::$plugin_folder . '/options/search.php');
-        static::addOptionBox(I18n::__('Single View'), Core::$plugin_folder . '/options/single-page.php');
-        static::addOptionBox(I18n::__('Related Items'), Core::$plugin_folder . '/options/related-items.php');
-        static::addOptionBox(I18n::__('Cross Linking'), Core::$plugin_folder . '/options/cross-linking.php');
-        static::addOptionBox(I18n::__('Tooltips'), Core::$plugin_folder . '/options/tooltips.php');
-        static::addOptionBox(I18n::__('Archive URLs'), Core::$plugin_folder . '/options/archive-link.php', 'side');
+        static::addOptionBox(__('Custom Post Type', 'lexicon-svko'), Core::$plugin_folder . '/options/custom-post-type.php');
+        static::addOptionBox(__('Labels', 'lexicon-svko'), Core::$plugin_folder . '/options/post-type-labels.php');
+        static::addOptionBox(__('Appearance', 'lexicon-svko'), Core::$plugin_folder . '/options/appearance.php');
+        static::addOptionBox(__('Features', 'lexicon-svko'), Core::$plugin_folder . '/options/features.php');
+        static::addOptionBox(__('Taxonomies', 'lexicon-svko'), Core::$plugin_folder . '/options/taxonomies.php');
+        static::addOptionBox(__('Archives', 'lexicon-svko'), Core::$plugin_folder . '/options/archive-page.php');
+        static::addOptionBox(__('Search', 'lexicon-svko'), Core::$plugin_folder . '/options/search.php');
+        static::addOptionBox(__('Single View', 'lexicon-svko'), Core::$plugin_folder . '/options/single-page.php');
+        static::addOptionBox(__('Related Items', 'lexicon-svko'), Core::$plugin_folder . '/options/related-items.php');
+        static::addOptionBox(__('Cross Linking', 'lexicon-svko'), Core::$plugin_folder . '/options/cross-linking.php');
+        static::addOptionBox(__('Tooltips', 'lexicon-svko'), Core::$plugin_folder . '/options/tooltips.php');
+        static::addOptionBox(__('Archive URLs', 'lexicon-svko'), Core::$plugin_folder . '/options/archive-link.php', 'side');
     }
 
     public static function getOptionsPageUrl(array $args = []): string
@@ -126,12 +131,12 @@ abstract class Options
     public static function getDefaultOptions(): array
     {
         return [
-            'post_type_slug' => I18n::__('lexicon'),
-            'item_dashboard_name' => I18n::__('Lexicon'),
-            'item_singular_name' => I18n::__('Entry'),
-            'item_plural_name' => I18n::__('Entries'),
-            'item_slug' => I18n::__('lexicon'),
-            'archive_slug' => I18n::__('lexicon'),
+            'post_type_slug' => __('lexicon', 'lexicon-svko'),
+            'item_dashboard_name' => __('Lexicon', 'lexicon-svko'),
+            'item_singular_name' => __('Entry', 'lexicon-svko'),
+            'item_plural_name' => __('Entries', 'lexicon-svko'),
+            'item_slug' => __('lexicon', 'lexicon-svko'),
+            'archive_slug' => __('lexicon', 'lexicon-svko'),
             'embed_default_style' => true,
             'enable_editor' => true,
             'enable_block_editor' => false,
@@ -163,16 +168,21 @@ abstract class Options
         if (empty($key))
             return $arr_options;
             
-        # Let Polylang handle translation if active
-        if (Polylang::isActive())
-            return \pll__($key);
-            
         # Return option value if key exists
-        if (isset($arr_options[$key]))
-            return $arr_options[$key];
+        if (isset($arr_options[$key])) {
+            $value = $arr_options[$key];
+            
+            // Only translate string values if Polylang is active
+            if (Polylang::isActive() && is_string($value)) {
+                // The wpml-config.xml file already registers these options for translation
+                // Polylang will handle the translation through the pll_translate_string filter
+                return apply_filters('pll_translate_string', $value);
+            }
+            
+            return $value;
+        }
             
         # Return default value
         return $default;
     }
 }
-
