@@ -159,13 +159,20 @@ abstract class Options
         $default_options = static::getDefaultOptions();
         $arr_options = array_merge($default_options, $saved_options);
 
-        # Locate the option
+        # Return all options if no key specified
         if (empty($key))
             return $arr_options;
-        elseif (isset($arr_options[$key]))
+            
+        # Let Polylang handle translation if active
+        if (Polylang::isActive())
+            return \pll__($key);
+            
+        # Return option value if key exists
+        if (isset($arr_options[$key]))
             return $arr_options[$key];
-        else
-            return $default;
+            
+        # Return default value
+        return $default;
     }
 }
 
