@@ -1,4 +1,4 @@
-﻿=== Encyclopedia / Glossary / Wiki ===
+﻿﻿=== Encyclopedia / Glossary / Wiki ===
 Contributors: dhoppe
 Tags: encyclopedia, lexicon, glossary, wiki, dictionary, knowledge base, directory, vocabulary, tooltip
 Requires at least: 5.5
@@ -99,6 +99,15 @@ Please use the support forum on WordPress.org only for this free lite version of
 This plugin is community translated. You can help translate it or improve existing translations [on the official translation platform](https://translate.wordpress.org/projects/wp-plugins/lexicon-svko/).
 
 You can find the *Translation.pot* file in the *languages/* folder in the plugin directory. The textdomain of this plugin is "lexicon-svko".
+
+= Translation of Options =
+All plugin options are fully translatable with both Polylang and WPML. The plugin includes a `wpml-config.xml` file in the root directory that defines all translatable options.
+
+* **Polylang Translation**: Go to Languages → String Translations, look for the "Lexicon | SVKO" group, and translate all the strings.
+
+The following options are translatable:
+* Post type labels (dashboard name, singular name, plural name)
+* URL slugs (post type slug, item slug, archive slug)
 
 
 = Real life examples =

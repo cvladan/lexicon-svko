@@ -1,4 +1,4 @@
-﻿TODO:
+﻿﻿TODO:
 + allow editing of post-type-name, jer je sve već pripremljeno da bude flexible, samo UI
   samo proveri da li može da radi sa multiple post type-ovima, jedino što fali je oko options "wp_plugin_lexicon" ali može da se sve napravi...
 
@@ -70,6 +70,28 @@ All plugin outputs can be customized via user-defined HTML templates. Place cust
 * Chinese (简体中文)
 
 Want to help translate? You can contribute translations on the [official translation platform](https://translate.wordpress.org/projects/wp-plugins/lexicon-svko/).
+
+## Translation of Options
+
+All plugin options are fully translatable with both Polylang and WPML. The plugin includes a `wpml-config.xml` file in the root directory that defines all translatable options.
+
+### WPML Translation
+
+1. Install and activate WPML
+2. Go to WPML → String Translation
+3. Look for the "Lexicon | SVKO" section
+4. Translate all the strings in this section
+
+### Polylang Translation
+
+1. Install and activate Polylang
+2. Go to Languages → String Translations
+3. Look for the "Lexicon | SVKO" group
+4. Translate all the strings in this group
+
+The following options are translatable:
+- Post type labels (dashboard name, singular name, plural name)
+- URL slugs (post type slug, item slug, archive slug)
 
 ## Support
 
