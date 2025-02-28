@@ -1,12 +1,5 @@
 <?php
-
-use SVKO\Lexicon\{
-    I18n,
-    Options,
-    PostType,
-    PostTypeLabels
-};
-
+use SVKO\Lexicon\{ I18n, Options, PostType, PostTypeLabels };
 ?>
 <table class="form-table">
 
@@ -61,9 +54,7 @@ use SVKO\Lexicon\{
                     <div><?php echo User_TrailingSlashIt(sprintf(I18n::__('/%%%s-name%%'), sanitize_Title(PostTypeLabels::getItemSingularName())), 'single') ?></div>
                 </div>
 
-                <?php if (WPML::isPostTypeSlugTranslationEnabled()) : ?>
                     <p class="help warning"><?php I18n::_e('This option is not available if you translate the post type url slug with WPML.') ?></p>
-                <?php else : ?>
                     <p class="help">
                         <?php I18n::_e('The url slug of your items.') ?>
                         <?php if ($taxonomies = PostType::getAssociatedTaxonomies()) : $taxonomies = Array_Map(function ($taxonomy) {
