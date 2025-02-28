@@ -9,7 +9,6 @@ use SVKO\Lexicon\{ I18n, Options, PostType, PostTypeLabels };
             <input type="text" name="item_dashboard_name" id="item_dashboard_name" value="<?php echo esc_attr(PostTypeLabels::getItemDashboardName()) ?>">
             <p class="help">
                 <?php I18n::_e('This is how your post type is called in the dashboard. For example: Lexicon, Encyclopedia, Glossary, Knowledge Base, etc.') ?>
-                <?php #I18n::_e('You can change this at any time later without worries.') 
                 ?>
             </p>
         </td>
@@ -54,16 +53,16 @@ use SVKO\Lexicon\{ I18n, Options, PostType, PostTypeLabels };
                     <div><?php echo User_TrailingSlashIt(sprintf(I18n::__('/%%%s-name%%'), sanitize_Title(PostTypeLabels::getItemSingularName())), 'single') ?></div>
                 </div>
 
-                    <p class="help warning"><?php I18n::_e('This option is not available if you translate the post type url slug with WPML.') ?></p>
-                    <p class="help">
-                        <?php I18n::_e('The url slug of your items.') ?>
-                        <?php if ($taxonomies = PostType::getAssociatedTaxonomies()) : $taxonomies = Array_Map(function ($taxonomy) {
-                                return "%{$taxonomy->name}%";
-                            }, $taxonomies) ?>
-                            <?php printf(I18n::__('You can use these placeholders: %s'), join(', ', $taxonomies)) ?>
-                        <?php endif ?>
-                    </p>
-                <?php endif ?>
+                <p class="help warning"><?php I18n::_e('This option is not available if you translate the post type url slug with WPML.') ?></p>
+                <p class="help">
+                    <?php I18n::_e('The url slug of your items.') ?>
+                    <?php if ($taxonomies = PostType::getAssociatedTaxonomies()) : $taxonomies = Array_Map(function ($taxonomy) {
+                            return "%{$taxonomy->name}%";
+                        }, $taxonomies) ?>
+                        <?php printf(I18n::__('You can use these placeholders: %s'), join(', ', $taxonomies)) ?>
+                    <?php endif ?>
+                </p>
+
             </td>
         </tr>
     <?php endif ?>

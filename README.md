@@ -25,7 +25,6 @@ Easily manage your contents with WordPress while enjoying smart features like au
 * Automatic association of related items (based on common tags)
 * Automatic cross-linking of items in post and page contents
 * Completely translatable with included .pot file
-* WPML support for multilingual knowledge bases
 * WordPress theme template hierarchy support
 * User-defined HTML templates
 * RSS feeds for index page and comments
@@ -73,14 +72,7 @@ Want to help translate? You can contribute translations on the [official transla
 
 ## Translation of Options
 
-All plugin options are fully translatable with both Polylang and WPML. The plugin includes a `wpml-config.xml` file in the root directory that defines all translatable options.
-
-### WPML Translation
-
-1. Install and activate WPML
-2. Go to WPML → String Translation
-3. Look for the "Lexicon | SVKO" section
-4. Translate all the strings in this section
+All plugin options are fully translatable with both Polylang. The plugin includes a `wpml-config.xml` file in the root directory that defines all translatable options.
 
 ### Polylang Translation
 
