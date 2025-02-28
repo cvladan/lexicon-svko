@@ -37,7 +37,7 @@ abstract class I18n
             if (empty($context))
                 return translate($text, static::textdomain);
             else
-                return translate_With_GetText_Context($text, $context, static::textdomain);
+                return translate_with_gettext_context($text, $context, static::textdomain);
         } else {
             return $text;
         }
