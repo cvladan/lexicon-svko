@@ -2,7 +2,6 @@
 <wpml-config>
     <admin-texts>
         <key name="wp_plugin_lexicon">
-            <!-- Post type labels -->
             <key name="item_dashboard_name" />
             <key name="item_singular_name" />
             <key name="item_plural_name" />
@@ -12,3 +11,4 @@
     </admin-texts>
     
 </wpml-config>
+

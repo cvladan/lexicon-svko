@@ -154,13 +154,10 @@ abstract class Options
 
     public static function get(string $key = '', $default = false)
     {
-        static $arr_options;
-
-        if (empty($arr_options)) {
-            $saved_options = (array) get_option(static::$options_key);
-            $default_options = static::getDefaultOptions();
-            $arr_options = Array_Merge($default_options, $saved_options);
-        }
+        // Get options from WordPress (WordPress handles caching internally)
+        $saved_options = (array) get_option(static::$options_key);
+        $default_options = static::getDefaultOptions();
+        $arr_options = array_merge($default_options, $saved_options);
 
         # Locate the option
         if (empty($key))
