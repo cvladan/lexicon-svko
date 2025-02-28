@@ -11,15 +11,25 @@ $language_flag = '';
 $available_languages = [];
 
 if ($is_multilingual) {
-    $current_language = pll_current_language();
-    $languages = pll_languages_list(['fields' => 'name']);
-    $language_name = $languages[$current_language] ?? $current_language;
-    $language_flag = PLL()->model->get_language($current_language)->flag_url ?? '';
-    $all_languages = pll_languages_list(['fields' => 'slug']);
-    $all_names = pll_languages_list(['fields' => 'name']);
-    if ($all_languages && $all_names) {
-        foreach ($all_languages as $i => $code) {
-            $available_languages[$code] = $all_names[$i];
+    // Use Polylang class method to get current language (more reliable in admin)
+    $current_language = Polylang::getCurrentLanguage();
+    
+    // Get translations for display purposes
+    $translations = Polylang::getLanguages();
+    
+    // Find the current language details
+    if (!empty($translations) && !empty($current_language)) {
+        foreach ($translations as $lang) {
+            if ($lang['slug'] === $current_language) {
+                $language_name = $lang['name'];
+                $language_flag = $lang['flag'];
+                break;
+            }
+        }
+        
+        // Build available languages array
+        foreach ($translations as $lang) {
+            $available_languages[$lang['slug']] = $lang['name'];
         }
     }
 }
@@ -31,10 +41,9 @@ if ($is_multilingual) {
         <?php if ($language_flag): ?>
             <img src="<?php echo esc_url($language_flag); ?>" alt="<?php echo esc_attr($language_name); ?>" style="vertical-align: middle; margin-right: 5px; width: 16px; height: 11px;">
         <?php endif; ?>
-        <?php printf(__('You are currently editing translations for: %s', 'lexicon-svko'), '<strong>' . esc_html($language_name) . '</strong>'); ?>
-        <?php if (count($available_languages) > 1): ?>
-            <br>
-            <?php _e('To edit translations for other languages, please use the language switcher in the admin bar.', 'lexicon-svko'); ?>
+        <?php printf(__('You are editing translations for %s', 'lexicon-svko'), '<strong>' . esc_html($language_name) . '</strong>'); ?>
+        <?php if (count($available_languages) > 1): ?> | 
+            <?php _e('Use the language switcher in the admin bar.', 'lexicon-svko'); ?>
         <?php endif; ?>
     </p>
 </div>

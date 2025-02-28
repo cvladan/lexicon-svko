@@ -86,7 +86,7 @@ abstract class Polylang
         // Register each translatable string
         foreach (self::$translatable_keys as $key) {
             if (isset($options[$key]) && is_string($options[$key])) {
-                \pll_register_string($key, $options[$key], 'wp_plugin_lexicon', true);
+                \pll_register_string($key, $options[$key], 'Lexicon Plugin', true);
             }
         }
     }
@@ -118,6 +118,38 @@ abstract class Polylang
     }
     
     /**
+     * Get current language code
+     *
+     * @return string Current language code or empty string if not available
+     */
+    public static function getCurrentLanguage(): string
+    {
+        if (!static::isActive()) {
+            return '';
+        }
+        
+        if (function_exists('pll_current_language')) {
+            return \pll_current_language();
+        }
+        
+        return '';
+    }
+    
+    /**
+     * Get all available languages with their details
+     *
+     * @return array Array of language details
+     */
+    public static function getLanguages(): array
+    {
+        if (!static::isActive() || !function_exists('pll_the_languages')) {
+            return [];
+        }
+        
+        return \pll_the_languages(['raw' => 1]);
+    }
+    
+    /**
      * Preserve translations when updating a value in one language
      *
      * This method works with the wpml-config.xml file to ensure translations
@@ -136,8 +168,8 @@ abstract class Polylang
         }
         
         // Get current language if not provided
-        if (empty($language) && function_exists('pll_current_language')) {
-            $language = \pll_current_language();
+        if (empty($language)) {
+            $language = static::getCurrentLanguage();
         }
         
         if (empty($language)) {

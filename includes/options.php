@@ -204,8 +204,11 @@ abstract class Options
             
             if (is_string($value) && in_array($key, $translatable_keys)) {
                 // If Polylang is active
-                if (Polylang::isActive() && function_exists('pll_current_language')) {
-                    return apply_filters('pll_translate_string', $value, \pll_current_language());
+                if (Polylang::isActive()) {
+                    $current_language = Polylang::getCurrentLanguage();
+                    if (!empty($current_language)) {
+                        return apply_filters('pll_translate_string', $value, $current_language);
+                    }
                 }
             }
             
