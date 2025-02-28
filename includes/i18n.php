@@ -18,12 +18,6 @@ abstract class I18n
         load_plugin_textdomain(static::textdomain);
         load_textdomain(static::textdomain, "{$language_folder}/{$locale}.mo");
 
-        # Fallback for german
-        if (in_array($locale, ['de_AT_formal', 'de_CH']))
-            load_textdomain(static::textdomain, "{$language_folder}/de_DE_formal.mo");
-        elseif (in_array($locale, ['de_AT', 'de_CH_informal']))
-            load_textdomain(static::textdomain, "{$language_folder}/de_DE.mo");
-
         static::$loaded = true;
     }
 
@@ -34,10 +28,10 @@ abstract class I18n
             if (!static::$loaded) static::loadTextDomain();
 
             # Translate the string $text with context $context
-            if (empty($context))
+            // if (empty($context))
                 return translate($text, static::textdomain);
-            else
-                return translate_with_gettext_context($text, $context, static::textdomain);
+            // else
+            //     return translate_with_gettext_context($text, $context, static::textdomain);
         } else {
             return $text;
         }

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Lexicon | SVKO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-31 15:46+0000\n"
+"POT-Creation-Date: 2025-02-28 05:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dennis Hoppe <Mail@DennisHoppe.de>\n"
 "Language-Team: \n"
@@ -14,118 +14,78 @@ msgstr ""
 "X-Poedit-KeywordsList: t;t:1,2c;__;_e;_x:1,2c;_ex:1,2c\n"
 "X-Generator: Loco https://localise.biz/\n"
 "X-Poedit-SearchPath-0: ..\n"
-"\n"
 "Language: \n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;"
 
-#: includes/post-type.php:121
+#: options/taxonomies.php:34
+msgid " Tags"
+msgstr ""
+
+#: includes/post-type.php:140
 #, php-format
 msgid "%1$s published. (<a href=\"%2$s\">View %1$s</a>)"
 msgstr ""
 
-#: includes/post-type.php:120
+#: includes/post-type.php:139
 #, php-format
 msgid "%1$s restored to revision from %2$s"
 msgstr ""
 
-#: includes/post-type.php:124
+#: includes/post-type.php:143
 #, php-format
 msgid "%1$s scheduled. (<a target=\"_blank\" href=\"%2$s\">View %1$s</a>)"
 msgstr ""
 
-#: includes/post-type.php:116
+#: includes/post-type.php:135
 #, php-format
 msgid "%1$s updated. (<a href=\"%2$s\">View %1$s</a>)"
 msgstr ""
 
-#: includes/post-type.php:35
+#: includes/post-type.php:51
 #, php-format
 msgid "%s Index Page"
 msgstr ""
 
-#: options/archive-page.php:25
+#: options/archive-page.php:20
 #, php-format
 msgid "%s per page"
 msgstr ""
 
-#: includes/post-type.php:122
+#: includes/post-type.php:141
 #, php-format
 msgid "%s saved."
 msgstr ""
 
-#: widgets/search.php:13
-#, php-format
-msgid "%s Search"
-msgstr ""
-
-#: includes/options.php:28 options/options.php:19
+#: includes/options.php:29 options/options.php:15
 #, php-format
 msgid "%s Settings"
 msgstr ""
 
-#: includes/post-type.php:123
+#: includes/post-type.php:142
 #, php-format
 msgid "%s submitted."
 msgstr ""
 
-#: widgets/taxonomies.php:13
-#, php-format
-msgid "%s Taxonomies"
-msgstr ""
-
-#: widgets/taxonomy-cloud.php:13
-#, php-format
-msgid "%s Taxonomy Cloud"
-msgstr ""
-
-#: includes/post-type.php:119
+#: includes/post-type.php:138
 #, php-format
 msgid "%s updated."
 msgstr ""
 
-#: widgets/related-items.php:14
-#, php-format
-msgid "%s: Related %s"
-msgstr ""
-
-#: includes/taxonomies.php:47
+#: includes/taxonomies.php:50
 #, php-format
 msgid "%s: Tags"
 msgstr ""
 
-#: options/post-type-labels.php:63
+#: options/post-type-labels.php:53
 #, php-format
 msgid "/%%%s-name%%"
 msgstr ""
 
-#: widgets/taxonomy-cloud.php:14
-msgid "A cloud of your most used taxonomy terms."
-msgstr ""
-
-#: widgets/items.php:14
-#, php-format
-msgid "A list of your %s."
-msgstr ""
-
-#: widgets/taxonomies.php:14
-msgid "A list of your taxonomy terms."
-msgstr ""
-
-#: widgets/related-items.php:15
-#, php-format
-msgid "A list with the related %s."
-msgstr ""
-
-#: widgets/search.php:14
-#, php-format
-msgid "A search form for your %s."
-msgstr ""
-
-#: options/related-items.php:20
+#: options/related-items.php:21
 msgid "above the content"
 msgstr ""
 
-#: includes/post-type.php:27
+#: includes/post-type.php:43
 #, php-format
 msgid "Add %s"
 msgstr ""
@@ -139,7 +99,7 @@ msgstr ""
 msgid "Add links in the default text widget"
 msgstr ""
 
-#: includes/taxonomies.php:42
+#: includes/taxonomies.php:45
 msgid "Add New Tag"
 msgstr ""
 
@@ -147,49 +107,43 @@ msgstr ""
 msgid "After shortcodes"
 msgstr ""
 
-#: includes/post-type.php:34
+#: includes/post-type.php:50
 #, php-format
 msgid "All %s"
 msgstr ""
 
-#: includes/taxonomies.php:39
+#: includes/taxonomies.php:42
 msgid "All Tags"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Allows you to create your glossary, encyclopedia, lexicon, wiki, dictionary "
+"or knowledge base."
 msgstr ""
 
 #: options/tooltips.php:24
 msgid "Animation duration"
 msgstr ""
 
-#: includes/options.php:43
+#: includes/options.php:45
 msgid "Appearance"
 msgstr ""
 
-#: includes/taxonomies.php:117
+#: includes/taxonomies.php:120
 msgid "Archive URL"
 msgstr ""
 
-#: options/archive-link.php:26
-msgid "Archive URL Slug"
-msgstr ""
-
-#: options/post-type-labels.php:47
+#: options/post-type-labels.php:37
 msgid "Archive URL slug"
 msgstr ""
 
-#: includes/options.php:52
+#: includes/options.php:54
 msgid "Archive URLs"
 msgstr ""
 
-#: includes/options.php:46
+#: includes/options.php:48
 msgid "Archives"
-msgstr ""
-
-#: widgets/taxonomies.php:91 widgets/items.php:78 widgets/taxonomy-cloud.php:86
-msgid "Ascending"
-msgstr ""
-
-#: widgets/items.php:66
-msgid "Author"
 msgstr ""
 
 #: options/search.php:32
@@ -200,20 +154,15 @@ msgstr ""
 msgid "Autocomplete min length"
 msgstr ""
 
-#: includes/mocking-bird.php:25
-#, php-format
-msgid "Available in the <a href=\"%s\" target=\"_blank\">Pro Version</a> only."
-msgstr ""
-
 #: options/cross-linking.php:64
 msgid "Before shortcodes"
 msgstr ""
 
-#: options/related-items.php:19
+#: options/related-items.php:20
 msgid "below the content"
 msgstr ""
 
-#: options/features.php:24
+#: options/features.php:20
 msgid "Block Editor"
 msgstr ""
 
@@ -237,11 +186,7 @@ msgstr ""
 msgid "Click-Event"
 msgstr ""
 
-#: widgets/items.php:70
-msgid "Comment Count"
-msgstr ""
-
-#: options/features.php:57
+#: options/features.php:53
 msgid "Comments &amp; Trackbacks"
 msgstr ""
 
@@ -249,24 +194,28 @@ msgstr ""
 msgid "Complete words"
 msgstr ""
 
-#: includes/options.php:50
+#: includes/options.php:52
 msgid "Cross Linking"
 msgstr ""
 
-#: includes/post-type.php:118
+#: includes/post-type.php:137
 msgid "Custom field deleted."
 msgstr ""
 
-#: includes/post-type.php:117
+#: includes/post-type.php:136
 msgid "Custom field updated."
 msgstr ""
 
-#: options/features.php:79
+#: options/features.php:75
 msgid "Custom Fields"
 msgstr ""
 
-#: widgets/items.php:67
-msgid "Date"
+#: includes/options.php:43
+msgid "Custom Post Type"
+msgstr ""
+
+#: options/post-type-labels.php:7
+msgid "Dashboard Menu Name"
 msgstr ""
 
 #: options/appearance.php:12
@@ -277,30 +226,17 @@ msgstr ""
 msgid "Delay"
 msgstr ""
 
-#: widgets/taxonomies.php:92 widgets/items.php:79 widgets/taxonomy-cloud.php:87
-msgid "Descending"
-msgstr ""
-
-#: widgets/taxonomies.php:84 widgets/taxonomy-cloud.php:78
-msgid "Description"
-msgstr ""
-
-#: widgets/taxonomies.php:74
-#, php-format
-msgid "Display number of %s."
-msgstr ""
-
-#: options/related-items.php:17
+#: options/related-items.php:18
 #, php-format
 msgid "Display related %s"
 msgstr ""
 
-#: options/related-items.php:21
+#: options/related-items.php:22
 #, php-format
 msgid "Do not show related %s."
 msgstr ""
 
-#: includes/post-type.php:125
+#: includes/post-type.php:144
 #, php-format
 msgid "Draft updated. (<a target=\"_blank\" href=\"%1$s\">Preview %2$s</a>)"
 msgstr ""
@@ -311,16 +247,16 @@ msgid ""
 "focus on the things that matter."
 msgstr ""
 
-#: includes/post-type.php:29
+#: includes/post-type.php:45
 #, php-format
 msgid "Edit %s"
 msgstr ""
 
-#: includes/taxonomies.php:40
+#: includes/taxonomies.php:43
 msgid "Edit Tag"
 msgstr ""
 
-#: options/archive-page.php:14
+#: options/archive-page.php:9
 msgid "Enable Archive"
 msgstr ""
 
@@ -330,42 +266,42 @@ msgid ""
 "searched for an exact title."
 msgstr ""
 
-#: options/taxonomies.php:55
+#: options/taxonomies.php:64
 #, php-format
 msgid "Enables %1$s for %2$s."
 msgstr ""
 
-#: options/features.php:63
+#: options/features.php:59
 msgid "Enables or disables comments and trackbacks."
 msgstr ""
 
-#: options/features.php:85
+#: options/features.php:81
 msgid "Enables or disables custom fields."
 msgstr ""
 
-#: options/features.php:52
+#: options/features.php:48
 msgid "Enables or disables revisions."
 msgstr ""
 
-#: options/features.php:30
+#: options/features.php:26
 msgid "Enables or disables the block editor (Gutenberg)."
 msgstr ""
 
 #: options/appearance.php:18
-msgid "Enables or disables the encyclopedia default CSS on the frontend."
+msgid "Enables or disables the default CSS on the frontend."
 msgstr ""
 
-#: options/features.php:74
+#: options/features.php:70
 msgid "Enables or disables the featured image."
 msgstr ""
 
-#: options/archive-page.php:20
+#: options/archive-page.php:15
 msgid ""
 "Enables or disables the global archive. This does not affect the taxonomy "
 "archives."
 msgstr ""
 
-#: options/archive-page.php:42
+#: options/archive-page.php:37
 msgid ""
 "Enables or disables the prefix filter above the first item in the archive."
 msgstr ""
@@ -375,11 +311,11 @@ msgid ""
 "Enables or disables the prefix filter above the title in the single view."
 msgstr ""
 
-#: options/features.php:19
+#: options/features.php:15
 msgid "Enables or disables the text editor."
 msgstr ""
 
-#: options/features.php:41
+#: options/features.php:37
 msgid "Enables or disables the text excerpt input field."
 msgstr ""
 
@@ -387,55 +323,31 @@ msgstr ""
 msgid "Enables or disables the tooltips for item links on the frontend."
 msgstr ""
 
-#: includes/options.php:127
-msgid "Encyclopedia"
-msgstr ""
-
-#: options/taxonomies.php:14 options/taxonomies.php:24
-msgid "Encyclopedia Categories"
-msgstr ""
-
-#: options/taxonomies.php:25
-msgid "Encyclopedia Tags"
-msgstr ""
-
-#: options/post-type-labels.php:16
-msgid "Encyclopedia type"
-msgstr ""
-
-#: includes/mocking-bird.php:90
-msgid "Enjoy all features of the Pro Version"
-msgstr ""
-
-#: includes/options.php:129
+#: includes/options.php:132
 msgid "Entries"
 msgstr ""
 
-#: includes/options.php:128
+#: includes/options.php:131
 msgid "Entry"
 msgstr ""
 
-#: widgets/search.php:70
-msgid "Exact"
-msgstr ""
-
-#: options/features.php:35
+#: options/features.php:31
 msgid "Excerpt"
 msgstr ""
 
-#: options/options.php:50
+#: options/options.php:46
 msgid "Factory Reset"
 msgstr ""
 
-#: options/features.php:68
+#: options/features.php:64
 msgid "Featured Image"
 msgstr ""
 
-#: includes/options.php:44
+#: includes/options.php:46
 msgid "Features"
 msgstr ""
 
-#: includes/taxonomies.php:124
+#: includes/taxonomies.php:127
 msgid "Feed URL"
 msgstr ""
 
@@ -447,56 +359,32 @@ msgstr ""
 msgid "First match only"
 msgstr ""
 
-#. Author URI of the plugin
-msgid "https://DennisHoppe.de"
-msgstr ""
-
 #. URI of the plugin
-msgid "https://dennishoppe.de/en/wordpress-plugins/encyclopedia"
+#. Author URI of the plugin
+msgid "https://github.com/cvladan/lexicon-svko"
 msgstr ""
 
-#: includes/mocking-bird.php:92
-msgid ""
-"If you like the free version, you will love <u><strong>Encyclopedia "
-"Pro</strong></u>!"
-msgstr ""
-
-#: includes/mocking-bird.php:28
-#, php-format
-msgid ""
-"In the <a href=\"%1$s\" target=\"_blank\">Pro Version of Encyclopedia</a> "
-"you will take advantage of unlimited %2$s and many more features."
-msgstr ""
-
-#: options/post-type-labels.php:36
+#: options/post-type-labels.php:26
 msgid "Item plural name"
 msgstr ""
 
-#: options/post-type-labels.php:28
+#: options/post-type-labels.php:18
 msgid "Item singular name"
 msgstr ""
 
-#: options/post-type-labels.php:58
+#: options/post-type-labels.php:48
 msgid "Item URL slug"
 msgstr ""
 
-#: includes/options.php:42
+#: includes/options.php:44
 msgid "Labels"
 msgstr ""
 
-#: widgets/items.php:68
-msgid "Last modification"
+#: includes/options.php:130
+msgid "Lexicon"
 msgstr ""
 
-#: widgets/items.php:58
-msgid "Leave blank to show all terms."
-msgstr ""
-
-#: widgets/taxonomies.php:69 widgets/taxonomy-cloud.php:68
-msgid "Leave blank to show all."
-msgstr ""
-
-#: includes/options.php:130 includes/options.php:131
+#: includes/options.php:129 includes/options.php:133 includes/options.php:134
 msgid "lexicon"
 msgstr ""
 
@@ -524,90 +412,56 @@ msgstr ""
 msgid "Link title length"
 msgstr ""
 
-#: includes/mocking-bird.php:20
-msgctxt "Link to the authors website"
-msgid "https://dennishoppe.de/en/wordpress-plugins/encyclopedia"
-msgstr ""
-
-#: widgets/items.php:71
-msgid "Menu Order"
-msgstr ""
-
 #: options/cross-linking.php:50
 msgid "Minimum length"
 msgstr ""
 
-#: options/related-items.php:56
+#: options/related-items.php:57
 msgid "Minimum number of common taxonomy terms to generate a relation."
 msgstr ""
 
-#: options/tooltips.php:27 options/tooltips.php:37
-#: options/search.php:35
+#: options/tooltips.php:27 options/tooltips.php:37 options/search.php:35
 msgid "ms"
 msgstr ""
 
-#: widgets/taxonomies.php:80 widgets/taxonomy-cloud.php:74
-msgid "Name"
-msgstr ""
-
-#: includes/post-type.php:28
+#: includes/post-type.php:44
 #, php-format
 msgid "New %s"
 msgstr ""
 
-#: includes/taxonomies.php:43
+#: includes/taxonomies.php:46
 msgid "New Tag"
 msgstr ""
 
-#: includes/post-type.php:32
+#: includes/post-type.php:48
 #, php-format
 msgid "No %s found"
 msgstr ""
 
-#: includes/post-type.php:33
+#: includes/post-type.php:49
 #, php-format
 msgid "No %s found in Trash"
 msgstr ""
 
-#: widgets/search.php:58
-msgid "Normal"
-msgstr ""
-
-#: widgets/taxonomies.php:81 widgets/taxonomy-cloud.php:75
-#, php-format
-msgid "Number of %s"
-msgstr ""
-
-#: options/related-items.php:45
+#: options/related-items.php:46
 #, php-format
 msgid "Number of related %s"
 msgstr ""
 
-#: options/related-items.php:48
+#: options/related-items.php:49
 #, php-format
 msgid "Number of related %s which should be shown."
-msgstr ""
-
-#: widgets/items.php:56
-msgid "Number of terms:"
-msgstr ""
-
-#: widgets/related-items.php:55 widgets/taxonomies.php:67
-#: widgets/taxonomy-cloud.php:66
-msgid "Number:"
 msgstr ""
 
 #: options/dropbox.php:25
 msgid "Of course the Pro Version does not contain any flashing advertisements."
 msgstr ""
 
-#: options/single-page.php:16 options/features.php:17
-#: options/features.php:28 options/features.php:39
-#: options/features.php:50 options/features.php:61
-#: options/features.php:72 options/features.php:83
-#: options/appearance.php:16 options/archive-page.php:18
-#: options/archive-page.php:40 options/tooltips.php:17
-#: options/search.php:16
+#: options/single-page.php:16 options/features.php:13 options/features.php:24
+#: options/features.php:35 options/features.php:46 options/features.php:57
+#: options/features.php:68 options/features.php:79 options/appearance.php:16
+#: options/archive-page.php:13 options/archive-page.php:35
+#: options/tooltips.php:17 options/search.php:16
 msgid "Off"
 msgstr ""
 
@@ -615,13 +469,11 @@ msgstr ""
 msgid "Okay, tell me more&hellip;"
 msgstr ""
 
-#: options/single-page.php:15 options/features.php:16
-#: options/features.php:27 options/features.php:38
-#: options/features.php:49 options/features.php:60
-#: options/features.php:71 options/features.php:82
-#: options/appearance.php:15 options/archive-page.php:17
-#: options/archive-page.php:39 options/tooltips.php:16
-#: options/search.php:15
+#: options/single-page.php:15 options/features.php:12 options/features.php:23
+#: options/features.php:34 options/features.php:45 options/features.php:56
+#: options/features.php:67 options/features.php:78 options/appearance.php:15
+#: options/archive-page.php:12 options/archive-page.php:34
+#: options/tooltips.php:16 options/search.php:15
 msgid "On"
 msgstr ""
 
@@ -629,52 +481,32 @@ msgstr ""
 msgid "Open link in a new window/tab"
 msgstr ""
 
-#: widgets/taxonomies.php:78 widgets/items.php:62 widgets/taxonomy-cloud.php:72
-msgid "Order by:"
-msgstr ""
-
-#: widgets/taxonomies.php:89 widgets/items.php:76 widgets/taxonomy-cloud.php:83
-msgid "Order:"
-msgstr ""
-
-#. Description of the plugin
-msgid ""
-"Patched slugs inside \"post-type-labels.php\" and \"cross-linker.php\" flags."
-" Encyclopedia enables you to create your own encyclopedia, lexicon, glossary,"
-" wiki, dictionary or knowledge base."
-msgstr ""
-
-#: templates/searchform-encyclopedia.php:25
-msgctxt "placeholder"
-msgid "Search&hellip;"
-msgstr ""
-
-#: options/related-items.php:29
+#: options/related-items.php:30
 msgid "Please choose a taxonomy"
 msgstr ""
 
-#: options/taxonomies.php:30
+#: options/taxonomies.php:39
 #, php-format
 msgid "Please choose the taxonomies you want to use for your %s."
 msgstr ""
 
-#: options/taxonomies.php:22
+#: options/taxonomies.php:28
 msgid "Post Categories"
 msgstr ""
 
-#: options/taxonomies.php:23
+#: options/taxonomies.php:31
 msgid "Post Tags"
 msgstr ""
 
-#: widgets/search.php:64
-msgid "Prefix"
+#: options/custom-post-type.php:11
+msgid "Post Type Slug"
 msgstr ""
 
-#: options/single-page.php:12 options/archive-page.php:36
+#: options/single-page.php:12 options/archive-page.php:31
 msgid "Prefix filter"
 msgstr ""
 
-#: options/single-page.php:23 options/archive-page.php:47
+#: options/single-page.php:23 options/archive-page.php:42
 msgid "Prefix filter depth"
 msgstr ""
 
@@ -686,76 +518,63 @@ msgstr ""
 msgid "Query matches directly"
 msgstr ""
 
-#: widgets/items.php:69 widgets/taxonomy-cloud.php:85
-msgid "Random"
-msgstr ""
-
 #: options/cross-linking.php:106
 msgid "Recursion"
 msgstr ""
 
-#: templates/encyclopedia-related-items.php:12
+#: templates/related-items.php:8
 #, php-format
 msgid "Related %s"
 msgstr ""
 
-#: includes/options.php:49
+#: includes/options.php:51
 msgid "Related Items"
 msgstr ""
 
-#: options/related-items.php:26
+#: options/related-items.php:27
 msgid "Relation Taxonomy"
 msgstr ""
 
-#: options/related-items.php:53
+#: options/related-items.php:54
 msgid "Relation Threshold"
 msgstr ""
 
-#: options/options.php:58
+#: options/options.php:54
 msgid "Reset all options"
 msgstr ""
 
-#: options/options.php:54
+#: options/options.php:50
 msgid ""
 "Reset all settings to factory default state and delete all existing settings "
 "above."
 msgstr ""
 
-#: options/features.php:46
+#: options/features.php:42
 msgid "Revisions"
 msgstr ""
 
-#: options/options.php:44
+#: options/options.php:40
 msgid "Save Changes"
 msgstr ""
 
-#: templates/searchform-encyclopedia.php:24
-#: templates/searchform-encyclopedia.php:26 includes/options.php:47
+#: includes/options.php:49
 msgid "Search"
 msgstr ""
 
-#: includes/post-type.php:31
+#: includes/post-type.php:47
 #, php-format
 msgid "Search %s"
 msgstr ""
 
-#: widgets/search.php:53
-msgid "Search mode:"
-msgstr ""
-
-#: includes/taxonomies.php:38
+#: includes/taxonomies.php:41
 msgid "Search Tags"
 msgstr ""
 
-#: options/archive-link.php:29
-msgid "Set the archive URL slug."
-msgstr ""
-
-#: includes/options.php:36
+#: includes/options.php:37
 msgid "Settings"
 msgstr ""
 
-#: options/options.php:23
+#: options/options.php:19
 msgid "Settings saved."
 msgstr ""
 
@@ -765,27 +584,23 @@ msgid ""
 "option will <strong>disable the link</strong> to the cross linked entry."
 msgstr ""
 
-#: includes/options.php:48
+#: includes/options.php:50
 msgid "Single View"
 msgstr ""
 
-#: includes/taxonomies.php:37
+#: includes/taxonomies.php:40
 msgid "Tag"
 msgstr ""
 
-#: includes/taxonomies.php:36
+#: includes/taxonomies.php:39
 msgid "Tags"
 msgstr ""
 
-#: includes/options.php:45
+#: includes/options.php:47
 msgid "Taxonomies"
 msgstr ""
 
-#: widgets/taxonomies.php:58 widgets/taxonomy-cloud.php:57
-msgid "Taxonomy:"
-msgstr ""
-
-#: options/features.php:13
+#: options/features.php:9
 msgid "Text Editor"
 msgstr ""
 
@@ -793,12 +608,12 @@ msgstr ""
 msgid "Text Widget"
 msgstr ""
 
-#: options/archive-link.php:18
+#: options/archive-link.php:17
 #, php-format
 msgid "The archive url is: <a href=\"%1$s\" target=\"_blank\">%1$s</a>"
 msgstr ""
 
-#: options/taxonomies.php:31
+#: options/taxonomies.php:40
 msgid ""
 "The choosen taxonomies will show a prefix filter above the term archives and "
 "ordered by post title. The posts per page limit will be applied from the "
@@ -811,7 +626,7 @@ msgid ""
 "will be shown."
 msgstr ""
 
-#: options/single-page.php:26 options/archive-page.php:50
+#: options/single-page.php:26 options/archive-page.php:45
 msgid ""
 "The depth of the prefix filter is usually the number of rows with prefixes "
 "which are shown."
@@ -819,6 +634,12 @@ msgstr ""
 
 #: options/tooltips.php:29
 msgid "The duration for the opening and closing animations, in milliseconds."
+msgstr ""
+
+#: options/custom-post-type.php:14
+msgid ""
+"The internal name used to register this post type. This should be a unique, "
+"lowercase alphanumeric name (hyphens allowed)."
 msgstr ""
 
 #: options/cross-linking.php:55
@@ -833,45 +654,38 @@ msgid ""
 "shown."
 msgstr ""
 
-#: widgets/related-items.php:57
-#, php-format
-msgid "The number of %s the widget should show."
-msgstr ""
-
 #: options/cross-linking.php:121
 msgid ""
 "The number of words of the linked item used as link title. This option does "
 "not affect manually created excerpts."
 msgstr ""
 
-#: options/post-type-labels.php:39
+#: options/post-type-labels.php:29
 msgid ""
-"The plural name for multiple encyclopedia items. For example: Entries, Terms,"
-" Articles, etc."
+"The plural name for multiple items. For example: Entries, Terms, Articles, "
+"etc."
 msgstr ""
 
-#: options/archive-link.php:22
+#: options/archive-link.php:21
 #, php-format
 msgid "The RSS feed url is: <a href=\"%1$s\" target=\"_blank\">%1$s</a>"
 msgstr ""
 
-#: options/post-type-labels.php:31
+#: options/post-type-labels.php:21
+msgid "The singular name for an item. For example: Entry, Term, Article, etc."
+msgstr ""
+
+#: options/post-type-labels.php:43
 msgid ""
-"The singular name for an encyclopedia item. For example: Entry, Term, "
-"Article, etc."
+"The url slug of your items archive. This slug must not used by another post "
+"type or page."
 msgstr ""
 
-#: options/post-type-labels.php:53
-msgid ""
-"The url slug of your encyclopedia archive. This slug must not used by "
-"another post type or page."
+#: options/post-type-labels.php:57
+msgid "The url slug of your items."
 msgstr ""
 
-#: options/post-type-labels.php:71
-msgid "The url slug of your encyclopedia items."
-msgstr ""
-
-#: options/archive-link.php:13
+#: options/archive-link.php:12
 msgid "There is no link to the archive page because the archive is disabled."
 msgstr ""
 
@@ -882,71 +696,41 @@ msgid ""
 "available on your webserver."
 msgstr ""
 
-#: options/post-type-labels.php:20
+#: options/post-type-labels.php:11
 msgid ""
-"This is how your encyclopedia is called in the dashboard. For example: "
-"Encyclopedia, Lexicon, Glossary, Knowledge Base, etc."
+"This is how your post type is called in the dashboard. For example: Lexicon, "
+"Encyclopedia, Glossary, Knowledge Base, etc."
 msgstr ""
 
-#: includes/taxonomies.php:120
+#: includes/taxonomies.php:123
 #, php-format
 msgid "This is the URL to the archive of this %s."
 msgstr ""
 
-#: includes/taxonomies.php:127
+#: includes/taxonomies.php:130
 #, php-format
 msgid "This is the URL to the feed of the archive of this %s."
 msgstr ""
 
-#: options/archive-page.php:29
+#: options/archive-page.php:24
 #, php-format
 msgid "This option affects all %s archive pages."
 msgstr ""
 
-#: includes/mocking-bird.php:27
-#, php-format
-msgid ""
-"This option is changeable in the <a href=\"%s\" target=\"_blank\">Pro "
-"Version</a> only."
-msgstr ""
-
-#: options/post-type-labels.php:68
-msgid ""
-"This option is not available if you translate the post type url slug with "
-"WPML."
-msgstr ""
-
-#: options/taxonomies.php:59
+#: options/taxonomies.php:68
 msgid "This taxonomy is used for %l."
 msgstr ""
 
-#: widgets/items.php:64
-msgid "Title"
-msgstr ""
-
-#: widgets/related-items.php:50 widgets/taxonomies.php:53 widgets/search.php:49
-#: widgets/items.php:51 widgets/taxonomy-cloud.php:52
-msgid "Title:"
-msgstr ""
-
-#: includes/options.php:51 options/tooltips.php:13
+#: includes/options.php:53 options/tooltips.php:13
 msgid "Tooltips"
 msgstr ""
 
-#: includes/taxonomy-fallbacks.php:49 includes/post-type.php:171
+#: includes/taxonomy-fallbacks.php:52 includes/post-type.php:190
 msgid "Uncategorized"
 msgstr ""
 
-#: includes/mocking-bird.php:26
-msgid "Unlock this feature"
-msgstr ""
-
-#: includes/taxonomies.php:41
+#: includes/taxonomies.php:44
 msgid "Update Tag"
-msgstr ""
-
-#: includes/mocking-bird.php:23 includes/mocking-bird.php:26
-msgid "Upgrade to Pro"
 msgstr ""
 
 #: options/tooltips.php:39
@@ -955,55 +739,36 @@ msgid ""
 "opening and closing animations, in milliseconds."
 msgstr ""
 
-#: widgets/taxonomies.php:83 widgets/taxonomy-cloud.php:77
-msgid "URL Slug"
-msgstr ""
-
-#: includes/taxonomies.php:33
+#: includes/taxonomies.php:36
 msgctxt "URL Slug"
-msgid "encyclopedia/tag"
+msgid "/tag"
 msgstr ""
 
-#: options/taxonomies.php:51
+#: options/taxonomies.php:60
 #, php-format
 msgid "Use this taxonomy for %s."
 msgstr ""
 
-#: includes/post-type.php:30
+#: includes/post-type.php:46
 #, php-format
 msgid "View %s"
 msgstr ""
 
-#: widgets/search.php:58
-#, php-format
-msgid ""
-"Will match all %s which contains the search phrase in the title or the "
-"content field."
-msgstr ""
-
-#: widgets/search.php:64
-#, php-format
-msgid "Will match all %s which title field starts with the search phrase."
-msgstr ""
-
-#: widgets/search.php:70
-#, php-format
-msgid ""
-"Will match all %s which title or content field matches exactly the search "
-"phrase."
+#. Author of the plugin
+msgid "Vladan Colovic"
 msgstr ""
 
 #: options/cross-linking.php:119
 msgid "words"
 msgstr ""
 
-#: options/archive-page.php:30
+#: options/archive-page.php:25
 #, php-format
 msgid ""
 "You can use \"-1\" to disable the pagination and show all %s in one page."
 msgstr ""
 
-#: options/post-type-labels.php:75
+#: options/post-type-labels.php:61
 #, php-format
 msgid "You can use these placeholders: %s"
 msgstr ""
