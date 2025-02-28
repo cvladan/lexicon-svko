@@ -10,10 +10,10 @@ abstract class PostRelations
     {
         global $wpdb, $post;
 
-        $arguments = is_Array($arguments) ? $arguments : [];
+        $arguments = is_array($arguments) ? $arguments : [];
 
         # Load default arguments
-        $arguments = (object) Array_Merge([
+        $arguments = (object) array_merge([
             'post_id' => empty($post->ID) ? null : $post->ID,
             'number' => 10,
             'taxonomy' => PostType::getPostTypeName() . '-tag',
@@ -28,16 +28,16 @@ abstract class PostRelations
             return false;
 
         # if the taxonomy does not exists we leave
-        if (!Taxonomy_Exists($arguments->taxonomy))
+        if (!taxonomy_exists($arguments->taxonomy))
             return false;
 
         # Get the Tags
-        $arr_terms = WP_Get_Post_Terms($arguments->post_id, $arguments->taxonomy);
+        $arr_terms = wp_get_post_terms($arguments->post_id, $arguments->taxonomy);
         if (empty($arr_terms))
             return false;
 
         # Get term IDs
-        $arr_term_ids = Array_Map(function ($taxonomy) {
+        $arr_term_ids = array_map(function ($taxonomy) {
             return $taxonomy->term_taxonomy_id;
         }, $arr_terms);
         $str_term_id_list = implode(',', $arr_term_ids);
@@ -70,7 +70,7 @@ abstract class PostRelations
                 post.post_date_gmt DESC";
 
         # Get the related post ids
-        $related_post_ids = $wpdb->get_Col($stmt);
+        $related_post_ids = $wpdb->get_col($stmt);
 
         # If there are no related posts we leave
         if (empty($related_post_ids))
@@ -89,9 +89,9 @@ abstract class PostRelations
         $query = new WP_Query($query_args);
 
         # apply a filter to the query object
-        do_Action('lexicon_term_related_items_query_object', $query, $arguments);
+        do_action('lexicon_term_related_items_query_object', $query, $arguments);
 
         # return
-        return $query->have_Posts() ? $query : false;
+        return $query->have_posts() ? $query : false;
     }
 }

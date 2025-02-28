@@ -28,7 +28,7 @@ abstract class Polylang
 
     public static function filterAvailablePrefixFilters(array $arr_filter): array
     {
-        if (static::isActive() && is_Array($arr_filter)) {
+        if (static::isActive() && is_array($arr_filter)) {
             foreach ($arr_filter as $index => $filter) {
                 # Check if there are posts behind this filter in this language
                 $query = new WP_Query([
@@ -39,11 +39,11 @@ abstract class Polylang
                     'no_count_rows' => true
                 ]);
 
-                if (!$query->have_Posts())
+                if (!$query->have_posts())
                     unset($arr_filter[$index]);
             }
 
-            $arr_filter = Array_Values($arr_filter);
+            $arr_filter = array_values($arr_filter);
         }
 
         return $arr_filter;

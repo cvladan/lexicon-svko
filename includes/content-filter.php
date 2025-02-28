@@ -45,8 +45,8 @@ abstract class ContentFilter
         # If this is outside the loop we leave
         if (empty($post->ID) || empty($post->post_type)) return $content;
         
-        if ($post->post_type == PostType::getPostTypeName() && is_Single($post->ID)) {
-            if (!has_Shortcode($content, PostType::getPostTypeName() . '_related_items') && Options::get('related_items') != 'none' && !post_password_required()) {
+        if ($post->post_type == PostType::getPostTypeName() && is_single($post->ID)) {
+            if (!has_shortcode($content, PostType::getPostTypeName() . '_related_items') && Options::get('related_items') != 'none' && !post_password_required()) {
                 $attributes = ['max_items' => Options::get('number_of_related_items')];
 
                 if (Options::get('related_items') == 'above')
@@ -74,7 +74,7 @@ abstract class ContentFilter
             return $content;
 
         # If this is for the excerpt we leave
-        if (doing_Filter('get_the_excerpt'))
+        if (doing_filter('get_the_excerpt'))
             return $content;
 
         # If we have already processed this post we leave

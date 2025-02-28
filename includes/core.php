@@ -12,7 +12,7 @@ abstract class Core
   public static function init(string $plugin_file): void
   {
     static::$plugin_file = $plugin_file;
-    static::$plugin_folder = DirName(static::$plugin_file);
+    static::$plugin_folder = dirname(static::$plugin_file);
 
     add_action('init', [Options::class, 'init'], 0);
     
@@ -28,27 +28,27 @@ abstract class Core
 
   public static function loadBaseURL(): void
   {
-    $absolute_plugin_folder = RealPath(static::$plugin_folder);
+    $absolute_plugin_folder = realpath(static::$plugin_folder);
 
-    if (StrPos($absolute_plugin_folder, ABSPATH) === 0) {
-      static::$base_url = site_url() . "/" . SubStr($absolute_plugin_folder, Strlen(ABSPATH));
+    if (strpos($absolute_plugin_folder, ABSPATH) === 0) {
+      static::$base_url = site_url() . "/" . substr($absolute_plugin_folder, strlen(ABSPATH));
     } else {
-      static::$base_url = plugins_url(BaseName(static::$plugin_folder));
+      static::$base_url = plugins_url(basename(static::$plugin_folder));
     }
 
-    static::$base_url = Str_Replace("\\", "/", static::$base_url); # Windows Workaround
+    static::$base_url = str_replace("\\", "/", static::$base_url); # Windows Workaround
   }
 
   public static function installPlugin(): void
   {
     Taxonomies::registerTagTaxonomy();
     PostType::registerPostType();
-    flush_Rewrite_Rules();
+    flush_rewrite_rules();
   }
 
   public static function uninstallPlugin(): void
   {
-    flush_Rewrite_Rules();
+    flush_rewrite_rules();
   }
 
   public static function addCrossLinks(string $content, $post = null): string
@@ -116,7 +116,7 @@ abstract class Core
     return (object) [
       "phrase" => $item->post_title,
       "title" => static::getCrossLinkItemTitle($item),
-      "url" => get_Permalink($item),
+      "url" => get_permalink($item),
     ];
   }
 
@@ -128,13 +128,13 @@ abstract class Core
       $more = apply_filters("lexicon_link_title_more", "&hellip;");
       #$more = HTML_Entity_Decode($more, ENT_QUOTES, 'UTF-8');
       $length = apply_filters("lexicon_link_title_length", Options::get("cross_link_title_length"));
-      $title = strip_Shortcodes($post->post_content);
-      $title = WP_Strip_All_Tags($title);
-      #$title = HTML_Entity_Decode($title, ENT_QUOTES, 'UTF-8');
-      $title = WP_Trim_Words($title, $length, $more);
+      $title = strip_shortcodes($post->post_content);
+      $title = wp_strip_all_tags($title);
+      #$title = html_entity_decode($title, ENT_QUOTES, 'UTF-8');
+      $title = wp_trim_words($title, $length, $more);
     } else {
-      $title = WP_Strip_All_Tags($post->post_excerpt, true);
-      #$title = HTML_Entity_Decode($title, ENT_QUOTES, 'UTF-8');
+      $title = wp_strip_all_tags($post->post_excerpt, true);
+      #$title = html_entity_decode($title, ENT_QUOTES, 'UTF-8');
     }
 
     $title = apply_filters("lexicon_item_link_title", $title, $post, $more, $length);
@@ -212,10 +212,8 @@ abstract class Core
 
   public static function filterArchiveTitle(string $title): string
   {
-    if (is_post_type_archive(PostType::getPostTypeName())) {
-      return post_type_archive_title("", false);
-    } else {
-      return $title;
-    }
+    return is_post_type_archive(PostType::getPostTypeName())
+      ? post_type_archive_title("", false)
+      : $title;
   }
 }

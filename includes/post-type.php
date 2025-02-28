@@ -91,7 +91,7 @@ abstract class PostType
 
     public static function addPrefixFilterRewriteRules(array $rules): array
     {
-        $post_type = get_Post_Type_Object(self::$post_type_name);
+        $post_type = get_post_type_object(self::$post_type_name);
         $new_rules = [];
 
         # Add filter permalink structure for post type archive
@@ -101,7 +101,7 @@ abstract class PostType
             $new_rules[ltrim(sprintf('%s/prefix:([^/]+)/page/([0-9]{1,})/?$', $archive_url_path), '/')] = sprintf('index.php?post_type=%s&prefix=$matches[1]&paged=$matches[2]', PostType::getPostTypeName());
         }
 
-        $rules = Array_Merge($new_rules, $rules);
+        $rules = array_merge($new_rules, $rules);
 
         return $rules;
     }
@@ -113,13 +113,13 @@ abstract class PostType
 
     public static function getAssociatedTaxonomies()
     {
-        $arr_all_taxonomies = get_Taxonomies(null, 'objects');
+        $arr_all_taxonomies = get_taxonomies(null, 'objects');
         if (empty($arr_all_taxonomies)) return false;
 
         $arr_associated_taxonomies = [];
 
         foreach ($arr_all_taxonomies as $taxonomy) {
-            if (in_Array(PostType::getPostTypeName(), $taxonomy->object_type)) {
+            if (in_array(PostType::getPostTypeName(), $taxonomy->object_type)) {
                 $arr_associated_taxonomies[] = $taxonomy;
             }
         }
@@ -129,19 +129,19 @@ abstract class PostType
 
     public static function filterUpdatedMessages($arr_messages): array
     {
-        $revision_id = empty($_GET['revision']) ? false : IntVal($_GET['revision']);
+        $revision_id = empty($_GET['revision']) ? false : intval($_GET['revision']);
 
         $arr_messages[self::$post_type_name] = [
-            1 => sprintf(I18n::__('%1$s updated. (<a href="%2$s">View %1$s</a>)'), PostTypeLabels::getItemSingularName(), get_Permalink()),
+            1 => sprintf(I18n::__('%1$s updated. (<a href="%2$s">View %1$s</a>)'), PostTypeLabels::getItemSingularName(), get_permalink()),
             2 => I18n::__('Custom field updated.'),
             3 => I18n::__('Custom field deleted.'),
             4 => sprintf(I18n::__('%s updated.'), PostTypeLabels::getItemSingularName()),
-            5 => sprintf(I18n::__('%1$s restored to revision from %2$s'), PostTypeLabels::getItemSingularName(), WP_Post_Revision_Title($revision_id, false)),
-            6 => sprintf(I18n::__('%1$s published. (<a href="%2$s">View %1$s</a>)'), PostTypeLabels::getItemSingularName(), get_Permalink()),
+            5 => sprintf(I18n::__('%1$s restored to revision from %2$s'), PostTypeLabels::getItemSingularName(), wp_post_revision_title($revision_id, false)),
+            6 => sprintf(I18n::__('%1$s published. (<a href="%2$s">View %1$s</a>)'), PostTypeLabels::getItemSingularName(), get_permalink()),
             7 => sprintf(I18n::__('%s saved.'), PostTypeLabels::getItemSingularName()),
             8 => sprintf(I18n::__('%s submitted.'), PostTypeLabels::getItemSingularName()),
-            9 => sprintf(I18n::__('%1$s scheduled. (<a target="_blank" href="%2$s">View %1$s</a>)'), PostTypeLabels::getItemSingularName(), get_Permalink()),
-            10 => sprintf(I18n::__('Draft updated. (<a target="_blank" href="%1$s">Preview %2$s</a>)'), add_Query_Arg(['preview' => 'true'], get_Permalink()), PostTypeLabels::getItemSingularName())
+            9 => sprintf(I18n::__('%1$s scheduled. (<a target="_blank" href="%2$s">View %1$s</a>)'), PostTypeLabels::getItemSingularName(), get_permalink()),
+            10 => sprintf(I18n::__('Draft updated. (<a target="_blank" href="%1$s">Preview %2$s</a>)'), add_query_arg(['preview' => 'true'], get_permalink()), PostTypeLabels::getItemSingularName())
         ];
 
         return $arr_messages;
@@ -152,21 +152,21 @@ abstract class PostType
         if (apply_filters('lexicon_use_plain_prefix_url_structure', false))
             $permalink_structure = '';
         else
-            $permalink_structure = get_Option('permalink_structure');
+            $permalink_structure = get_option('permalink_structure');
 
         # Get base url
         if ($taxonomy_term)
-            $base_url = get_Term_Link($taxonomy_term);
+            $base_url = get_term_link($taxonomy_term);
         else
-            $base_url = get_Post_Type_Archive_Link(self::$post_type_name);
+            $base_url = get_post_type_archive_link(self::$post_type_name);
 
         if (empty($base_url))
             return false;
 
         if (empty($permalink_structure))
-            return add_Query_Arg(['prefix' => RawURLEncode($filter)], $base_url);
+            return add_query_arg(['prefix' => rawurlencode($filter)], $base_url);
         else
-            return User_TrailingSlashIt(sprintf('%1$s/prefix:%2$s', rtrim($base_url, '/'), RawURLEncode($filter)));
+            return user_trailingslashit(sprintf('%1$s/prefix:%2$s', rtrim($base_url, '/'), rawurlencode($filter)));
     }
 
     public static function filterPostTypeLink(string $link, WP_Post $post): string
@@ -181,13 +181,13 @@ abstract class PostType
             if ($associated_taxonomies) {
                 foreach ($associated_taxonomies as $taxonomy) {
                     $virtual_slug = "%{$taxonomy->name}%";
-                    if (StrPos($link, $virtual_slug)) {
-                        $terms = wp_get_Object_Terms($post->ID, $taxonomy->name);
+                    if (strpos($link, $virtual_slug)) {
+                        $terms = wp_get_object_terms($post->ID, $taxonomy->name);
                         if ($terms) {
                             $first_term = reset($terms);
                             $term_slug = $first_term->slug;
                         } else {
-                            $term_slug = sanitize_Title(I18n::__('Uncategorized'));
+                            $term_slug = sanitize_title(I18n::__('Uncategorized'));
                         }
 
                         $link = str_replace($virtual_slug, $term_slug, $link);

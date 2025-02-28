@@ -23,7 +23,7 @@ abstract class WPQueryExtensions
 
     public static function filterQuery(WP_Query $query): void
     {
-        if (!$query->get('suppress_filters') && !$query->is_Feed()) {
+        if (!$query->get('suppress_filters') && !$query->is_feed()) {
             $order_by_post_title = false;
             $include_entries = false;
             $set_archive_post_count = false;
@@ -33,23 +33,23 @@ abstract class WPQueryExtensions
                 $order_by_post_title = true;
             }
 
-            if (!is_admin() && $query->is_Main_Query()) {
+            if (!is_admin() && $query->is_main_query()) {
                 # Take a look at the prefix filter - this works for all post types
                 if (!$query->get('post_title_like') && $query->get('prefix'))
-                    $query->set('post_title_like', RawUrlDecode($query->get('prefix')) . '%');
+                    $query->set('post_title_like', rawurldecode($query->get('prefix')) . '%');
 
                 # Change the number of terms per page
-                if ($query->is_Post_Type_Archive(PostType::getPostTypeName()))
+                if ($query->is_post_type_archive(PostType::getPostTypeName()))
                     $set_archive_post_count = true;
 
                 if ($query->is_category || $query->is_tag || $query->is_tax) {
-                    $current_term = $query->get_Queried_Object();
+                    $current_term = $query->get_queried_object();
                     $current_taxonomy = $current_term->taxonomy ?? false;
 
                     # get all taxonomies associated with the custom post type
-                    $arr_taxonomies = (array) get_Object_Taxonomies(PostType::getPostTypeName());
+                    $arr_taxonomies = (array) get_object_taxonomies(PostType::getPostTypeName());
 
-                    if ($current_taxonomy && in_Array($current_taxonomy, $arr_taxonomies)) {
+                    if ($current_taxonomy && in_array($current_taxonomy, $arr_taxonomies)) {
                         $set_archive_post_count = true;
                         $order_by_post_title = true;
 
@@ -98,7 +98,7 @@ abstract class WPQueryExtensions
 
         $post_title_like = $query->get('post_title_like');
         if (!empty($post_title_like)) {
-            $post_title_like_esced = esc_SQL($post_title_like);
+            $post_title_like_esced = esc_sql($post_title_like);
             $where .= " AND {$wpdb->posts}.post_title LIKE \"{$post_title_like_esced}\" ";
         }
 

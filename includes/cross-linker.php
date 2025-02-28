@@ -20,7 +20,7 @@ class CrossLinker
 
     public function loadContent(string $content)
     {
-        if (!Class_Exists('DOMDocument') || !Class_Exists('DOMXPath'))
+        if (!class_exists('DOMDocument') || !class_exists('DOMXPath'))
             return false;
 
         #$content = MB_Convert_Encoding($content, 'HTML-ENTITIES', 'UTF-8');
@@ -38,10 +38,10 @@ class CrossLinker
 
     private function escapeTags(array $tags, string $content): string
     {
-        if (!is_Array($tags)) return $content;
+        if (!is_array($tags)) return $content;
         foreach ($tags as $tag) {
             $regex = sprintf('%%(<%1$s\b[^>]*>)(.*)(</%1$s>)%%imsuU', $tag);
-            $content = PReg_Replace_Callback($regex, [$this, 'cacheMatch'], $content);
+            $content = preg_replace_callback($regex, [$this, 'cacheMatch'], $content);
         }
         return $content;
     }
@@ -49,16 +49,16 @@ class CrossLinker
     private function cacheMatch(array $match): string
     {
         $string = $match[2];
-        $key = 'MD5:' . MD5($string);
+        $key = 'MD5:' . md5($string);
         $this->data_cache[$key] = $string;
         return $match[1] . sprintf($this->cache_expression, $key) . $match[3];
     }
 
     private function uncacheStrings(string $content): string
     {
-        $this->data_cache = Array_Reverse($this->data_cache);
+        $this->data_cache = array_reverse($this->data_cache);
         foreach ($this->data_cache as $key => $string) {
-            $content = Str_Replace(sprintf($this->cache_expression, $key), $string, $content);
+            $content = str_replace(sprintf($this->cache_expression, $key), $string, $content);
         }
         $this->data_cache = [];
         return $content;
@@ -66,7 +66,7 @@ class CrossLinker
 
     public function setSkipElements(array $elements): void
     {
-        $elements = is_Array($elements) ? $elements : [];
+        $elements = is_array($elements) ? $elements : [];
         $this->skip_elements = $elements;
     }
 
@@ -92,10 +92,10 @@ class CrossLinker
 
         # Prepare search term
         $phrase = trim($phrase);
-        $phrase = WPTexturize($phrase); # This is necessary because the content runs through this filter, too
-        $phrase = HTML_Entity_Decode($phrase, ENT_QUOTES, 'UTF-8');
-        $phrase = HTMLSpecialChars($phrase);
-        $phrase = PReg_Quote($phrase, '/');
+        $phrase = wptexturize($phrase); # This is necessary because the content runs through this filter, too
+        $phrase = html_entity_decode($phrase, ENT_QUOTES, 'UTF-8');
+        $phrase = htmlspecialchars($phrase);
+        $phrase = preg_quote($phrase, '/');
 
         # Prepare search
         $word_boundary = ($this->link_complete_words_only) ? '\b' : '';
@@ -116,19 +116,19 @@ class CrossLinker
         # Go through nodes and replace
         foreach ($document_nodes as $original_node) {
             $original_text = $original_node->wholeText;
-            #$original_text = HTML_Entity_Decode($original_text, ENT_QUOTES, 'UTF-8');
-            $original_text = HTMLSpecialChars($original_text);
+            #$original_text = html_entity_decode($original_text, ENT_QUOTES, 'UTF-8');
+            $original_text = htmlspecialchars($original_text);
 
-            if (PReg_Match($search, $original_text)) {
-                if (empty($item) && is_Callable($callback)) {
+            if (preg_match($search, $original_text)) {
+                if (empty($item) && is_callable($callback)) {
                     $item = call_user_func_array($callback , $callback_args);
-                    $xml_title = HTML_Entity_Decode($item->title, ENT_QUOTES, 'UTF-8');
-                    $link = sprintf($link_regex, $item->url, $this->link_target, esc_Attr($xml_title));
+                    $xml_title = html_entity_decode($item->title, ENT_QUOTES, 'UTF-8');
+                    $link = sprintf($link_regex, $item->url, $this->link_target, esc_attr($xml_title));
                     $link = apply_filters('lexicon_cross_link_element', $link, $item->url, $this->link_target, $item->title, $this);
                 }
 
                 # This could break if your terms contains very special characters which break the search regex
-                $new_text = @PReg_Replace($search, $link, $original_text, ($this->replace_phrases_once ? 1 : -1));
+                $new_text = @preg_replace($search, $link, $original_text, ($this->replace_phrases_once ? 1 : -1));
 
                 # Replace the original node with a new node which contains the new cross link
                 $this->setNodeContent($original_node, $new_text);
@@ -155,16 +155,16 @@ class CrossLinker
         $resultHTML = $this->DOM->saveHTML();
 
         $head_start = '<head>';
-        $head_start_pos = MB_StrPos($resultHTML, $head_start, 0, 'UTF-8');
+        $head_start_pos = mb_strpos($resultHTML, $head_start, 0, 'UTF-8');
         $head_end = '</head>';
-        $head_end_pos = MB_StrPos($resultHTML, $head_end, $head_start_pos + StrLen($head_start), 'UTF-8');
-        $head = ($head_start_pos && $head_end_pos) ? MB_SubStr($resultHTML, $head_start_pos + StrLen($head_start), $head_end_pos - $head_start_pos - StrLen($head_start)) : '';
+        $head_end_pos = mb_strpos($resultHTML, $head_end, $head_start_pos + strlen($head_start), 'UTF-8');
+        $head = ($head_start_pos && $head_end_pos) ? mb_substr($resultHTML, $head_start_pos + strlen($head_start), $head_end_pos - $head_start_pos - strlen($head_start)) : '';
 
         $body_start = "<body><{$this->content_wrapper}>";
-        $body_start_pos = MB_StrPos($resultHTML, $body_start, 0, 'UTF-8');
+        $body_start_pos = mb_strpos($resultHTML, $body_start, 0, 'UTF-8');
         $body_end = "</{$this->content_wrapper}></body>";
-        $body_end_pos = MB_StrPos($resultHTML, $body_end, $body_start_pos + StrLen($body_start), 'UTF-8');
-        $body = ($body_start_pos && $body_end_pos) ? MB_SubStr($resultHTML, $body_start_pos + StrLen($body_start), $body_end_pos - $body_start_pos - StrLen($body_start)) : '';
+        $body_end_pos = mb_strpos($resultHTML, $body_end, $body_start_pos + strlen($body_start), 'UTF-8');
+        $body = ($body_start_pos && $body_end_pos) ? mb_substr($resultHTML, $body_start_pos + strlen($body_start), $body_end_pos - $body_start_pos - strlen($body_start)) : '';
 
         $html = $this->uncacheStrings($head . $body);
         return $html;

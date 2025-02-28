@@ -13,9 +13,9 @@ abstract class Shortcodes
 
     public static function Related_Items($attributes = [])
     {
-        $attributes = is_Array($attributes) ? $attributes : [];
+        $attributes = is_array($attributes) ? $attributes : [];
 
-        $attributes = Array_Merge([
+        $attributes = array_merge([
             'number' => 5
         ], $attributes);
 

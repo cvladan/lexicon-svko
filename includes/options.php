@@ -56,7 +56,7 @@ abstract class Options
 
     public static function getOptionsPageUrl(array $args = []): string
     {
-        $url = add_query_arg(['page' => static::$page_slug], Admin_Url('options-general.php'));
+        $url = add_query_arg(['page' => static::$page_slug], admin_url('options-general.php'));
 
         if (!empty($args))
             $url = add_query_arg($args, $url);
@@ -73,11 +73,11 @@ abstract class Options
         if ($column != 'main') $column = 'side';
 
         # Add a new box
-        if (is_File($include_file)) {
+        if (is_file($include_file)) {
             static::$arr_option_box[$column][] = (object) [
                 'title' => $title,
                 'file' => $include_file,
-                'slug' => PathInfo($include_file, PATHINFO_FILENAME)
+                'slug' => pathinfo($include_file, PATHINFO_FILENAME)
             ];
         }
     }
@@ -113,9 +113,9 @@ abstract class Options
         check_admin_referer('save_' . PostType::getPostTypeName() . '_options');
 
         # Clean the Post array
-        $options = stripSlashes_Deep($_POST);
+        $options = stripslashes_deep($_POST);
         unset($options['_wpnonce'], $options['_wp_http_referer']);
-        $options = Array_Filter($options, function ($value) {
+        $options = array_filter($options, function ($value) {
             return $value == '0' || !empty($value);
         });
 

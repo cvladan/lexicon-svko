@@ -33,7 +33,7 @@ abstract class PrefixFilter
             $active_prefix = '';
 
             foreach ($arr_available_filters as $available_filter) {
-                if (StriPos($current_prefix, $available_filter->prefix) === 0)
+                if (stripos($current_prefix, $available_filter->prefix) === 0)
                     $active_prefix = $available_filter->prefix;
 
                 $filter = (object) [
@@ -65,7 +65,7 @@ abstract class PrefixFilter
     {
         global $wpdb;
 
-        $prefix_length = MB_StrLen($prefix) + 1;
+        $prefix_length = mb_strlen($prefix) + 1;
 
         $tables = ["{$wpdb->posts} as posts"];
 
@@ -92,7 +92,7 @@ abstract class PrefixFilter
             GROUP BY prefix
             ORDER BY prefix ASC';
 
-        $arr_filter = $wpdb->get_Results($stmt);
+        $arr_filter = $wpdb->get_results($stmt);
 
         foreach ($arr_filter as &$filter) {
             $filter->prefix = trim($filter->prefix);
@@ -112,9 +112,9 @@ abstract class PrefixFilter
     {
         global $post;
 
-        $is_archive_filter = $query->is_Post_Type_Archive(PostType::getPostTypeName()) && Options::get('prefix_filter_for_archives');
+        $is_archive_filter = $query->is_post_type_archive(PostType::getPostTypeName()) && Options::get('prefix_filter_for_archives');
         $is_taxonomy_filter = ($query->is_tax || $query->is_category || $query->is_tag) && Options::get('prefix_filter_for_archives');
-        $is_singular_filter = $query->is_Singular(PostType::getPostTypeName()) && Options::get('prefix_filter_for_singulars');
+        $is_singular_filter = $query->is_singular(PostType::getPostTypeName()) && Options::get('prefix_filter_for_singulars');
 
         # Check if we are inside a taxonomy archive
         $taxonomy_term = null;
@@ -133,7 +133,7 @@ abstract class PrefixFilter
         # Get current Filter string
         $current_filter = '';
         if ($query->get('prefix') !== '')
-            $current_filter = RawUrlDecode($query->get('prefix'));
+            $current_filter = rawurldecode($query->get('prefix'));
         elseif (is_singular())
             $current_filter = mb_strtolower(isset($post->post_title) ? $post->post_title : '');
 

@@ -12,17 +12,17 @@ abstract class I18n
 
     public static function loadTextDomain()
     {
-        $locale = apply_filters('plugin_locale', get_Locale(), static::textdomain);
+        $locale = apply_filters('plugin_locale', get_locale(), static::textdomain);
         $language_folder = Core::$plugin_folder . '/languages';
 
-        load_Plugin_TextDomain(static::textdomain);
-        load_TextDomain(static::textdomain, "{$language_folder}/{$locale}.mo");
+        load_plugin_textdomain(static::textdomain);
+        load_textdomain(static::textdomain, "{$language_folder}/{$locale}.mo");
 
         # Fallback for german
-        if (in_Array($locale, ['de_AT_formal', 'de_CH']))
-            load_TextDomain(static::textdomain, "{$language_folder}/de_DE_formal.mo");
-        elseif (in_Array($locale, ['de_AT', 'de_CH_informal']))
-            load_TextDomain(static::textdomain, "{$language_folder}/de_DE.mo");
+        if (in_array($locale, ['de_AT_formal', 'de_CH']))
+            load_textdomain(static::textdomain, "{$language_folder}/de_DE_formal.mo");
+        elseif (in_array($locale, ['de_AT', 'de_CH_informal']))
+            load_textdomain(static::textdomain, "{$language_folder}/de_DE.mo");
 
         static::$loaded = true;
     }

@@ -23,7 +23,7 @@ abstract class Taxonomies
         $tax_options = (array) Options::get('taxonomies');
 
         foreach ($arr_taxonomies as $taxonomy) {
-            if (in_Array($taxonomy->name, $tax_options)) {
+            if (in_array($taxonomy->name, $tax_options)) {
                 register_taxonomy_for_object_type($taxonomy->name, PostType::getPostTypeName());
                 add_filter("{$taxonomy->name}_rewrite_rules", [static::class, 'addPrefixFilterRewriteRules']);
             }
@@ -72,11 +72,11 @@ abstract class Taxonomies
     {
         global $wp_rewrite;
 
-        $current_filter = current_Filter();
-        $filter_suffix_pos = StrPos($current_filter, '_rewrite_rules');
+        $current_filter = current_filter();
+        $filter_suffix_pos = strpos($current_filter, '_rewrite_rules');
         if (!$filter_suffix_pos) return $rules;
-        $taxonomy_name = SubStr($current_filter, 0, $filter_suffix_pos);
-        $taxonomy = get_Taxonomy($taxonomy_name);
+        $taxonomy_name = substr($current_filter, 0, $filter_suffix_pos);
+        $taxonomy = get_taxonomy($taxonomy_name);
         if (!$taxonomy) return $rules;
 
         $new_rules = [];
@@ -88,14 +88,14 @@ abstract class Taxonomies
         $new_rules[ltrim(sprintf('%s/([^/]+)/prefix:([^/]+)/?$', $taxonomy_slug), '/')] = sprintf('index.php?%s=$matches[1]&prefix=$matches[2]', $taxonomy->query_var);
         $new_rules[ltrim(sprintf('%s/([^/]+)/prefix:([^/]+)/page/([0-9]{1,})/?$', $taxonomy_slug), '/')] = sprintf('index.php?%s=$matches[1]&prefix=$matches[2]&paged=$matches[3]', $taxonomy->query_var);
 
-        $rules = Array_Merge($new_rules, $rules);
+        $rules = array_merge($new_rules, $rules);
 
         return $rules;
     }
 
     public static function changeTaxonomyMenuLabel($tax)
     {
-        if (isset($tax->object_type) && in_Array(PostType::getPostTypeName(), $tax->object_type)) {
+        if (isset($tax->object_type) && in_array(PostType::getPostTypeName(), $tax->object_type)) {
             $tax->labels->name = sprintf('%1$s (%2$s)', $tax->labels->name, PostTypeLabels::getItemDashboardName());
         }
 
@@ -104,16 +104,16 @@ abstract class Taxonomies
 
     public static function addTaxonomyArchiveUrls(): void
     {
-        foreach (get_Object_Taxonomies(PostType::getPostTypeName()) as $taxonomy) {
+        foreach (get_object_taxonomies(PostType::getPostTypeName()) as $taxonomy) {
             add_action("{$taxonomy}_edit_form_fields", [static::class, 'printTaxonomyArchiveUrls'], 10, 3);
         }
     }
 
     public static function printTaxonomyArchiveUrls(WP_Term $tag, string $taxonomy): void
     {
-        $taxonomy = get_Taxonomy($taxonomy);
-        $archive_url = get_Term_Link(get_Term($tag->term_id, $taxonomy->name));
-        $archive_feed = get_Term_Feed_Link($tag->term_id, $taxonomy->name);
+        $taxonomy = get_taxonomy($taxonomy);
+        $archive_url = get_term_link(get_term($tag->term_id, $taxonomy->name));
+        $archive_feed = get_term_feed_link($tag->term_id, $taxonomy->name);
 
         ?>
         <tr class="form-field">
@@ -136,14 +136,14 @@ abstract class Taxonomies
     public static function getTaxonomies(array $args = []): array
     {
         $default_args = ['show_ui' => true];
-        $arr_taxonomies = get_Taxonomies($args + $default_args, 'objects');
+        $arr_taxonomies = get_taxonomies($args + $default_args, 'objects');
 
         # Add taxonomy details
         foreach ($arr_taxonomies as &$taxonomy) {
             # Add post types for each taxonomy
             $taxonomy->post_types = [];
             foreach ($taxonomy->object_type as $post_type_name) {
-                if ($post_type = get_Post_Type_Object($post_type_name))
+                if ($post_type = get_post_type_object($post_type_name))
                     $taxonomy->post_types[$post_type_name] = $post_type;
             }
 
