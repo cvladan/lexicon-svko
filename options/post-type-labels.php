@@ -1,5 +1,5 @@
 <?php
-use SVKO\Lexicon\{ I18n, Options, PostType, PostTypeLabels };
+use SVKO\Lexicon\{ Options, PostType, PostTypeLabels };
 ?>
 <table class="form-table">
 

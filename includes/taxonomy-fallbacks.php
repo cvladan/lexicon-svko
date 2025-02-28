@@ -49,7 +49,7 @@ abstract class TaxonomyFallbacks
             taxonomy_exists($taxonomy) && is_object_in_taxonomy($post->post_type, $taxonomy)
         ) {
             $category_list = get_the_term_list($post->ID, $taxonomy, null, $separator, null);
-            if (empty($category_list)) $category_list = I18n::__('Uncategorized');
+            if (empty($category_list)) $category_list = __('Uncategorized', 'lexicon-svko');
         }
 
         return $category_list;

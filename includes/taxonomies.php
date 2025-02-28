@@ -33,21 +33,21 @@ abstract class Taxonomies
     public static function registerTagTaxonomy(): void
     {
         $taxonomy_name = PostType::getPostTypeName() . '-tag';
-        $slug = trim(I18n::_x(PostType::getPostTypeName() . '/tag', 'URL Slug'), '/');
+        $slug = trim(_x(PostType::getPostTypeName() . '/tag', 'URL Slug', 'lexicon-svko'), '/');
 
         $labels = [
-            'name' => I18n::__('Tags'),
-            'singular_name' => I18n::__('Tag'),
-            'search_items' => I18n::__('Search Tags'),
-            'all_items' => I18n::__('All Tags'),
-            'edit_item' => I18n::__('Edit Tag'),
-            'update_item' => I18n::__('Update Tag'),
-            'add_new_item' => I18n::__('Add New Tag'),
-            'new_item_name' => I18n::__('New Tag')
+            'name' => __('Tags', 'lexicon-svko'),
+            'singular_name' => __('Tag', 'lexicon-svko'),
+            'search_items' => __('Search Tags', 'lexicon-svko'),
+            'all_items' => __('All Tags', 'lexicon-svko'),
+            'edit_item' => __('Edit Tag', 'lexicon-svko'),
+            'update_item' => __('Update Tag', 'lexicon-svko'),
+            'add_new_item' => __('Add New Tag', 'lexicon-svko'),
+            'new_item_name' => __('New Tag', 'lexicon-svko')
         ];
 
         $args = [
-            'label' => sprintf(I18n::__('%s: Tags'), PostTypeLabels::getItemDashboardName()),
+            'label' => sprintf(__('%s: Tags', 'lexicon-svko'), PostTypeLabels::getItemDashboardName()),
             'labels' => $labels,
             'show_admin_column' => true,
             'hierarchical' => false,
@@ -117,17 +117,17 @@ abstract class Taxonomies
 
         ?>
         <tr class="form-field">
-            <th scope="row" valign="top"><?php echo I18n::__('Archive URL') ?></th>
+            <th scope="row" valign="top"><?php echo __('Archive URL', 'lexicon-svko') ?></th>
             <td>
                 <code><a href="<?php echo $archive_url ?>" target="_blank"><?php echo $archive_url ?></a></code><br>
-                <span class="description"><?php printf(I18n::__('This is the URL to the archive of this %s.'), $taxonomy->labels->singular_name) ?></span>
+                <span class="description"><?php printf(__('This is the URL to the archive of this %s.', 'lexicon-svko'), $taxonomy->labels->singular_name) ?></span>
             </td>
         </tr>
         <tr class="form-field">
-            <th scope="row" valign="top"><?php I18n::_e('Feed URL') ?></th>
+            <th scope="row" valign="top"><?php _e('Feed URL', 'lexicon-svko') ?></th>
             <td>
                 <code><a href="<?php echo $archive_feed ?>" target="_blank"><?php echo $archive_feed ?></a></code><br>
-                <span class="description"><?php printf(I18n::__('This is the URL to the feed of the archive of this %s.'), $taxonomy->labels->singular_name) ?></span>
+                <span class="description"><?php printf(__('This is the URL to the feed of the archive of this %s.', 'lexicon-svko'), $taxonomy->labels->singular_name) ?></span>
             </td>
         </tr>
         <?php

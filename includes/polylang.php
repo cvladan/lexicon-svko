@@ -8,22 +8,12 @@ abstract class Polylang
 {
     public static function init(): void
     {
-        add_filter('lexicon_translate', [static::class, 'filterTranslation'], 10, 3);
         add_filter('lexicon_available_prefix_filters', [static::class, 'filterAvailablePrefixFilters']);
     }
 
     public static function isActive(): bool
     {
         return defined('POLYLANG_VERSION');
-    }
-
-    public static function filterTranslation(bool $state, string $text, string $context = ''): bool
-    {
-        // if (static::isActive() && $context == 'URL Slug') {
-        //     $state = false;
-        // }
-
-        return $state;
     }
 
     public static function filterAvailablePrefixFilters(array $arr_filter): array

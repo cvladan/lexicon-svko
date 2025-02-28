@@ -1,21 +1,18 @@
 <?php
 
-use SVKO\Lexicon\{
-    I18n,
-    Options
-};
+use SVKO\Lexicon\Options;
 
 ?>
 <table class="form-table">
 
     <tr>
-        <th><label for="embed_default_style"><?php I18n::_e('Default style') ?></label></th>
+        <th><label for="embed_default_style"><?php _e('Default style', 'lexicon-svko') ?></label></th>
         <td>
             <select name="embed_default_style" id="embed_default_style">
-                <option value="1" <?php selected(Options::get('embed_default_style')) ?>><?php I18n::_e('On') ?></option>
-                <option value="0" <?php selected(!Options::get('embed_default_style')) ?>><?php I18n::_e('Off') ?></option>
+                <option value="1" <?php selected(Options::get('embed_default_style')) ?>><?php _e('On', 'lexicon-svko') ?></option>
+                <option value="0" <?php selected(!Options::get('embed_default_style')) ?>><?php _e('Off', 'lexicon-svko') ?></option>
             </select>
-            <p class="help"><?php I18n::_e('Enables or disables the default CSS on the frontend.') ?></p>
+            <p class="help"><?php _e('Enables or disables the default CSS on the frontend.', 'lexicon-svko') ?></p>
         </td>
     </tr>
 

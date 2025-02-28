@@ -1,6 +1,6 @@
 <?php
 
-use SVKO\Lexicon\{ I18n, Options, PostType, PostTypeLabels };
+use SVKO\Lexicon\{ Options, PostType, PostTypeLabels };
 
 $option_boxes = Options::getOptionBoxes();
 $arr_columns = [
@@ -52,7 +52,6 @@ $options_saved = isset($_GET['options_saved']);
 
 <p class="submit">
     <input type="submit" class="button-secondary" value="<?php _e('Reset all options', 'lexicon-svko') ?>">
-            <input type="submit" class="button-secondary" value="<?php I18n::_e('Reset all options') ?>">
         </p>
 
         <?php wp_nonce_field('save_' . PostType::getPostTypeName() . '_options') ?>
