@@ -53,7 +53,6 @@ use SVKO\Lexicon\{ I18n, Options, PostType, PostTypeLabels };
                     <div><?php echo User_TrailingSlashIt(sprintf(I18n::__('/%%%s-name%%'), sanitize_Title(PostTypeLabels::getItemSingularName())), 'single') ?></div>
                 </div>
 
-                <p class="help warning"><?php I18n::_e('This option is not available if you translate the post type url slug with WPML.') ?></p>
                 <p class="help">
                     <?php I18n::_e('The url slug of your items.') ?>
                     <?php if ($taxonomies = PostType::getAssociatedTaxonomies()) : $taxonomies = Array_Map(function ($taxonomy) {
