@@ -7,7 +7,7 @@ abstract class PostTypeLabels
     public static function getPostTypeSlug(): string
     {
         $slug = Options::get('post_type_slug');
-        $slug = WPML::t($slug, 'Post type slug');
+        // $slug = WPML::t($slug, 'Post type slug');
         return $slug;
     }
 
