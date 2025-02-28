@@ -131,7 +131,7 @@ abstract class Options
     public static function getDefaultOptions(): array
     {
         return [
-            'post_type_slug' => __('lexicon', 'lexicon-svko'),
+            'post_type_slug' => 'lexicon',
             'item_dashboard_name' => __('Lexicon', 'lexicon-svko'),
             'item_singular_name' => __('Entry', 'lexicon-svko'),
             'item_plural_name' => __('Entries', 'lexicon-svko'),
