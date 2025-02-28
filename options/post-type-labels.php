@@ -1,8 +1,46 @@
 <?php
-use SVKO\Lexicon\{ Options, PostType, PostTypeLabels };
-?>
-<table class="form-table">
+use SVKO\Lexicon\{ Options, PostType, PostTypeLabels, Polylang };
 
+// Determine if Polylang is active
+$is_multilingual = Polylang::isActive() && function_exists('pll_languages_list');
+
+// Get current language
+$current_language = '';
+$language_name = '';
+$language_flag = '';
+$available_languages = [];
+
+if ($is_multilingual) {
+    $current_language = pll_current_language();
+    $languages = pll_languages_list(['fields' => 'name']);
+    $language_name = $languages[$current_language] ?? $current_language;
+    $language_flag = PLL()->model->get_language($current_language)->flag_url ?? '';
+    $all_languages = pll_languages_list(['fields' => 'slug']);
+    $all_names = pll_languages_list(['fields' => 'name']);
+    if ($all_languages && $all_names) {
+        foreach ($all_languages as $i => $code) {
+            $available_languages[$code] = $all_names[$i];
+        }
+    }
+}
+?>
+
+<?php if ($is_multilingual): ?>
+<div class="notice notice-info">
+    <p>
+        <?php if ($language_flag): ?>
+            <img src="<?php echo esc_url($language_flag); ?>" alt="<?php echo esc_attr($language_name); ?>" style="vertical-align: middle; margin-right: 5px; width: 16px; height: 11px;">
+        <?php endif; ?>
+        <?php printf(__('You are currently editing translations for: %s', 'lexicon-svko'), '<strong>' . esc_html($language_name) . '</strong>'); ?>
+        <?php if (count($available_languages) > 1): ?>
+            <br>
+            <?php _e('To edit translations for other languages, please use the language switcher in the admin bar.', 'lexicon-svko'); ?>
+        <?php endif; ?>
+    </p>
+</div>
+<?php endif; ?>
+
+<table class="form-table">
     <tr>
         <th><label for="item_dashboard_name"><?php _e('Dashboard Menu Name', 'lexicon-svko') ?></label></th>
         <td>
@@ -10,6 +48,11 @@ use SVKO\Lexicon\{ Options, PostType, PostTypeLabels };
             <p class="help">
                 <?php _e('This is how your post type is called in the dashboard. For example: Lexicon, Encyclopedia, Glossary, Knowledge Base, etc.', 'lexicon-svko') ?>
             </p>
+            <?php if ($is_multilingual): ?>
+                <p class="description">
+                    <?php printf(__('Currently editing translation for: %s', 'lexicon-svko'), '<strong>' . esc_html($language_name) . '</strong>'); ?>
+                </p>
+            <?php endif; ?>
         </td>
     </tr>
     
@@ -18,6 +61,11 @@ use SVKO\Lexicon\{ Options, PostType, PostTypeLabels };
         <td>
             <input type="text" name="item_singular_name" id="item_singular_name" value="<?php echo esc_attr(PostTypeLabels::getItemSingularName()) ?>">
             <p class="help"><?php _e('The singular name for an item. For example: Entry, Term, Article, etc.', 'lexicon-svko') ?></p>
+            <?php if ($is_multilingual): ?>
+                <p class="description">
+                    <?php printf(__('Currently editing translation for: %s', 'lexicon-svko'), '<strong>' . esc_html($language_name) . '</strong>'); ?>
+                </p>
+            <?php endif; ?>
         </td>
     </tr>
 
@@ -26,10 +74,13 @@ use SVKO\Lexicon\{ Options, PostType, PostTypeLabels };
         <td>
             <input type="text" name="item_plural_name" id="item_plural_name" value="<?php echo esc_attr(PostTypeLabels::getItemPluralName()) ?>">
             <p class="help"><?php _e('The plural name for multiple items. For example: Entries, Terms, Articles, etc.', 'lexicon-svko') ?></p>
+            <?php if ($is_multilingual): ?>
+                <p class="description">
+                    <?php printf(__('Currently editing translation for: %s', 'lexicon-svko'), '<strong>' . esc_html($language_name) . '</strong>'); ?>
+                </p>
+            <?php endif; ?>
         </td>
     </tr>
-
-    
 
     <?php if (get_option('permalink_structure')) : ?>
         <tr>
@@ -40,6 +91,11 @@ use SVKO\Lexicon\{ Options, PostType, PostTypeLabels };
                     <div class="input-element"><input type="text" name="archive_slug" id="archive_slug" value="<?php echo esc_attr(PostTypeLabels::getArchiveSlug()) ?>"></div>
                 </div>
                 <p class="help"><?php _e('The url slug of your items archive. This slug must not used by another post type or page.', 'lexicon-svko') ?></p>
+                <?php if ($is_multilingual): ?>
+                    <p class="description">
+                        <?php printf(__('Currently editing translation for: %s', 'lexicon-svko'), '<strong>' . esc_html($language_name) . '</strong>'); ?>
+                    </p>
+                <?php endif; ?>
             </td>
         </tr>
 
@@ -60,7 +116,12 @@ use SVKO\Lexicon\{ Options, PostType, PostTypeLabels };
                         <?php printf(__('You can use these placeholders: %s', 'lexicon-svko'), join(', ', $taxonomies)) ?>
                     <?php endif ?>
                 </p>
-
+                
+                <?php if ($is_multilingual): ?>
+                    <p class="description">
+                        <?php printf(__('Currently editing translation for: %s', 'lexicon-svko'), '<strong>' . esc_html($language_name) . '</strong>'); ?>
+                    </p>
+                <?php endif; ?>
             </td>
         </tr>
     <?php endif ?>

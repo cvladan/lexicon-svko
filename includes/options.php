@@ -124,8 +124,28 @@ abstract class Options
             return $value == '0' || !empty($value);
         });
 
-        # Save Options
-        return (bool) update_option(static::$options_key, $options);
+        # Get current options
+        $current_options = (array) get_option(static::$options_key, []);
+        
+        # Get translatable keys from Polylang class
+        $translatable_keys = Polylang::getTranslatableKeys();
+        
+        # Process each option
+        $success = true;
+        foreach ($options as $key => $value) {
+            // For translatable keys, use saveOption to handle translations
+            if (in_array($key, $translatable_keys)) {
+                $success = $success && static::saveOption($key, $value);
+            } else {
+                // For non-translatable keys, just update the option array
+                $current_options[$key] = $value;
+            }
+        }
+        
+        # Save non-translatable options
+        $success = $success && update_option(static::$options_key, $current_options);
+        
+        return $success;
     }
 
     public static function getDefaultOptions(): array
@@ -157,6 +177,13 @@ abstract class Options
         ];
     }
 
+    /**
+     * Get an option value, with support for translations
+     *
+     * @param string $key Option key
+     * @param mixed $default Default value if option doesn't exist
+     * @return mixed Option value
+     */
     public static function get(string $key = '', $default = false)
     {
         // Get options from WordPress (WordPress handles caching internally)
@@ -172,11 +199,14 @@ abstract class Options
         if (isset($arr_options[$key])) {
             $value = $arr_options[$key];
             
-            // Only translate string values if Polylang is active
-            if (Polylang::isActive() && is_string($value)) {
-                // The wpml-config.xml file already registers these options for translation
-                // Polylang will handle the translation through the pll_translate_string filter
-                return apply_filters('pll_translate_string', $value);
+            // Get translatable keys from Polylang class
+            $translatable_keys = Polylang::getTranslatableKeys();
+            
+            if (is_string($value) && in_array($key, $translatable_keys)) {
+                // If Polylang is active
+                if (Polylang::isActive() && function_exists('pll_current_language')) {
+                    return apply_filters('pll_translate_string', $value, \pll_current_language());
+                }
             }
             
             return $value;
@@ -184,5 +214,30 @@ abstract class Options
             
         # Return default value
         return $default;
+    }
+    
+    /**
+     * Save an option value with translation support
+     *
+     * @param string $key Option key
+     * @param mixed $value Option value
+     * @return bool Whether the option was updated
+     */
+    public static function saveOption(string $key, $value): bool
+    {
+        $options = (array) get_option(static::$options_key, []);
+        
+        // Get translatable keys from Polylang class
+        $translatable_keys = Polylang::getTranslatableKeys();
+        
+        if (is_string($value) && in_array($key, $translatable_keys)) {
+            // If Polylang is active, preserve translations and register the string
+            if (Polylang::isActive()) {
+                Polylang::preserveTranslations($key, $value);
+            }
+        }
+        
+        $options[$key] = $value;
+        return update_option(static::$options_key, $options);
     }
 }
