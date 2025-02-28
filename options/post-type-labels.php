@@ -4,8 +4,7 @@ use SVKO\Lexicon\{
     I18n,
     Options,
     PostType,
-    PostTypeLabels,
-    WPML
+    PostTypeLabels
 };
 
 ?>
