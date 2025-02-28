@@ -1,0 +1,2 @@
+# Ignore translation backup files
+languages/*.pot~

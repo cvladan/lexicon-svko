@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Lexicon | SVKO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-28 05:39+0000\n"
+"POT-Creation-Date: 2025-02-28 07:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dennis Hoppe <Mail@DennisHoppe.de>\n"
 "Language-Team: \n"
@@ -17,7 +17,7 @@ msgstr ""
 "Language: \n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;"
 
-#: options/taxonomies.php:34
+#: options/taxonomies.php:33
 msgid " Tags"
 msgstr ""
 
@@ -56,7 +56,7 @@ msgstr ""
 msgid "%s saved."
 msgstr ""
 
-#: includes/options.php:29 options/options.php:15
+#: includes/options.php:34 options/options.php:16
 #, php-format
 msgid "%s Settings"
 msgstr ""
@@ -76,12 +76,12 @@ msgstr ""
 msgid "%s: Tags"
 msgstr ""
 
-#: options/post-type-labels.php:53
+#: options/post-type-labels.php:52
 #, php-format
 msgid "/%%%s-name%%"
 msgstr ""
 
-#: options/related-items.php:21
+#: options/related-items.php:14
 msgid "above the content"
 msgstr ""
 
@@ -90,12 +90,12 @@ msgstr ""
 msgid "Add %s"
 msgstr ""
 
-#: options/cross-linking.php:25
+#: options/cross-linking.php:21
 #, php-format
 msgid "Add links in %s"
 msgstr ""
 
-#: options/cross-linking.php:43
+#: options/cross-linking.php:39
 msgid "Add links in the default text widget"
 msgstr ""
 
@@ -103,7 +103,7 @@ msgstr ""
 msgid "Add New Tag"
 msgstr ""
 
-#: options/cross-linking.php:65
+#: options/cross-linking.php:61
 msgid "After shortcodes"
 msgstr ""
 
@@ -122,11 +122,11 @@ msgid ""
 "or knowledge base."
 msgstr ""
 
-#: options/tooltips.php:24
+#: options/tooltips.php:23
 msgid "Animation duration"
 msgstr ""
 
-#: includes/options.php:45
+#: includes/options.php:50
 msgid "Appearance"
 msgstr ""
 
@@ -134,31 +134,31 @@ msgstr ""
 msgid "Archive URL"
 msgstr ""
 
-#: options/post-type-labels.php:37
+#: options/post-type-labels.php:36
 msgid "Archive URL slug"
 msgstr ""
 
-#: includes/options.php:54
+#: includes/options.php:59
 msgid "Archive URLs"
 msgstr ""
 
-#: includes/options.php:48
+#: includes/options.php:53
 msgid "Archives"
 msgstr ""
 
-#: options/search.php:32
+#: options/search.php:29
 msgid "Autocomplete delay"
 msgstr ""
 
-#: options/search.php:23
+#: options/search.php:20
 msgid "Autocomplete min length"
 msgstr ""
 
-#: options/cross-linking.php:64
+#: options/cross-linking.php:60
 msgid "Before shortcodes"
 msgstr ""
 
-#: options/related-items.php:20
+#: options/related-items.php:13
 msgid "below the content"
 msgstr ""
 
@@ -166,7 +166,7 @@ msgstr ""
 msgid "Block Editor"
 msgstr ""
 
-#: options/cross-linking.php:68
+#: options/cross-linking.php:64
 msgid ""
 "By default the cross links should be added to the content after rendering "
 "all shortcodes. This works not for shortcodes which are calling the "
@@ -174,15 +174,15 @@ msgid ""
 "setting to \"Before shortcodes\"."
 msgstr ""
 
-#: options/cross-linking.php:84
+#: options/cross-linking.php:80
 msgid "Case sensitivity"
 msgstr ""
 
-#: options/search.php:26
+#: options/search.php:23
 msgid "characters"
 msgstr ""
 
-#: options/tooltips.php:44
+#: options/tooltips.php:43
 msgid "Click-Event"
 msgstr ""
 
@@ -190,11 +190,11 @@ msgstr ""
 msgid "Comments &amp; Trackbacks"
 msgstr ""
 
-#: options/cross-linking.php:73
+#: options/cross-linking.php:69
 msgid "Complete words"
 msgstr ""
 
-#: includes/options.php:52
+#: includes/options.php:57
 msgid "Cross Linking"
 msgstr ""
 
@@ -210,7 +210,7 @@ msgstr ""
 msgid "Custom Fields"
 msgstr ""
 
-#: includes/options.php:43
+#: includes/options.php:48
 msgid "Custom Post Type"
 msgstr ""
 
@@ -218,20 +218,20 @@ msgstr ""
 msgid "Dashboard Menu Name"
 msgstr ""
 
-#: options/appearance.php:12
+#: options/appearance.php:9
 msgid "Default style"
 msgstr ""
 
-#: options/tooltips.php:34
+#: options/tooltips.php:33
 msgid "Delay"
 msgstr ""
 
-#: options/related-items.php:18
+#: options/related-items.php:11
 #, php-format
 msgid "Display related %s"
 msgstr ""
 
-#: options/related-items.php:22
+#: options/related-items.php:15
 #, php-format
 msgid "Do not show related %s."
 msgstr ""
@@ -239,12 +239,6 @@ msgstr ""
 #: includes/post-type.php:144
 #, php-format
 msgid "Draft updated. (<a target=\"_blank\" href=\"%1$s\">Preview %2$s</a>)"
-msgstr ""
-
-#: options/dropbox.php:17
-msgid ""
-"Dropbox is a modern workspace designed to reduce busywork &mdash; so you can "
-"focus on the things that matter."
 msgstr ""
 
 #: includes/post-type.php:45
@@ -260,13 +254,13 @@ msgstr ""
 msgid "Enable Archive"
 msgstr ""
 
-#: options/search.php:18
+#: options/search.php:15
 msgid ""
 "Enable this feature to redirect the user to the matched item if the user "
 "searched for an exact title."
 msgstr ""
 
-#: options/taxonomies.php:64
+#: options/taxonomies.php:63
 #, php-format
 msgid "Enables %1$s for %2$s."
 msgstr ""
@@ -287,7 +281,7 @@ msgstr ""
 msgid "Enables or disables the block editor (Gutenberg)."
 msgstr ""
 
-#: options/appearance.php:18
+#: options/appearance.php:15
 msgid "Enables or disables the default CSS on the frontend."
 msgstr ""
 
@@ -306,7 +300,7 @@ msgid ""
 "Enables or disables the prefix filter above the first item in the archive."
 msgstr ""
 
-#: options/single-page.php:18
+#: options/single-page.php:15
 msgid ""
 "Enables or disables the prefix filter above the title in the single view."
 msgstr ""
@@ -319,15 +313,15 @@ msgstr ""
 msgid "Enables or disables the text excerpt input field."
 msgstr ""
 
-#: options/tooltips.php:19
+#: options/tooltips.php:18
 msgid "Enables or disables the tooltips for item links on the frontend."
 msgstr ""
 
-#: includes/options.php:132
+#: includes/options.php:137
 msgid "Entries"
 msgstr ""
 
-#: includes/options.php:131
+#: includes/options.php:136
 msgid "Entry"
 msgstr ""
 
@@ -343,7 +337,7 @@ msgstr ""
 msgid "Featured Image"
 msgstr ""
 
-#: includes/options.php:46
+#: includes/options.php:51
 msgid "Features"
 msgstr ""
 
@@ -351,11 +345,11 @@ msgstr ""
 msgid "Feed URL"
 msgstr ""
 
-#: options/cross-linking.php:60
+#: options/cross-linking.php:56
 msgid "Filter order"
 msgstr ""
 
-#: options/cross-linking.php:95
+#: options/cross-linking.php:91
 msgid "First match only"
 msgstr ""
 
@@ -364,27 +358,27 @@ msgstr ""
 msgid "https://github.com/cvladan/lexicon-svko"
 msgstr ""
 
-#: options/post-type-labels.php:26
+#: options/post-type-labels.php:25
 msgid "Item plural name"
 msgstr ""
 
-#: options/post-type-labels.php:18
+#: options/post-type-labels.php:17
 msgid "Item singular name"
 msgstr ""
 
-#: options/post-type-labels.php:48
+#: options/post-type-labels.php:47
 msgid "Item URL slug"
 msgstr ""
 
-#: includes/options.php:44
+#: includes/options.php:49
 msgid "Labels"
 msgstr ""
 
-#: includes/options.php:130
+#: includes/options.php:135
 msgid "Lexicon"
 msgstr ""
 
-#: includes/options.php:129 includes/options.php:133 includes/options.php:134
+#: includes/options.php:138 includes/options.php:139
 msgid "lexicon"
 msgstr ""
 
@@ -392,35 +386,35 @@ msgstr ""
 msgid "Lexicon | SVKO"
 msgstr ""
 
-#: options/cross-linking.php:77
+#: options/cross-linking.php:73
 msgid "Link complete words only."
 msgstr ""
 
-#: options/cross-linking.php:88
+#: options/cross-linking.php:84
 msgid "Link items case sensitive."
 msgstr ""
 
-#: options/cross-linking.php:99
+#: options/cross-linking.php:95
 msgid "Link the first match of each item only."
 msgstr ""
 
-#: options/cross-linking.php:110
+#: options/cross-linking.php:106
 msgid "Link the item in its own content."
 msgstr ""
 
-#: options/cross-linking.php:117
+#: options/cross-linking.php:113
 msgid "Link title length"
 msgstr ""
 
-#: options/cross-linking.php:50
+#: options/cross-linking.php:46
 msgid "Minimum length"
 msgstr ""
 
-#: options/related-items.php:57
+#: options/related-items.php:50
 msgid "Minimum number of common taxonomy terms to generate a relation."
 msgstr ""
 
-#: options/tooltips.php:27 options/tooltips.php:37 options/search.php:35
+#: options/search.php:32
 msgid "ms"
 msgstr ""
 
@@ -443,82 +437,70 @@ msgstr ""
 msgid "No %s found in Trash"
 msgstr ""
 
-#: options/related-items.php:46
+#: options/related-items.php:39
 #, php-format
 msgid "Number of related %s"
 msgstr ""
 
-#: options/related-items.php:49
+#: options/related-items.php:42
 #, php-format
 msgid "Number of related %s which should be shown."
 msgstr ""
 
-#: options/dropbox.php:25
-msgid "Of course the Pro Version does not contain any flashing advertisements."
-msgstr ""
-
-#: options/single-page.php:16 options/features.php:13 options/features.php:24
+#: options/single-page.php:13 options/features.php:13 options/features.php:24
 #: options/features.php:35 options/features.php:46 options/features.php:57
-#: options/features.php:68 options/features.php:79 options/appearance.php:16
+#: options/features.php:68 options/features.php:79 options/appearance.php:13
 #: options/archive-page.php:13 options/archive-page.php:35
-#: options/tooltips.php:17 options/search.php:16
+#: options/tooltips.php:16 options/search.php:13
 msgid "Off"
 msgstr ""
 
-#: options/dropbox.php:21
-msgid "Okay, tell me more&hellip;"
-msgstr ""
-
-#: options/single-page.php:15 options/features.php:12 options/features.php:23
+#: options/single-page.php:12 options/features.php:12 options/features.php:23
 #: options/features.php:34 options/features.php:45 options/features.php:56
-#: options/features.php:67 options/features.php:78 options/appearance.php:15
+#: options/features.php:67 options/features.php:78 options/appearance.php:12
 #: options/archive-page.php:12 options/archive-page.php:34
-#: options/tooltips.php:16 options/search.php:15
+#: options/tooltips.php:15 options/search.php:12
 msgid "On"
 msgstr ""
 
-#: options/cross-linking.php:31
+#: options/cross-linking.php:27
 msgid "Open link in a new window/tab"
 msgstr ""
 
-#: options/related-items.php:30
+#: options/related-items.php:23
 msgid "Please choose a taxonomy"
 msgstr ""
 
-#: options/taxonomies.php:39
+#: options/taxonomies.php:38
 #, php-format
 msgid "Please choose the taxonomies you want to use for your %s."
 msgstr ""
 
-#: options/taxonomies.php:28
+#: options/taxonomies.php:27
 msgid "Post Categories"
 msgstr ""
 
-#: options/taxonomies.php:31
+#: options/taxonomies.php:30
 msgid "Post Tags"
 msgstr ""
 
-#: options/custom-post-type.php:11
+#: options/custom-post-type.php:8
 msgid "Post Type Slug"
 msgstr ""
 
-#: options/single-page.php:12 options/archive-page.php:31
+#: options/single-page.php:9 options/archive-page.php:31
 msgid "Prefix filter"
 msgstr ""
 
-#: options/single-page.php:23 options/archive-page.php:42
+#: options/single-page.php:20 options/archive-page.php:42
 msgid "Prefix filter depth"
 msgstr ""
 
-#: options/dropbox.php:10
-msgid "Put your creative energy to work"
-msgstr ""
-
-#: options/search.php:12
+#: options/search.php:9
 msgid "Query matches directly"
 msgstr ""
 
-#: options/cross-linking.php:106
+#: options/cross-linking.php:102
 msgid "Recursion"
 msgstr ""
 
@@ -527,15 +509,15 @@ msgstr ""
 msgid "Related %s"
 msgstr ""
 
-#: includes/options.php:51
+#: includes/options.php:56
 msgid "Related Items"
 msgstr ""
 
-#: options/related-items.php:27
+#: options/related-items.php:20
 msgid "Relation Taxonomy"
 msgstr ""
 
-#: options/related-items.php:54
+#: options/related-items.php:47
 msgid "Relation Threshold"
 msgstr ""
 
@@ -557,7 +539,7 @@ msgstr ""
 msgid "Save Changes"
 msgstr ""
 
-#: includes/options.php:49
+#: includes/options.php:54
 msgid "Search"
 msgstr ""
 
@@ -570,21 +552,21 @@ msgstr ""
 msgid "Search Tags"
 msgstr ""
 
-#: includes/options.php:37
+#: includes/options.php:42
 msgid "Settings"
 msgstr ""
 
-#: options/options.php:19
+#: options/options.php:20
 msgid "Settings saved."
 msgstr ""
 
-#: options/tooltips.php:48
+#: options/tooltips.php:47
 msgid ""
 "Show the tooltips only if the user <strong>clicks</strong> on it. This "
 "option will <strong>disable the link</strong> to the cross linked entry."
 msgstr ""
 
-#: includes/options.php:50
+#: includes/options.php:55
 msgid "Single View"
 msgstr ""
 
@@ -596,7 +578,7 @@ msgstr ""
 msgid "Tags"
 msgstr ""
 
-#: includes/options.php:47
+#: includes/options.php:52
 msgid "Taxonomies"
 msgstr ""
 
@@ -604,92 +586,92 @@ msgstr ""
 msgid "Text Editor"
 msgstr ""
 
-#: options/cross-linking.php:38
+#: options/cross-linking.php:34
 msgid "Text Widget"
 msgstr ""
 
-#: options/archive-link.php:17
+#: options/archive-link.php:14
 #, php-format
 msgid "The archive url is: <a href=\"%1$s\" target=\"_blank\">%1$s</a>"
 msgstr ""
 
-#: options/taxonomies.php:40
+#: options/taxonomies.php:39
 msgid ""
 "The choosen taxonomies will show a prefix filter above the term archives and "
 "ordered by post title. The posts per page limit will be applied from the "
 "archive option below."
 msgstr ""
 
-#: options/search.php:36
+#: options/search.php:33
 msgid ""
 "The delay in milliseconds between a keystroke occurs and the suggestions "
 "will be shown."
 msgstr ""
 
-#: options/single-page.php:26 options/archive-page.php:45
+#: options/single-page.php:23 options/archive-page.php:45
 msgid ""
 "The depth of the prefix filter is usually the number of rows with prefixes "
 "which are shown."
 msgstr ""
 
-#: options/tooltips.php:29
+#: options/tooltips.php:28
 msgid "The duration for the opening and closing animations, in milliseconds."
 msgstr ""
 
-#: options/custom-post-type.php:14
+#: options/custom-post-type.php:11
 msgid ""
 "The internal name used to register this post type. This should be a unique, "
 "lowercase alphanumeric name (hyphens allowed)."
 msgstr ""
 
-#: options/cross-linking.php:55
+#: options/cross-linking.php:51
 msgid ""
 "The minimum length of cross linked words. Shorter words <u>will not be</u> "
 "cross linked automatically."
 msgstr ""
 
-#: options/search.php:27
+#: options/search.php:24
 msgid ""
 "The minimum number of characters a user must type before suggestions will be "
 "shown."
 msgstr ""
 
-#: options/cross-linking.php:121
+#: options/cross-linking.php:117
 msgid ""
 "The number of words of the linked item used as link title. This option does "
 "not affect manually created excerpts."
 msgstr ""
 
-#: options/post-type-labels.php:29
+#: options/post-type-labels.php:28
 msgid ""
 "The plural name for multiple items. For example: Entries, Terms, Articles, "
 "etc."
 msgstr ""
 
-#: options/archive-link.php:21
+#: options/archive-link.php:18
 #, php-format
 msgid "The RSS feed url is: <a href=\"%1$s\" target=\"_blank\">%1$s</a>"
 msgstr ""
 
-#: options/post-type-labels.php:21
+#: options/post-type-labels.php:20
 msgid "The singular name for an item. For example: Entry, Term, Article, etc."
 msgstr ""
 
-#: options/post-type-labels.php:43
+#: options/post-type-labels.php:42
 msgid ""
 "The url slug of your items archive. This slug must not used by another post "
 "type or page."
 msgstr ""
 
-#: options/post-type-labels.php:57
+#: options/post-type-labels.php:56
 msgid "The url slug of your items."
 msgstr ""
 
-#: options/archive-link.php:12
+#: options/archive-link.php:9
 msgid "There is no link to the archive page because the archive is disabled."
 msgstr ""
 
-#: options/cross-linking.php:14
+#: options/cross-linking.php:10
 msgid ""
 "This feature won't work because the <a href=\"https://secure.php."
 "net/manual/en/book.dom.php\" target=\"_blank\">DOM PHP extension</a> is not "
@@ -717,11 +699,11 @@ msgstr ""
 msgid "This option affects all %s archive pages."
 msgstr ""
 
-#: options/taxonomies.php:68
+#: options/taxonomies.php:67
 msgid "This taxonomy is used for %l."
 msgstr ""
 
-#: includes/options.php:53 options/tooltips.php:13
+#: includes/options.php:58 options/tooltips.php:12
 msgid "Tooltips"
 msgstr ""
 
@@ -733,7 +715,7 @@ msgstr ""
 msgid "Update Tag"
 msgstr ""
 
-#: options/tooltips.php:39
+#: options/tooltips.php:38
 msgid ""
 "Upon mouse interaction, this is the delay before the tooltip starts its "
 "opening and closing animations, in milliseconds."
@@ -744,7 +726,7 @@ msgctxt "URL Slug"
 msgid "/tag"
 msgstr ""
 
-#: options/taxonomies.php:60
+#: options/taxonomies.php:59
 #, php-format
 msgid "Use this taxonomy for %s."
 msgstr ""
@@ -758,7 +740,7 @@ msgstr ""
 msgid "Vladan Colovic"
 msgstr ""
 
-#: options/cross-linking.php:119
+#: options/cross-linking.php:115
 msgid "words"
 msgstr ""
 
@@ -768,7 +750,7 @@ msgid ""
 "You can use \"-1\" to disable the pagination and show all %s in one page."
 msgstr ""
 
-#: options/post-type-labels.php:61
+#: options/post-type-labels.php:60
 #, php-format
 msgid "You can use these placeholders: %s"
 msgstr ""
