@@ -6,29 +6,17 @@ use WP_Query;
 
 abstract class Polylang
 {
-    /**
-     * Translatable option keys
-     */
-    private static $translatable_keys = [
-        'item_dashboard_name',
-        'item_singular_name',
-        'item_plural_name',
-        'item_slug',
-        'archive_slug'
-    ];
+    // All keys are now translatable, no need for a specific list
 
     public static function init(): void
     {
         add_filter('lexicon_available_prefix_filters', [static::class, 'filterAvailablePrefixFilters']);
         
-        // Register strings for translation when plugin is loaded
-        // This works with the wpml-config.xml file to ensure all strings are properly registered
-        add_action('plugins_loaded', [static::class, 'registerStringsForTranslation'], 20);
-        
         // Add filter to ensure translations are properly retrieved
         add_filter('pll_get_post_types', [static::class, 'addCustomPostTypeToPolylang'], 10, 2);
+        
     }
-
+    
     /**
      * Check if Polylang is active
      *
@@ -67,29 +55,7 @@ abstract class Polylang
 
         return $arr_filter;
     }
-    
-    /**
-     * Register strings for translation with Polylang
-     *
-     * This ensures that strings are available for translation immediately
-     * and helps preserve translations when values are updated.
-     */
-    public static function registerStringsForTranslation(): void
-    {
-        if (!static::isActive() || !function_exists('pll_register_string')) {
-            return;
-        }
-        
-        // Get current options
-        $options = (array) get_option('wp_plugin_lexicon', []);
-        
-        // Register each translatable string
-        foreach (self::$translatable_keys as $key) {
-            if (isset($options[$key]) && is_string($options[$key])) {
-                \pll_register_string($key, $options[$key], 'Lexicon Plugin', true);
-            }
-        }
-    }
+
     
     /**
      * Add custom post type to Polylang
@@ -106,17 +72,7 @@ abstract class Polylang
         }
         return $post_types;
     }
-    
-    /**
-     * Get translatable keys
-     *
-     * @return array
-     */
-    public static function getTranslatableKeys(): array
-    {
-        return self::$translatable_keys;
-    }
-    
+   
     /**
      * Get current language code
      *
@@ -150,46 +106,28 @@ abstract class Polylang
     }
     
     /**
-     * Preserve translations when updating a value in one language
-     *
-     * This method works with the wpml-config.xml file to ensure translations
-     * are connected to keys, not values. When a value is updated in one language,
-     * translations in other languages are preserved.
+     * Register a string for translation with Polylang
      *
      * @param string $key Option key
-     * @param string $value New value
-     * @param string $language Current language code
+     * @param string $value String value to register
      * @return void
      */
-    public static function preserveTranslations(string $key, string $value, string $language = ''): void
+    public static function registerString(string $key, string $value): void
     {
-        if (!static::isActive() || !in_array($key, self::$translatable_keys)) {
+        if (!static::isActive()) {
             return;
         }
         
-        // Get current language if not provided
-        if (empty($language)) {
-            $language = static::getCurrentLanguage();
-        }
-        
-        if (empty($language)) {
-            return;
-        }
-        
-        // Register the string for translation
-        // This ensures the new value is registered for the current language
-        // while preserving translations in other languages
         if (function_exists('pll_register_string')) {
-            \pll_register_string($key, $value, 'wp_plugin_lexicon', true);
-        }
-        
-        // Force Polylang to reload strings if possible
-        // This ensures the translations are immediately available
-        if (isset($GLOBALS['polylang']) && isset($GLOBALS['polylang']->strings)) {
-            $strings = $GLOBALS['polylang']->strings;
+            \pll_register_string($key, $value, 'Lexicon Plugin', true);
             
-            if (method_exists($strings, 'register')) {
-                $strings->register();
+            // Force Polylang to reload strings if possible
+            if (isset($GLOBALS['polylang']) && isset($GLOBALS['polylang']->strings)) {
+                $strings = $GLOBALS['polylang']->strings;
+                
+                if (method_exists($strings, 'register')) {
+                    $strings->register();
+                }
             }
         }
     }

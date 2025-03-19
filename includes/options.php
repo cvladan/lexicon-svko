@@ -6,6 +6,23 @@ abstract class Options
 {
     private static $arr_option_box = [], $page_slug = 'lexicon-options', $options_key = 'wp_plugin_lexicon';
     
+    /**
+     * Get the option name for the current context
+     *
+     * @return string Option name with language suffix if Polylang is active
+     */
+    private static function getOptionName(): string
+    {
+        if (Polylang::isActive()) {
+            $current_language = Polylang::getCurrentLanguage();
+            if (!empty($current_language)) {
+                return static::$options_key . '_' . $current_language;
+            }
+        }
+        
+        return static::$options_key;
+    }
+    
     public static function getOptionBoxes(): array
     {
         return static::$arr_option_box;
@@ -102,6 +119,33 @@ abstract class Options
 
         # Remove incompatible JS Libs
         wp_dequeue_script('post');
+        
+        # Add language switcher notice if Polylang is active
+        if (Polylang::isActive()) {
+            add_action('admin_notices', function() {
+                $current_language = Polylang::getCurrentLanguage();
+                $languages = Polylang::getLanguages();
+                
+                if (!empty($languages)) {
+                    echo '<div class="notice notice-info"><p>';
+                    
+                    if (!empty($current_language) && isset($languages[$current_language])) {
+                        // Display language with flag if available
+                        $flag_html = '';
+                        if (!empty($languages[$current_language]['flag'])) {
+                            $flag_html = '<img src="' . esc_url($languages[$current_language]['flag']) . '" alt="' . esc_attr($languages[$current_language]['name']) . '" style="vertical-align: middle; margin-right: 5px; width: 16px; height: 11px;">';
+                        }
+                        
+                        echo sprintf(__('%s You are currently editing options for the <strong>%s</strong> language. Options are stored separately per language.', 'lexicon-svko'), $flag_html, esc_html($languages[$current_language]['name']));
+                    } else {
+                        // No language selected
+                        echo __('There is currently no language selected. Please use the language switcher in the admin bar to select a language. Options are stored separately per language.', 'lexicon-svko');
+                    }
+                    
+                    echo '</p></div>';
+                }
+            });
+        }
     }
 
     public static function printOptionsPage(): void
@@ -123,27 +167,31 @@ abstract class Options
         $options = array_filter($options, function ($value) {
             return $value == '0' || !empty($value);
         });
-
-        # Get current options
-        $current_options = (array) get_option(static::$options_key, []);
         
-        # Get translatable keys from Polylang class
-        $translatable_keys = Polylang::getTranslatableKeys();
-        
-        # Process each option
+        # Save options
         $success = true;
-        foreach ($options as $key => $value) {
-            // For translatable keys, use saveOption to handle translations
-            if (in_array($key, $translatable_keys)) {
-                $success = $success && static::saveOption($key, $value);
-            } else {
-                // For non-translatable keys, just update the option array
-                $current_options[$key] = $value;
-            }
-        }
         
-        # Save non-translatable options
-        $success = $success && update_option(static::$options_key, $current_options);
+        if (Polylang::isActive()) {
+            # When Polylang is active, save all options to language-specific key
+            $option_key = static::getOptionName();
+            $language_options = (array) get_option($option_key, []);
+            
+            # Update language-specific options
+            $language_options = array_merge($language_options, $options);
+            $success = update_option($option_key, $language_options);
+            
+            # Register string options with Polylang
+            foreach ($options as $key => $value) {
+                if (is_string($value)) {
+                    Polylang::registerString($key, $value);
+                }
+            }
+        } else {
+            # When Polylang is not active, save to the main option key
+            $current_options = (array) get_option(static::$options_key, []);
+            $current_options = array_merge($current_options, $options);
+            $success = update_option(static::$options_key, $current_options);
+        }
         
         return $success;
     }
@@ -186,33 +234,33 @@ abstract class Options
      */
     public static function get(string $key = '', $default = false)
     {
-        // Get options from WordPress (WordPress handles caching internally)
-        $saved_options = (array) get_option(static::$options_key);
+        // Get default options first
         $default_options = static::getDefaultOptions();
+        
+        // Get saved global options
+        $saved_options = (array) get_option(static::$options_key, []);
+        
+        // Merge default with saved global options
         $arr_options = array_merge($default_options, $saved_options);
-
+        
+        // If Polylang is active, get language-specific options and overwrite
+        if (Polylang::isActive()) {
+            $option_key = static::getOptionName();
+            $language_options = (array) get_option($option_key, []);
+            
+            // Overwrite with language-specific options
+            if (!empty($language_options)) {
+                $arr_options = array_merge($arr_options, $language_options);
+            }
+        }
+        
         # Return all options if no key specified
         if (empty($key))
             return $arr_options;
             
         # Return option value if key exists
         if (isset($arr_options[$key])) {
-            $value = $arr_options[$key];
-            
-            // Get translatable keys from Polylang class
-            $translatable_keys = Polylang::getTranslatableKeys();
-            
-            if (is_string($value) && in_array($key, $translatable_keys)) {
-                // If Polylang is active
-                if (Polylang::isActive()) {
-                    $current_language = Polylang::getCurrentLanguage();
-                    if (!empty($current_language)) {
-                        return apply_filters('pll_translate_string', $value, $current_language);
-                    }
-                }
-            }
-            
-            return $value;
+            return $arr_options[$key];
         }
             
         # Return default value
@@ -228,19 +276,26 @@ abstract class Options
      */
     public static function saveOption(string $key, $value): bool
     {
-        $options = (array) get_option(static::$options_key, []);
-        
-        // Get translatable keys from Polylang class
-        $translatable_keys = Polylang::getTranslatableKeys();
-        
-        if (is_string($value) && in_array($key, $translatable_keys)) {
-            // If Polylang is active, preserve translations and register the string
-            if (Polylang::isActive()) {
-                Polylang::preserveTranslations($key, $value);
+        if (Polylang::isActive()) {
+            // When Polylang is active, save all options to language-specific key
+            $option_key = static::getOptionName();
+            $language_options = (array) get_option($option_key, []);
+            $language_options[$key] = $value;
+            
+            // Save to language-specific option
+            $success = update_option($option_key, $language_options);
+            
+            // Also register with Polylang for compatibility if it's a string
+            if (is_string($value)) {
+                Polylang::registerString($key, $value);
             }
+            
+            return $success;
+        } else {
+            // When Polylang is not active, save to the main option key
+            $options = (array) get_option(static::$options_key, []);
+            $options[$key] = $value;
+            return update_option(static::$options_key, $options);
         }
-        
-        $options[$key] = $value;
-        return update_option(static::$options_key, $options);
     }
 }

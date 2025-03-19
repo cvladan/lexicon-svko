@@ -35,20 +35,6 @@ if ($is_multilingual) {
 }
 ?>
 
-<?php if ($is_multilingual): ?>
-<div class="notice notice-info">
-    <p>
-        <?php if ($language_flag): ?>
-            <img src="<?php echo esc_url($language_flag); ?>" alt="<?php echo esc_attr($language_name); ?>" style="vertical-align: middle; margin-right: 5px; width: 16px; height: 11px;">
-        <?php endif; ?>
-        <?php printf(__('You are editing translations for %s', 'lexicon-svko'), '<strong>' . esc_html($language_name) . '</strong>'); ?>
-        <?php if (count($available_languages) > 1): ?> | 
-            <?php _e('Use the language switcher in the admin bar.', 'lexicon-svko'); ?>
-        <?php endif; ?>
-    </p>
-</div>
-<?php endif; ?>
-
 <table class="form-table">
     <tr>
         <th><label for="item_dashboard_name"><?php _e('Dashboard Menu Name', 'lexicon-svko') ?></label></th>
